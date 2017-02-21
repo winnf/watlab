@@ -29,12 +29,12 @@ a {
 	margin: 18px 12px;
 }
 
-.lab-manager-app .experiments-box .row, .lab-manager-app .publications-box .row{
+.lab-manager-app .abstract-table-box .row {
 	margin-left: 0px;
 	margin-right: 0px;
 }
 
-.lab-manager-app .experiments-box .label, .lab-manager-app .publications-box .label{
+.lab-manager-app .abstract-table-box .label {
 	font-size: 14px;
 }
 

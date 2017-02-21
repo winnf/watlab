@@ -1,28 +1,13 @@
-<div class="publications-box" style="height: 100%;" ng-controller="PublicationCtrl">
-	<div class="panel panel-default" style="padding: 0px 12px; height: calc(100% - 20px); overflow-y: auto;">
-		<div style="height: 64px;">
-	  	<h2 style="float: left; display: inline-block;">Publications</h2>
-	  	<button type="button" class="btn btn-primary" style="float: right; display: inline-block; margin-top: 20px;"> <i class="fa fa-plus" aria-hidden="true"></i>
-	  		<span style="margin-left: 8px;">Add Publications</span></button>
-	  </div>
-	  <div style="margin-bottom: 24px;">
-		  <p style="margin-bottom: 12px;">Click on publication to ...</p>
-		  <table id="example" class="table table-striped table-bordered">
-		    <thead>
-		      <tr>
-		        <th>Publication</th>
-		        <th>Date</th>
-		        <th>Status</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <tr ng-repeat="publication in publications track by $index">
-		        <td><a ng-click="goToPublication(publication.url)">{{publication.name}}</a></td>
-		        <td>{{publication.date}}</td>
-		        <td><span class="label" ng-class="statusMap[publication.status]">{{publication.status}}</span></td>
-		      </tr>
-		    </tbody>
-		  </table>
-		 </div>
-	</div>
+<div ng-controller="PublicationCtrl">
+	<abstract-table 
+		title="{{title}}"
+		description="{{description}}" 
+		button-text="{{buttonText}}"
+		row-headers="rowHeaders"
+		rows="rows"
+		cell-types="cellTypes"
+		status-map="statusMap"
+		click-handler-map="clickHandlerMap"
+		click-button-fn="clickButtonFn"> 
+	</abstract-table>
 </div>
