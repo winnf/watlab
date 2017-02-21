@@ -1,0 +1,40 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.lab-manager-app .navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.lab-manager-app .navbar-inverse .navbar-brand:focus, .lab-manager-app .navbar-inverse .navbar-brand:hover {
+    color: #9d9d9d;
+    background-color: transparent;
+}
+
+.lab-manager-app .navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+.lab-manager-app .navbar-inverse .navbar-nav>li>a:focus, .lab-manager-app .navbar-inverse .navbar-nav>li>a:hover {
+    color: #9d9d9d;
+    background-color: transparent;
+}
+
+.lab-manager-app .login-box .panel-body > * {
+	margin: 18px 12px;
+}
+
+.lab-manager-app .experiments-box .row, .lab-manager-app .publications-box .row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.lab-manager-app .experiments-box .label, .lab-manager-app .publications-box .label{
+	font-size: 14px;
+}
+
