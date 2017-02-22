@@ -38,3 +38,10 @@ a {
 	font-size: 14px;
 }
 
+#abstract-table.specific-experiment-table th.download, #abstract-table.specific-experiment-table th.archive {
+  width: 60px;
+}
+
+#abstract-table.specific-experiment-table th.date, #abstract-table.specific-experiment-table th.format, #abstract-table.specific-experiment-table th.owner{
+  width: 180px;
+}

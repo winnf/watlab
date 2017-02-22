@@ -1,4 +1,5 @@
 <div class="abstract-table-box" style="height: 100%; margin-top: 72px;">
+
 	<div class="panel panel-default" style="padding: 0px 12px;">
 		<div style="height: 64px;">
 	  	<h2 style="float: left; display: inline-block;">{{title}}</h2>
@@ -8,16 +9,23 @@
 	  		<span style="margin-left: 8px;">{{buttonText}}</span></button>
 	  </div>
 	  <div style="margin-bottom: 24px;">
+	  	<div ng-show="includeTabs" style="margin-bottom: 12px;">
+	  		<ul class="nav nav-tabs">
+					<li ng-repeat="tab in tabs" role="presentation" ng-class="{active: currentTabIndex === $index}">
+						<a ng-click="clickHandlerMap['tabChange']($index)" style="cursor: pointer;">{{tab}}</a>
+					</li>
+				</ul>
+	  	</div>
 		  <p style="margin-bottom: 12px;">{{description}}</p>
-		  <table id="abstract-table" class="table table-striped table-bordered">
+		  <table id="abstract-table" class="table table-striped table-bordered" ng-class="tableClassName">
 		    <thead>
 		      <tr>
-		        <th ng-repeat="rowHeader in rowHeaders">{{rowHeader}}</th>
+		        <th ng-repeat="rowHeader in rowHeaders" ng-class="rowHeaderClass[$index]">{{rowHeader}}</th>
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr ng-repeat="row in rows track by $index">
-		        <td ng-repeat="(key, value) in row.viewableData" ng-include="cellTypes[$index % cellTypes.length]">
+		      <tr ng-repeat="row in rows track by $index" >
+		        <td ng-repeat="(key, value) in row.viewableData" ng-init="finished()" ng-include="cellTypes[$index % cellTypes.length]">
 		      </tr>
 		    </tbody>
 		  </table>

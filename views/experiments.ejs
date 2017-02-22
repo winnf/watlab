@@ -1,8 +1,10 @@
-<div ng-controller="ExperimentCtrl">
+<div ng-controller="ExperimentsCtrl">
 	<abstract-table 
+		table-class-name="{{tableClassName}}"
 		title="{{title}}"
 		description="{{description}}" 
 		button-text="{{buttonText}}"
+
 		row-headers="rowHeaders"
 		rows="rows"
 		cell-types="cellTypes"

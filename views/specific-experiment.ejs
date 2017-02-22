@@ -1,9 +1,13 @@
-<div ng-controller="PublicationsCtrl">
+<div ng-controller="SpecificExperimentCtrl">
 	<abstract-table 
 		table-class-name="{{tableClassName}}"
 		title="{{title}}"
 		description="{{description}}" 
 		button-text="{{buttonText}}"
+
+		tabs="tabs"
+		include-tabs="includeTabs"
+		current-tab-index="currentTabIndex"
 
 		row-headers="rowHeaders"
 		rows="rows"

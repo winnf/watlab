@@ -8,6 +8,9 @@ app.config(function($routeProvider, $locationProvider) {
     .when("/experiments", {
         templateUrl : '/view/experiments.ejs'
     })
+    .when("/experiment/:experimentId", {
+        templateUrl : '/view/specific-experiment.ejs'
+    })
     .when("/publications", {
         templateUrl : '/view/publications.ejs'
     })
