@@ -25,7 +25,7 @@
 		    </thead>
 		    <tbody>
 		      <tr ng-repeat="row in rows track by $index" >
-		        <td ng-repeat="(key, value) in row.viewableData" ng-init="finished()" ng-include="cellTypes[$index % cellTypes.length]">
+		        <td ng-repeat="(key, value) in row.viewableData" ng-include="cellTypes[key]">
 		      </tr>
 		    </tbody>
 		  </table>

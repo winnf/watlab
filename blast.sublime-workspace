@@ -4,16 +4,44 @@
 		"selected_items":
 		[
 			[
-				"marg",
-				"margin-bottom"
+				"du",
+				"dueDate"
+			],
+			[
+				"start",
+				"startDate"
 			],
 			[
 				"margin",
-				"margin-right"
+				"margin-top"
+			],
+			[
+				"pla",
+				"PLAIN"
+			],
+			[
+				"view",
+				"viewableData"
+			],
+			[
+				"Dat",
+				"DataTable"
+			],
+			[
+				"row",
+				"rowHeaders"
+			],
+			[
+				"tab",
+				"tabChange"
 			],
 			[
 				"exper",
-				"experiments"
+				"experimentId"
+			],
+			[
+				"marg",
+				"margin-top"
 			],
 			[
 				"experim",
@@ -456,10 +484,6 @@
 				"bootstrapModal"
 			],
 			[
-				"start",
-				"startPage"
-			],
-			[
 				"util",
 				"UtilHelper"
 			],
@@ -490,40 +514,16 @@
 			[
 				"templa",
 				"templateId"
-			],
-			[
-				"remove",
-				"removeArrows"
-			],
-			[
-				"prev",
-				"previousEnv"
-			],
-			[
-				"st",
-				"startPage"
-			],
-			[
-				"pre",
-				"previousArrowStr"
-			],
-			[
-				"env",
-				"environment"
-			],
-			[
-				"previ",
-				"previousArrow"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "views/navbar.ejs",
+			"file": "public/javascripts/abstract-table-directive.js",
 			"settings":
 			{
-				"buffer_size": 1476,
+				"buffer_size": 743,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -532,61 +532,68 @@
 			"file": "views/abstract-table.ejs",
 			"settings":
 			{
-				"buffer_size": 1022,
+				"buffer_size": 1421,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/javascripts/experiments-ctrl.js",
+			"settings":
+			{
+				"buffer_size": 4043,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/javascripts/abstract-table-directive.js",
+			"file": "/C/Users/simon/Desktop/GitHubLog.txt",
 			"settings":
 			{
-				"buffer_size": 296,
+				"buffer_size": 167566,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/javascripts/specific-experiment-ctrl.js",
+			"settings":
+			{
+				"buffer_size": 5994,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/javascripts/index.js",
+			"file": "views/cell-plain.ejs",
 			"settings":
 			{
-				"buffer_size": 4317,
+				"buffer_size": 9,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "views/index.ejs",
+			"file": "public/javascripts/celltypes-constants.js",
 			"settings":
 			{
-				"buffer_size": 1850,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/experiments2.ejs",
-			"settings":
-			{
-				"buffer_size": 1265,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/publications.ejs",
-			"settings":
-			{
-				"buffer_size": 1233,
+				"buffer_size": 301,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "views/experiments.ejs",
+			"file": "views/modal-create-experiment.ejs",
 			"settings":
 			{
-				"buffer_size": 242,
+				"buffer_size": 2314,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/login.ejs",
+			"settings":
+			{
+				"buffer_size": 923,
 				"line_ending": "Windows"
 			}
 		}
@@ -697,16 +704,39 @@
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views"
 	],
 	"file_history":
 	[
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/login.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/routes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/style.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publications-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-formatted-date.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/specific-experiment-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/modal-create-experiment.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/abstract-table.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/celltypes-constants.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/style.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/modal-simple-text.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-clickable.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-download.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-delete.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/login.ejs",
+		"/C/Users/simon/Desktop/GitHubLog.txt",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/navbar.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/experiments-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/abstract-table-directive.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/experiments.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/specific-experiment.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publications.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/routes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-status.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/clickable-cell.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/experiments2.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/status-cell.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/plain-cell.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/status-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/package.json",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/error.ejs",
 		"/C/Users/simon/Documents/GitHub/leetcode/60-69/67AddBinary.cpp",
@@ -806,34 +836,11 @@
 		"/C/Users/simon/Documents/GitHub/leetcode/50-59/56MergeIntervals.cpp",
 		"/C/Users/simon/Documents/GitHub/leetcode/60-69/69Sqrt(x).cpp",
 		"/C/Users/simon/Documents/GitHub/leetcode/1-9/8StringtoInteger(atoi).cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/1-9/8StringtoInteger(atoi).CPP",
-		"/C/Users/simon/Documents/GitHub/leetcode/1-9/9PalindromeNumber.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/20-29/25ReverseNodesinkGroup.exe",
-		"/C/Users/simon/Documents/GitHub/leetcode/90-99/92ReverseLinkedListII.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/20-29/25ReverseNodesinkGroup.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/10-19/14LongestCommonPrefix.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/50-59/58LengthofLastWord.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/40-49/25ReverseNodesinkGroup.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/40-49/48RotateImage.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/30-39/32LongestValidParentheses.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/30-39/33SearchinRotatedSortedArray.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/UtilityHelper.hpp",
-		"/C/Users/simon/Downloads/a (1).cpp",
-		"/C/Users/simon/Downloads/a.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/1-9/4MedianofTwoSortedArrays.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/1-9/5LongestPalindromicSubstring.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/1-9/6ZigZagConversion.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/1-9/3LongestSubstringWithout RepeatingCharacters.cpp",
-		"/C/Users/simon/AppData/Roaming/Sublime Text 3/Packages/User/CustomC++Build.sublime-build",
-		"/C/Users/simon/Documents/GitHub/leetcode/test.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/C++Syntax/basic.cpp",
-		"/C/Users/simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/Users/simon/Documents/GitHub/leetcode/C++Syntax/functionalProgramming.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/C++Syntax/convertArrayToVector.cpp"
+		"/C/Users/simon/Documents/GitHub/leetcode/1-9/8StringtoInteger(atoi).CPP"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -855,6 +862,43 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"startDate",
+			"click",
+			"close",
+			"format",
+			"date",
+			"experiment",
+			"window.html",
+			"date",
+			"ng-class",
+			"name",
+			"hiddenData",
+			"\"status\"",
+			"[Bob, William, Ray]",
+			"assignees",
+			"\"date\"",
+			": '",
+			"url",
+			"hiddenData",
+			"experiment",
+			"hiddenData",
+			"Ex",
+			"\"a\"",
+			"\"name\"",
+			"Experiment",
+			"Experiment1",
+			"Experiment",
+			"name",
+			"et al. experimentCrick",
+			"Brenner et al. experimentCri",
+			"experimentN",
+			"\"name\"",
+			"name",
+			"hiddenData: {\"url\": \"a\"} }",
+			"{\"url\": \"a\"}",
+			"},",
+			"{",
+			"\"url\":\"a\",",
 			":",
 			"experiments",
 			"experiment",
@@ -945,49 +989,12 @@
 			"lastButtonState",
 			"medianCombineTwoElements",
 			"cout <<",
-			"a",
-			"medianCombineTwoElement",
-			"transform",
-			"cout ",
-			"mid",
-			"nums2",
-			"nums1",
-			"rest",
-			"traversal",
-			"sort",
-			"console.log",
-			"rawPrice",
-			"rawPriceOne",
-			":",
-			" {",
-			"n1",
-			"|",
-			"font",
-			"font-size:",
-			"1.42857143",
-			"#3EA87F",
-			"html",
-			".html",
-			"flippableSentenceContainer",
-			"dimOnHover",
-			"styles.tilestyle",
-			"tilestyle",
-			".gamescreen",
-			"redirect",
-			"metadata",
-			"this.props",
-			"key",
-			".html",
-			"dataSource",
-			"episodes",
-			"dataSource",
-			"style=",
-			"textAlign"
+			"a"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
 			",",
@@ -1014,34 +1021,33 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "views/navbar.ejs",
+					"file": "public/javascripts/abstract-table-directive.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1476,
+						"buffer_size": 743,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								448,
-								448
+								729,
+								729
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 256.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
@@ -1050,164 +1056,18 @@
 				{
 					"buffer": 1,
 					"file": "views/abstract-table.ejs",
-					"semi_transient": false,
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1022,
+						"buffer_size": 1421,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								894,
-								894
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "public/javascripts/abstract-table-directive.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 296,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								222,
-								235
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "public/javascripts/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4317,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1752,
-								1752
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1428.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "views/index.ejs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1850,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								714,
-								714
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "views/experiments2.ejs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1265,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								500,
-								486
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 42.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "views/publications.ejs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1233,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								636,
-								636
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1223,20 +1083,190 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "views/experiments.ejs",
+					"buffer": 2,
+					"file": "public/javascripts/experiments-ctrl.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 242,
+						"buffer_size": 4043,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								199,
-								212
+								3864,
+								3864
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1526.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/simon/Desktop/GitHubLog.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 167566,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								311,
+								274
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "public/javascripts/specific-experiment-ctrl.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5994,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1181,
+								1181
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 40.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/cell-plain.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7,
+								7
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/javascripts/celltypes-constants.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								192,
+								196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "views/modal-create-experiment.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2039,
+								2039
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 421.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "views/login.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 923,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								517,
+								308
 							]
 						],
 						"settings":
@@ -1248,7 +1278,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -1256,7 +1286,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -1297,7 +1327,7 @@
 	"project": "blast.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1309,6 +1339,86 @@
 			[
 				"ind",
 				"views\\index.ejs"
+			],
+			[
+				"log",
+				"views\\login.ejs"
+			],
+			[
+				"style",
+				"public\\stylesheets\\style.css"
+			],
+			[
+				"sty",
+				"public\\stylesheets\\style.css"
+			],
+			[
+				"public",
+				"public\\javascripts\\publications-ctrl.js"
+			],
+			[
+				"inde",
+				"views\\index.ejs"
+			],
+			[
+				"ab",
+				"views\\abstract-table.ejs"
+			],
+			[
+				"abst",
+				"views\\abstract-table.ejs"
+			],
+			[
+				"n",
+				"views\\navbar.ejs"
+			],
+			[
+				"exp",
+				"public\\javascripts\\experiments-ctrl.js"
+			],
+			[
+				"exper",
+				"public\\javascripts\\experiments-ctrl.js"
+			],
+			[
+				"sp",
+				"public\\javascripts\\specific-experiment-ctrl.js"
+			],
+			[
+				"abs",
+				"views\\abstract-table.ejs"
+			],
+			[
+				"av",
+				"public\\javascripts\\abstract-table-directive.js"
+			],
+			[
+				"spec",
+				"public\\javascripts\\specific-experiment-ctrl.js"
+			],
+			[
+				"pub",
+				"public\\javascripts\\publications-ctrl.js"
+			],
+			[
+				"ex",
+				"views\\experiments.ejs"
+			],
+			[
+				"routes",
+				"routes\\routes.js"
+			],
+			[
+				"cli",
+				"views\\clickable-cell.ejs"
+			],
+			[
+				"e",
+				"views\\experiments.ejs"
+			],
+			[
+				"nav",
+				"views\\navbar.ejs"
 			],
 			[
 				"bin",
@@ -1493,10 +1603,6 @@
 			[
 				"matching",
 				"frontend\\css\\matchingGame.css"
-			],
-			[
-				"nav",
-				"frontend\\css\\navigationBar.css"
 			],
 			[
 				"navi",
@@ -1731,10 +1837,6 @@
 				"static\\legacy-modules\\button.html"
 			],
 			[
-				"n",
-				"static\\legacy-modules\\navigation-bar.html"
-			],
-			[
 				"main.",
 				"templates\\main.html"
 			],
@@ -1745,78 +1847,6 @@
 			[
 				"soc",
 				"static\\styles\\source-code.css"
-			],
-			[
-				"ja",
-				"static\\styles\\jamarshon.css"
-			],
-			[
-				"main.cs",
-				"static\\styles\\main.css"
-			],
-			[
-				"p8",
-				"static\\legacy-modules\\source-code\\page8.html"
-			],
-			[
-				"p9",
-				"static\\legacy-modules\\source-code\\page9.html"
-			],
-			[
-				"dr",
-				"draw2.py"
-			],
-			[
-				"a.p",
-				"a.py"
-			],
-			[
-				"po",
-				"static\\styles\\polyhedron.css"
-			],
-			[
-				"bv",
-				"static\\scripts\\views\\buttonView.js"
-			],
-			[
-				"mpv",
-				"static\\scripts\\pages\\mainPageView.js"
-			],
-			[
-				"spv",
-				"static\\scripts\\pages\\sourcePageView.js"
-			],
-			[
-				"ar",
-				"static\\styles\\arrow.css"
-			],
-			[
-				"p2",
-				"static\\legacy-modules\\source-code\\page2.html"
-			],
-			[
-				"p3",
-				"static\\legacy-modules\\source-code\\page3.html"
-			],
-			[
-				"utilhe",
-				"static\\scripts\\utils\\utilHelper.js"
-			],
-			[
-				"polv",
-				"static\\scripts\\views\\polyhedronView.js"
-			],
-			[
-				"main",
-				"templates\\main.html"
-			],
-			[
-				"p7",
-				"static\\legacy-modules\\source-code\\page7.html"
-			],
-			[
-				"p6",
-				"static\\legacy-modules\\source-code\\page6.html"
 			]
 		],
 		"width": 0.0
@@ -1829,7 +1859,7 @@
 		[
 			[
 				"",
-				"C:\\Users\\simon\\Documents\\Web Dev\\nemoo\\nemoo.sublime-project"
+				"C:\\Users\\simon\\Documents\\Web Dev\\jamarshon.appspot.com\\jamarshon.sublime-project"
 			],
 			[
 				"nem",
@@ -1862,7 +1892,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 278.0,
 	"status_bar_visible": true,
 	"template_settings":

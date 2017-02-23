@@ -22,16 +22,14 @@ app.directive('abstractTable', function() {
 		},
 		templateUrl: '/view/abstract-table.ejs',
 		controller: function($scope, $timeout) {
-			$scope.initialized = false;
 			$scope.$watch('rowHeaders', function(n, o){
 				$scope.rowHeaderClass = $scope.rowHeaders.map(x => x.split(' ').join('-').toLowerCase());
 			});
-			$scope.finished = _.debounce(function() {
-				if(!$scope.initialized) {
-					$('#abstract-table').DataTable({ pageLength: 25});
-					$scope.initialized = true;
-				}
-			}, 100);
+
+			$timeout(function() {
+				$('#abstract-table').DataTable({ pageLength: 25});
+				console.log('Initialized');
+			}, 200);
 		}
 	};
 });

@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('SpecificExperimentCtrl', function($scope, $routeParams) {
+app.controller('SpecificExperimentCtrl', function($scope, $routeParams, CELLTYPES) {
 	var experimentId = $routeParams.experimentId;
 
 	// Dummy http request for now
@@ -14,15 +14,23 @@ app.controller('SpecificExperimentCtrl', function($scope, $routeParams) {
 	
 	$scope.table = [
 		{
-			rowHeaders: ['File Name', 'Date', 'Owner', 'Format', 'Download', 'Archive'],
-			cellTypes: ['/view/cell-plain.ejs', '/view/cell-plain.ejs', '/view/cell-plain.ejs', '/view/cell-plain.ejs', '/view/cell-download.ejs', '/view/cell-delete.ejs'],
+			rowHeaders: ['File Name', 'Description', 'Date', 'Owner', 'Format', 'Download', 'Archive'],
+			cellTypes: {
+				'file-name': CELLTYPES.PLAIN,
+				description: CELLTYPES.PLAIN,
+				date: CELLTYPES.DATE,
+				owner: CELLTYPES.PLAIN,
+				format: CELLTYPES.PLAIN,
+				download: CELLTYPES.DOWNLOAD,
+				archive: CELLTYPES.DELETE
+			},
 			rows: [
-				{viewableData: {"file-name": "Cell Sample Data", "date":"Jan 1, 1928","owner":"William Smith","format":".csv","download":true,"archive":true}, hiddenData: {"url": 'experiment-0A'} },
-				{viewableData: {"file-name": "Microwave Data", "date":"Jan 1, 1952","owner":"John Smith","format":".py","download":true,"archive":true}, hiddenData: {"url": 'experiment-0B'} },
-				{viewableData: {"file-name": "Radiation Data", "date":"Jan 1, 1964","owner":"John Bob","format":".mat","download":true,"archive":true}, hiddenData: {"url": 'experiment-3'} },
-				{viewableData: {"file-name": "Bird Calls", "date":"Jan 1, 1964","owner":"Bob John","format":".mp3","download":true,"archive":true}, hiddenData: {"url": 'experiment-4'} },
-				{viewableData: {"file-name": "Seisometer", "date":"Jan 1, 1995","owner":"Smith William","format":".jpeg","download":true,"archive":true}, hiddenData: {"url": 'experiment-5'} },
-				{viewableData: {"file-name": "Lochness Monster Sighting", "date":"Jan 1, 1974","owner":"Bob Smith","format":".mp4","download":true,"archive":true}, hiddenData: {"url": 'experiment-6'} },
+				{viewableData: {"file-name": "Cell Sample Data","description":"Collection of blood, saliva, and buccal cell samples in a pilot study on the Danish nurse cohort: comparison of the response rate and quality of genomic DNA.","date":"Jan 1, 1928","owner":"William Smith","format":".csv","download":true,"archive":true}, hiddenData: {"url": "experiment-0A"} },
+				{viewableData: {"file-name": "Microwave Data","description":"We present a full-sky 100 μm map that is a reprocessed composite of the COBE/DIRBE and IRAS/ISSA maps, with the zodiacal foreground and confirmed point sources removed. Before using the ISSA maps, we remove the remaining artifacts","date":"Jan 1, 1952","owner":"John Smith","format":".py","download":true,"archive":true}, hiddenData: {"url": "experiment-0B"} },
+				{viewableData: {"file-name": "Radiation Data","description":"The phenomenon of growth, decline and death—aging—has been the source of considerable speculation. This cycle seems to be a more or less direct function of the metabolic rate and this in turn depends on the species (animal or plant)", "date":"Jan 1, 1964","owner":"John Bob","format":".mat","download":true,"archive":true}, hiddenData: {"url": "experiment-3"} },
+				{viewableData: {"file-name": "Bird Calls","description":"Automatic identification of bird calls without manual intervention has been a challenging task for meaningful research on the taxonomy and monitoring of bird migrations in ornithology", "date":"Jan 1, 1964","owner":"Bob John","format":".mp3","download":true,"archive":true}, hiddenData: {"url": "experiment-4"} },
+				{viewableData: {"file-name": "Seisometer","description":"A tomographic image of the upper mantle beneath central Tibet from INDEPTH data has revealed a subvertical high-velocity zone from∼ 100-to∼ 400-kilometers depth, located approximately south of the Bangong-Nujiang Suture", "date":"Jan 1, 1995","owner":"Smith William","format":".jpeg","download":true,"archive":true}, hiddenData: {"url": "experiment-5"} },
+				{viewableData: {"file-name": "Lochness Monster Sighting","description":"Recent publicity concerning new claims for the existence of the Loch Ness monster has focused on the evidence offered by Sir Peter Scott and Robert Rines.", "date":"Jan 1, 1974","owner":"Bob Smith","format":".mp4","download":true,"archive":true}, hiddenData: {"url": "experiment-6"} },
 			]
 		},
 		{
@@ -55,9 +63,6 @@ app.controller('SpecificExperimentCtrl', function($scope, $routeParams) {
 		archive: function(row, i, event) {
 			var tr = $(event.target).closest('tr');
 			$('#abstract-table').DataTable().row(tr).remove().draw();
-			// var rows = $scope.table[$scope.currentTabIndex].rows;
-			// var rowIndex = rows.indexOf(row);
-			// rows.splice(rowIndex, 1);
 		},
 		download: function(row) {
 			downloadURI('', row.viewableData['file-name'].split(' ').join('-').toLowerCase() + row.viewableData.format);

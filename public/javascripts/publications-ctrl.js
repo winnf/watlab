@@ -1,13 +1,19 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('PublicationsCtrl', function($scope, $location) {
+app.controller('PublicationsCtrl', function($scope, $location, CELLTYPES) {
 	$scope.tableClassName = 'publications-table';
 	$scope.title = 'Publications';
 	$scope.buttonText = 'Add Publication';
 	$scope.description = 'Click on publication to ...';
 	$scope.rowHeaders = ['Publication', 'Date', 'Status'];
-	$scope.cellTypes = ['/view/cell-clickable.ejs', '/view/cell-plain.ejs', '/view/cell-status.ejs'];
+
+	$scope.cellTypes = {
+		name: CELLTYPES.CLICKABLE, 
+		date: CELLTYPES.DATE, 
+		status: CELLTYPES.STATUS,
+	};
+	
 	$scope.clickHandlerMap = {
 		button: function() {
 			alert('Created Publication');
