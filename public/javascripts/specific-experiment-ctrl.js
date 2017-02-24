@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('SpecificExperimentCtrl', function($scope, $routeParams, CELLTYPES) {
+app.controller('SpecificExperimentCtrl', function($scope, $routeParams, $uibModal, CELLTYPES) {
 	var experimentId = $routeParams.experimentId;
 
 	// Dummy http request for now
@@ -34,15 +34,18 @@ app.controller('SpecificExperimentCtrl', function($scope, $routeParams, CELLTYPE
 			]
 		},
 		{
-			rowHeaders: ['Download', 'Date', 'Format', 'Bae', 'Archive'],
-			cellTypes: ['/view/cell-plain.ejs', '/view/cell-plain.ejs', '/view/cell-plain.ejs', '/view/cell-download.ejs', '/view/cell-delete.ejs'],
+			rowHeaders: ['File Name', 'Status'],
+			cellTypes: {
+				'file-name': CELLTYPES.CLICKABLE,
+				status: CELLTYPES.STATUS,
+			},
 			rows: [
-				{viewableData: {"name": "Cell Sample Data", "date":"Jan 1, 1928","format":".csv","download":true,"archive":true}, hiddenData: {"url": 'experiment-0A'} },
-				{viewableData: {"name": "Microwave Data", "date":"Jan 1, 1952","format":".csv","download":true,"archive":true}, hiddenData: {"url": 'experiment-0B'} },
-				{viewableData: {"name": "Radiation Data", "date":"Jan 1, 1964","format":".csv","download":true,"archive":true}, hiddenData: {"url": 'experiment-3'} },
-				{viewableData: {"name": "Bird Calls", "date":"Jan 1, 1964","format":".csv","download":true,"archive":true}, hiddenData: {"url": 'experiment-4'} },
-				{viewableData: {"name": "Seisometer", "date":"Jan 1, 1995","format":".csv","download":true,"archive":true}, hiddenData: {"url": 'experiment-5'} },
-				{viewableData: {"name": "Lochness Monster Sighting", "date":"Jan 1, 1974","format":".csv","download":true,"archive":true}, hiddenData: {"url": 'experiment-6'} },
+				{viewableData: {"file-name": "Cell Sample Data", "status":"In Progress"}, hiddenData: {"url": "experiment-0A"} },
+				{viewableData: {"file-name": "Microwave Data", "status":"Complete"}, hiddenData: {"url": "experiment-0B"} },
+				{viewableData: {"file-name": "Radiation Data", "status":"Approaching Deadline"}, hiddenData: {"url": "experiment-3"} },
+				{viewableData: {"file-name": "Bird Calls", "status":"Overdue" }, hiddenData: {"url": "experiment-4"} },
+				{viewableData: {"file-name": "Seisometer", "status":"Complete"}, hiddenData: {"url": "experiment-5"} },
+				{viewableData: {"file-name": "Lochness Monster Sighting", "status":"Approaching Deadline"}, hiddenData: {"url": "experiment-6"} },
 			]
 		},
 
@@ -55,10 +58,23 @@ app.controller('SpecificExperimentCtrl', function($scope, $routeParams, CELLTYPE
     link.click();
 	}
 
+	var uploadData = function() {
+		var modalInstance = $uibModal.open({
+			backdrop: 'static',
+      templateUrl: '/view/modal-add-data.ejs',
+      controller: 'AddDataModalCtrl',
+      appendTo: $('body')
+    });
+	};
+
 	$scope.includeTabs = true;
 	$scope.clickHandlerMap = {
 		button: function() {
-			alert('Add ' + $scope.tabs[$scope.currentTabIndex]);
+			if($scope.currentTabIndex === 0) {
+				uploadData();
+			} else {
+				alert('Add ' + $scope.tabs[$scope.currentTabIndex]);
+			}
 		},
 		archive: function(row, i, event) {
 			var tr = $(event.target).closest('tr');
@@ -85,5 +101,32 @@ app.controller('SpecificExperimentCtrl', function($scope, $routeParams, CELLTYPE
 		'Complete': 'label-success', 
 		'Approaching Deadline': 'label-warning', 
 		'Overdue': 'label-danger'
+	};
+});
+
+app.controller('AddDataModalCtrl', function($scope, $uibModalInstance){
+	$scope.currentPage = 0;
+	var genericDateObj = {
+		date: new Date(),
+		isOpen: false,
+		placement: 'bottom-right',
+		format: 'MMM dd, yyyy',
+		altInputFormats: ['MMM dd, yyyy'],
+		options: {},
+	};
+
+	$scope.startDate = _.clone(genericDateObj);
+	$scope.dueDate = _.clone(genericDateObj);
+
+	$scope.closeModal = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+  $scope.primaryBtn = function() {
+		if($scope.currentPage === 0) {
+			$scope.currentPage++;
+		} else {
+			$scope.closeModal();
+		}
 	};
 });

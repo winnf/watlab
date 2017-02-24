@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Data</h4>
+  <button type="button" class="close" aria-label="Close" ng-click="closeModal()" style="margin-top: -25px;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+
+<div id="file-information" ng-show="currentPage === 0">
+	<div style="margin: 0px 0px 8px;"><label>File Name</label></div> 
+  <div class="input-group" style="width: 100%;">
+	  <input type="text" class="form-control" ng-model="fileName" placeholder="File Name">
+	</div>
+
+	<div style="margin: 24px 0px 8px;"><label>Format</label></div> 
+  <div class="input-group" style="width: 100%;">
+	  <input type="text" class="form-control" ng-model="format" placeholder="Format">
+	</div>
+
+	<div style="margin: 24px 0px 8px;"><label>Start Date and End Date</label></div> 
+	<div style="display: flex; flex-direction: row;">
+		<div class="input-group" style="width: 45%; margin-right: 10%;">
+			<input type="text" class="form-control" 
+					popup-placement="{{startDate.placement}}" is-open="startDate.isOpen" datepicker-options="startDate.options"  
+					uib-datepicker-popup="{{startDate.format}}" ng-model="startDate.date" show-button-bar="false"
+					alt-input-formats="startDate.format" />
+			<span class="input-group-btn">
+	      <button type="button" class="btn btn-default" ng-click="startDate.isOpen = !startDate.isOpen"><i class="glyphicon glyphicon-calendar"></i></button>
+	    </span>
+	  </div>
+	 	<div class="input-group" style="width: 45%;">
+			<input type="text" class="form-control" 
+					popup-placement="{{dueDate.placement}}" is-open="dueDate.isOpen" datepicker-options="dueDate.options"  
+					uib-datepicker-popup="{{dueDate.format}}" ng-model="dueDate.date" show-button-bar="false"
+					alt-input-formats="dueDate.format" />
+			<span class="input-group-btn">
+	      <button type="button" class="btn btn-default" ng-click="dueDate.isOpen = !dueDate.isOpen"><i class="glyphicon glyphicon-calendar"></i></button>
+	    </span>
+	  </div>
+	</div>
+	
+	<div style="margin: 24px 0px 8px;"><label>Description</label></div> 
+  <div class="input-group" style="width: 100%;">
+  	<textarea type="text" class="form-control" rows="4" ng-model="description" placeholder="Description"></textarea>
+	</div>
+</div>
+
+<div id="upload-file" ng-show="currentPage === 1">
+	<div style="margin: 0px 0px 8px;"><label>Upload File</label></div> 
+  <div class="input-group" style="width: 100%;">
+	  <input type="file" class="form-control" ng-model="file">
+	</div>
+
+	<div style="cursor: pointer; border-radius: 12px; border: 6px dashed lightgrey; margin-top: 24px; height: 150px; line-height: 150px; text-align: center;">
+		<span style="display: inline-block; vertical-align: middle; line-height: normal;">Drag and Drop File Here!</span>
+	</div>
+</div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="primaryBtn()">{{currentPage === 0 ? 'Next' : 'Submit'}}</button>
+  <button type="button" class="btn btn-secondary" ng-click="closeModal()">Close</button>
+</div>
