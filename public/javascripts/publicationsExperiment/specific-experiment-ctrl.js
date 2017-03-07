@@ -48,7 +48,34 @@ app.controller('SpecificExperimentCtrl', function($scope, $routeParams, $uibModa
 				{viewableData: {"file-name": "Lochness Monster Sighting", "status":"Approaching Deadline"}, hiddenData: {"url": "experiment-6"} },
 			]
 		},
-
+		{
+			rowHeaders: ['Protocols'],
+			cellTypes: {
+				protocols: CELLTYPES.PLAIN,
+			},
+			rows: [
+				{viewableData: {"protocols":"Protocol1"}, hiddenData: {} },
+				{viewableData: {"protocols":"Protocol2"}, hiddenData: {} },
+				{viewableData: {"protocols":"Protocol3"}, hiddenData: {} },
+				{viewableData: {"protocols":"Protocol4"}, hiddenData: {} },
+				{viewableData: {"protocols":"Protocol5"}, hiddenData: {} },
+				{viewableData: {"protocols":"Protocol6"}, hiddenData: {} },
+			]
+		},
+		{
+			rowHeaders: ['Literature and References'],
+			cellTypes: {
+				literature: CELLTYPES.PLAIN,
+			},
+			rows: [
+				{viewableData: {"literature":"Paper1"}, hiddenData: {} },
+				{viewableData: {"literature":"Paper2"}, hiddenData: {} },
+				{viewableData: {"literature":"Paper3"}, hiddenData: {} },
+				{viewableData: {"literature":"Paper4"}, hiddenData: {} },
+				{viewableData: {"literature":"Paper5"}, hiddenData: {} },
+				{viewableData: {"literature":"Paper6"}, hiddenData: {} },
+			]
+		}
 	];
 
 	function downloadURI(uri, name) {
@@ -61,7 +88,7 @@ app.controller('SpecificExperimentCtrl', function($scope, $routeParams, $uibModa
 	var uploadData = function() {
 		var modalInstance = $uibModal.open({
 			backdrop: 'static',
-      templateUrl: '/view/modal-add-data.ejs',
+      templateUrl: '/per/view/modal-add-data.ejs',
       controller: 'AddDataModalCtrl',
       appendTo: $('body')
     });

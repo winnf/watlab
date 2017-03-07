@@ -1,0 +1,27 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+#lab-manager-app {
+	padding: 0px; 
+	background-color:  #E6E6E6;
+}
+
+#lab-manager-app .app-container {
+	height: calc(100vh - 72px);
+	margin-top: 50px;
+}
+
+#lab-manager-app .app-container > *{
+	height: 100%; 
+	padding-top: 24px;
+}

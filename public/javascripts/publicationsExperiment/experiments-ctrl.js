@@ -20,7 +20,7 @@ app.controller('ExperimentsCtrl', function($scope, $location, $uibModal, $timeou
 	var createExperiment = function() {
 		var modalInstance = $uibModal.open({
 			backdrop: 'static',
-      templateUrl: '/view/modal-create-experiment.ejs',
+      templateUrl: '/per/view/modal-create-experiment.ejs',
       controller: 'CreateExperimentModalCtrl',
       appendTo: $('body')
     });
@@ -39,7 +39,7 @@ app.controller('ExperimentsCtrl', function($scope, $location, $uibModal, $timeou
 			createExperiment();
 		},
 		name: function(row) {
-			$location.url('/experiment/' + row.hiddenData.id);
+			$location.url('/per/experiment/' + row.hiddenData.id);
 		}
 	};
 	

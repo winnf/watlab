@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+    <title>Lab Manager - Publications and Experiments</title>
+
+    <% include ../_libraries/bootstrap-fontawesome-jquery-underscore %>
+    <% include ../_libraries/angular-angularbootstrap %>
+    <% include ../_libraries/datatables %>
+
+    <link rel='stylesheet' href='/stylesheets/common/style.css'>
+    <link rel='stylesheet' href='/stylesheets/publicationsExperiment/style.css'>
+
+    <script src="/javascripts/publicationsExperiment/index.js"></script>
+
+    <script src="/javascripts/common/navbar-ctrl.js"></script>
+    <script src="/javascripts/common/common-data-service.js"></script>
+
+    <script src="/javascripts/publicationsExperiment/abstract-table-directive.js"></script>
+    <script src="/javascripts/publicationsExperiment/celltypes-constants.js"></script>
+    <script src="/javascripts/publicationsExperiment/experiments-ctrl.js"></script>
+    <script src="/javascripts/publicationsExperiment/publications-ctrl.js"></script>
+    <script src="/javascripts/publicationsExperiment/specific-experiment-ctrl.js"></script>
+  </head>
+  <body id="lab-manager-app" ng-app="App">
+    <div ng-include="'/view/navbar.ejs'" ng-controller="TestCtrl"></div>
+    <div class="container app-container" ng-view></div>
+    </div>
+  </body>
+</html>

@@ -20,7 +20,7 @@ app.directive('abstractTable', function() {
 			statusMap: '=',
 			clickHandlerMap: '='
 		},
-		templateUrl: '/view/abstract-table.ejs',
+		templateUrl: '/per/view/abstract-table.ejs',
 		controller: function($scope, $timeout) {
 			var initialized = false;
 

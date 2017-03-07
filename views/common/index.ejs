@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Lab Manager - Login</title>
+
+    <% include ../_libraries/bootstrap-fontawesome-jquery-underscore %>
+    <% include ../_libraries/angular-angularbootstrap %>
+
+    <link rel='stylesheet' href='/stylesheets/common/style.css'>
+    <link rel='stylesheet' href='/stylesheets/common/navbar.css'>
+    <link rel='stylesheet' href='/stylesheets/common/login-box.css'>
+    <link rel='stylesheet' href='/stylesheets/common/dashboard.css'>
+
+    <script src="/javascripts/common/index.js"></script>
+    <script src="/javascripts/common/login-ctrl.js"></script>
+    <script src="/javascripts/common/navbar-ctrl.js"></script>
+    <script src="/javascripts/common/dashboard-ctrl.js"></script>
+    <script src="/javascripts/common/common-data-service.js"></script>
+  </head>
+  <body id="lab-manager-app" ng-app="App">
+    <div ng-include="'/view/navbar.ejs'"></div>
+    <div class="container app-container" ng-view></div>
+    </div>
+  </body>
+</html>

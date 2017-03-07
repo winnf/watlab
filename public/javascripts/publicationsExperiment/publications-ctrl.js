@@ -19,7 +19,7 @@ app.controller('PublicationsCtrl', function($scope, $location, CELLTYPES) {
 			alert('Created Publication');
 		},
 		name: function(row) {
-			$location.url('/publication/' + row.hiddenData.id);
+			$location.url('/per/publication/' + row.hiddenData.id);
 		}
 	};
 	

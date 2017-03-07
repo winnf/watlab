@@ -1,0 +1,12 @@
+<div id="dashboard" ng-controller="DashboardCtrl">
+	<div class="panel panel-default" style="height: 100%;">
+	  <div class="panel-body" style="height: 100%;">
+	  	<h2 style="margin-top: 12px; margin-bottom: 24px;">Dashboard</h2>
+	  	<div class="tile-container">
+	  		<div class="tile" 
+	  			ng-click="navigateTo(dTile)"
+	  			ng-repeat="dTile in dTiles">{{dTile.name}}</div>
+	  	</div>
+	  </div>
+	</div>
+</div>

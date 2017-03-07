@@ -1,0 +1,20 @@
+.lab-manager-app .abstract-table-box .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.lab-manager-app .abstract-table-box .label {
+	font-size: 14px;
+}
+
+#abstract-table.experiments-table th.start-date, #abstract-table.experiments-table th.due-date {
+  width: 72px;
+}
+
+#abstract-table.specific-experiment-table th.download, #abstract-table.specific-experiment-table th.archive {
+  width: 60px;
+}
+
+#abstract-table.specific-experiment-table th.date #abstract-table.specific-experiment-table th.file-name {
+  width: 100px;
+}

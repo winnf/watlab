@@ -1,0 +1,17 @@
+#lab-manager-app .navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+#lab-manager-app .navbar-inverse .navbar-brand:focus, #lab-manager-app .navbar-inverse .navbar-brand:hover {
+    color: #9d9d9d;
+    background-color: transparent;
+}
+
+#lab-manager-app .navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+#lab-manager-app .navbar-inverse .navbar-nav>li>a:focus, #lab-manager-app .navbar-inverse .navbar-nav>li>a:hover {
+    color: #9d9d9d;
+    background-color: transparent;
+}
