@@ -17,5 +17,4 @@ Note: nodemon automatically updates your files so you don't need to restart your
 ./routes is the routes for the http endpoints
 ./server is the server-side
 ./views are html files
-#GITHUB PUSH TEST
 app.js is the configuration of the server where the routes are connected
