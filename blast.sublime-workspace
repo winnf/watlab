@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"tex",
+				"text-align"
+			],
+			[
+				"alig",
+				"align-items"
+			],
+			[
 				"new",
 				"newHistory"
 			],
@@ -506,68 +514,17 @@
 			[
 				"Starte",
 				"startPageView"
-			],
-			[
-				"pol",
-				"polyhedronDiv"
-			],
-			[
-				"navig",
-				"navigation-bar"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "routes/commonRoutes.js",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 394,
+				"buffer_size": 523,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/common/templates/navbar.ejs",
-			"settings":
-			{
-				"buffer_size": 1532,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/common/index.ejs",
-			"settings":
-			{
-				"buffer_size": 878,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/stylesheets/common/style.css",
-			"settings":
-			{
-				"buffer_size": 342,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/stylesheets/common/login-box.css",
-			"settings":
-			{
-				"buffer_size": 116,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "public/stylesheets/common/navbar.css",
-			"settings":
-			{
-				"buffer_size": 479,
 				"line_ending": "Windows"
 			}
 		},
@@ -575,26 +532,56 @@
 			"file": "public/javascripts/publicationsExperiment/index.js",
 			"settings":
 			{
-				"buffer_size": 1507,
+				"buffer_size": 856,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/javascripts/common/common-data-service.js",
+			"settings":
+			{
+				"buffer_size": 360,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/_libraries/angular-angularbootstrap.ejs",
+			"settings":
+			{
+				"buffer_size": 540,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/stylesheets/common/style.css",
+			"settings":
+			{
+				"buffer_size": 451,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/javascripts/publicationsExperiment/publications-ctrl.js",
+			"settings":
+			{
+				"buffer_size": 2296,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/javascripts/publicationsExperiment/specific-experiment-ctrl.js",
+			"settings":
+			{
+				"buffer_size": 7565,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/javascripts/common/navbar-ctrl.js",
+			"file": "public/javascripts/publicationsExperiment/experiments-ctrl.js",
 			"settings":
 			{
-				"buffer_size": 434,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "public/javascripts/common/login-ctrl.js",
-			"settings":
-			{
-				"buffer_size": 181,
-				"encoding": "UTF-8",
+				"buffer_size": 4051,
 				"line_ending": "Windows"
 			}
 		}
@@ -704,42 +691,58 @@
 	[
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/images",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/common",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/equipmentSafety",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/projectsStaff",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment"
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries"
 	],
 	"file_history":
 	[
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/login-box.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/navbar.css",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/login-box.css",
-		"/C/Users/simon/Documents/GitHub/chess/public/javascripts/index.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/commonRoutes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/common-data-service.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/index.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/app.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/equipmentSafety/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/navbar-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/projectsStaff/style.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/equipmentSafety/style.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/projectsStaffRoutes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates/test.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/templates/test.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/dashboard.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/login-box.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/dashboard-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/publicationsExperimentRoutes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/experiments-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/login-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/specific-experiment-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/publications-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/abstract-table-directive.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/celltypes-constants.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/abstract-table.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/dashboard.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/equipmentSafetyRoutes.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/style.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/navbar.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/login-box.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/navbar.css",
+		"/C/Users/simon/Documents/GitHub/chess/public/javascripts/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/app.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/index.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/libraries/datatables.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/libraries/bootstrap-fontawesome-jquery-underscore.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/libraries/angular-angularbootstrap.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/equipmentSafety/style.css",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/projectsStaff/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/publicationsExperiment/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/abstract-table-directive.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/abstract-table.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/package.json",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/README.md",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/publicationsExperimentRoutes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/projectsStaffRoutes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/equipmentSafetyRoutes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/commonRoutes.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/labEquipmentSafetyRoutes.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/labProjectsStaffRoutes.js",
 		"/C/Users/simon/Desktop/GitHubLog.txt",
@@ -823,32 +826,11 @@
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/local-data/TW.json",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/local-data/AM.json",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/local-data/AD.json",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/test.json",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/e3.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/e2.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/e1.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/node‐exercise4-output.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/http-collect.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/node‐exercise4.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/http-file-server.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/http-client.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/filtered-ls-output.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/http-json-api-server.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/node-exercise1.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/time-server.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/http-collect.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/http-file-server.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/provided-code/program5.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/provided-code/program3.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/filtered-ls.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/e4.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/program3.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/learnyounodeexercises/execise2.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/program1.js"
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/test.json"
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -870,6 +852,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"commondataser",
+			"j",
+			"i",
+			"e",
+			"bLow",
+			"aLow",
+			"libraries",
+			"equipmentSafety",
+			"\"",
+			".url",
+			"experiment",
+			"templateUr",
+			"templateur",
+			"/view/",
+			"cell-",
+			"abstract-table",
+			"45",
 			".lab-manager-app",
 			"_",
 			"-",
@@ -980,24 +979,7 @@
 			"struct",
 			"unordered_map",
 			"head",
-			"MAP",
-			" * ",
-			" && carry > 0",
-			"\"",
-			":",
-			"long",
-			"midRoot",
-			"1",
-			" * ",
-			"v",
-			"]",
-			"[",
-			"Interval ",
-			"cout",
-			" * ",
-			"* ",
-			"int ",
-			"A"
+			"MAP"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1034,24 +1016,24 @@
 			[
 				{
 					"buffer": 0,
-					"file": "routes/commonRoutes.js",
+					"file": "README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 394,
+						"buffer_size": 523,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								321,
-								321
+								74,
+								74
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1062,107 +1044,105 @@
 				},
 				{
 					"buffer": 1,
-					"file": "views/common/templates/navbar.ejs",
+					"file": "public/javascripts/publicationsExperiment/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1532,
+						"buffer_size": 856,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								813,
+								826
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": 44.0,
+						"translation.y": 356.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "views/common/index.ejs",
+					"file": "public/javascripts/common/common-data-service.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 878,
+						"buffer_size": 360,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								488,
-								488
+								120,
+								120
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "public/stylesheets/common/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 342,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								339,
-								339
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 83.0,
+						"translation.y": 40.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "public/stylesheets/common/login-box.css",
-					"semi_transient": false,
+					"buffer": 3,
+					"file": "views/_libraries/angular-angularbootstrap.ejs",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 116,
+						"buffer_size": 540,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								113,
-								113
+								478,
+								478
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 478.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "public/stylesheets/common/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 451,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								222,
+								112
 							]
 						],
 						"settings":
@@ -1178,75 +1158,19 @@
 				},
 				{
 					"buffer": 5,
-					"file": "public/stylesheets/common/navbar.css",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 479,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "public/javascripts/publicationsExperiment/index.js",
+					"file": "public/javascripts/publicationsExperiment/publications-ctrl.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1507,
+						"buffer_size": 2296,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								171,
-								171
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 177.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "public/javascripts/common/navbar-ctrl.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 434,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								109,
-								109
+								304,
+								314
 							]
 						],
 						"settings":
@@ -1258,35 +1182,65 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "public/javascripts/common/login-ctrl.js",
+					"buffer": 6,
+					"file": "public/javascripts/publicationsExperiment/specific-experiment-ctrl.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 181,
+						"buffer_size": 7565,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								40,
-								49
+								6170,
+								6173
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 349.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "public/javascripts/publicationsExperiment/experiments-ctrl.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4051,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1495,
+								1495
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 533.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1294,7 +1248,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 36.0
+		"height": 32.0
 	},
 	"input":
 	{
@@ -1329,13 +1283,13 @@
 	},
 	"output.find_results":
 	{
-		"height": 287.0
+		"height": 249.0
 	},
 	"pinned_build_system": "Packages/User/CustomC++Build.sublime-build",
 	"project": "blast.sublime-project",
 	"replace":
 	{
-		"height": 68.0
+		"height": 60.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1345,43 +1299,99 @@
 		"selected_items":
 		[
 			[
+				"style.css",
+				"public\\stylesheets\\common\\style.css"
+			],
+			[
+				"common-da",
+				"public\\javascripts\\common\\common-data-service.js"
+			],
+			[
+				"index.js",
+				"public\\javascripts\\publicationsExperiment\\index.js"
+			],
+			[
+				"public",
+				"public\\javascripts\\publicationsExperiment\\publications-ctrl.js"
+			],
+			[
+				"comm",
+				"public\\javascripts\\common\\common-data-service.js"
+			],
+			[
+				"navbar-",
+				"public\\javascripts\\common\\navbar-ctrl.js"
+			],
+			[
+				"inde.",
+				"public\\javascripts\\projectsStaff\\index.js"
+			],
+			[
+				"inde.js",
+				"public\\javascripts\\equipmentSafety\\index.js"
+			],
+			[
+				"routes",
+				"routes\\projectsStaffRoutes.js"
+			],
+			[
+				"ind",
+				"views\\common\\index.ejs"
+			],
+			[
+				"abs",
+				"views\\publicationsExperiment\\templates\\abstract-table.ejs"
+			],
+			[
+				"dash",
+				"public\\javascripts\\common\\dashboard-ctrl.js"
+			],
+			[
+				"das",
+				"public\\stylesheets\\common\\dashboard.css"
+			],
+			[
+				"da",
+				"public\\stylesheets\\common\\dashboard.css"
+			],
+			[
+				"abst",
+				"views\\publicationsExperiment\\templates\\abstract-table.ejs"
+			],
+			[
 				"login",
 				"views\\common\\templates\\login-box.ejs"
+			],
+			[
+				"style",
+				"public\\stylesheets\\common\\style.css"
+			],
+			[
+				"inde",
+				"views\\common\\index.ejs"
+			],
+			[
+				"nav",
+				"views\\common\\templates\\navbar.ejs"
+			],
+			[
+				"log",
+				"public\\javascripts\\common\\login-ctrl.js"
+			],
+			[
+				"index",
+				"views\\publicationsExperiment\\index.ejs"
+			],
+			[
+				"sty",
+				"public\\stylesheets\\common\\style.css"
 			],
 			[
 				"modal",
 				"views\\modal-add-data.ejs"
 			],
 			[
-				"ind",
-				"views\\index.ejs"
-			],
-			[
-				"inde",
-				"views\\index.ejs"
-			],
-			[
-				"log",
-				"views\\login.ejs"
-			],
-			[
-				"style",
-				"public\\stylesheets\\style.css"
-			],
-			[
-				"sty",
-				"public\\stylesheets\\style.css"
-			],
-			[
-				"public",
-				"public\\javascripts\\publications-ctrl.js"
-			],
-			[
 				"ab",
-				"views\\abstract-table.ejs"
-			],
-			[
-				"abst",
 				"views\\abstract-table.ejs"
 			],
 			[
@@ -1401,10 +1411,6 @@
 				"public\\javascripts\\specific-experiment-ctrl.js"
 			],
 			[
-				"abs",
-				"views\\abstract-table.ejs"
-			],
-			[
 				"av",
 				"public\\javascripts\\abstract-table-directive.js"
 			],
@@ -1421,20 +1427,12 @@
 				"views\\experiments.ejs"
 			],
 			[
-				"routes",
-				"routes\\routes.js"
-			],
-			[
 				"cli",
 				"views\\clickable-cell.ejs"
 			],
 			[
 				"e",
 				"views\\experiments.ejs"
-			],
-			[
-				"nav",
-				"views\\navbar.ejs"
 			],
 			[
 				"bin",
@@ -1811,50 +1809,6 @@
 			[
 				"p1",
 				"static\\legacy-modules\\source-code\\page1.html"
-			],
-			[
-				"page1",
-				"static\\legacy-modules\\source-code\\page1.html"
-			],
-			[
-				"router",
-				"static\\scripts\\router.js"
-			],
-			[
-				"pag2",
-				"static\\legacy-modules\\source-code\\page2.html"
-			],
-			[
-				"polyhedro",
-				"static\\scripts\\views\\polyhedronView.js"
-			],
-			[
-				"page3.",
-				"static\\legacy-modules\\source-code\\page3.html"
-			],
-			[
-				"arrowhe",
-				"static\\scripts\\utils\\arrowHelper.js"
-			],
-			[
-				"anla",
-				"static\\scripts\\utils\\analytics.js"
-			],
-			[
-				"main2.",
-				"main2.py"
-			],
-			[
-				"frone",
-				"static\\frontendprocess.js"
-			],
-			[
-				"butto",
-				"static\\legacy-modules\\button.html"
-			],
-			[
-				"main.",
-				"templates\\main.html"
 			]
 		],
 		"width": 0.0
@@ -1862,16 +1816,20 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "ne",
+		"last_filter": "lee",
 		"selected_items":
 		[
+			[
+				"lee",
+				"C:\\Users\\simon\\Documents\\GitHub\\leetcode\\leetcode.sublime-project"
+			],
 			[
 				"ne",
 				"C:\\Users\\simon\\Documents\\Web Dev\\nemoo\\nemoo.sublime-project"
 			],
 			[
 				"",
-				"C:\\Users\\simon\\Documents\\MachineLearning\\ComputerVision\\tetris\\tetris-ai.sublime-project"
+				"C:\\Users\\simon\\Documents\\MachineLearning\\ComputerVision\\chess-ai\\chess-ai.sublime-project"
 			],
 			[
 				"nem",
