@@ -18,7 +18,7 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl : '/psr/view/test.ejs'
     })
     .otherwise({
-    	redirectTo: '/psr'
+    	redirectTo: '/psr/'
     });
 
 	$locationProvider.html5Mode({
@@ -29,11 +29,11 @@ app.config(function($routeProvider, $locationProvider) {
 
 app.controller('TestCtrl', function(CommonDataService) {
 	CommonDataService.setNavBarOptions([
-    {text:"Notices",url:"/notices",isActive:true},
-    {text:"Tasks",url:"/tasks",isActive:false},
-    {text:"Projects",url:"/projects",isActive:false},
-    {text:"Compensation",url:"/compensation",isActive: false},
-    {text:"Budget",url:"/budget",isActive:false}
+    {text:"Notices",url:"/psr/notices",isActive: true},
+    {text:"Tasks",url:"/psr/tasks",isActive: false},
+    {text:"Projects",url:"/psr/projects",isActive: false},
+    {text:"Compensation",url:"/psr/compensation",isActive: false},
+    {text:"Budget",url:"/psr/budget",isActive: false}
   ]);
 	CommonDataService.setLoggedIn(true);
 });

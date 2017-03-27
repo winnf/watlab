@@ -5,6 +5,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
   $scope.tableClassName = 'tasks-table';
   $scope.title = 'Tasks';
   //$scope.description = ''
+  $scope.buttonText = 'Add Task';
   $scope.rowHeaders = ['Task','Due','Assignees','Completed'];
 
   $scope.cellTypes = {
