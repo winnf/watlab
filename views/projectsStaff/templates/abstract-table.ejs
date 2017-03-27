@@ -1,0 +1,28 @@
+<div class="abstract-table-box">
+	<div class="panel panel-default" style="padding: 0px 12px;">
+		<div style="height: 64px;">
+	  	<h2 style="float: left; display: inline-block;">{{title}}</h2>
+	  </div>
+	  <div style="margin-bottom: 24px;">
+	  	<div ng-show="includeTabs" style="margin-bottom: 12px;">
+	  		<ul class="nav nav-tabs">
+					<li ng-repeat="tab in tabs" role="presentation" ng-class="{active: currentTabIndex === $index}">
+						<a ng-click="clickHandlerMap['tabChange']($index)" style="cursor: pointer;">{{tab}}</a>
+					</li>
+				</ul>
+	  	</div>
+		  <table id="abstract-table" class="table table-striped table-bordered" ng-class="tableClassName" ng-if="!loading">
+		    <thead>
+		      <tr>
+		        <th ng-repeat="rowHeader in rowHeaders" ng-class="rowHeaderClass[$index]">{{rowHeader}}</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr ng-repeat="row in rows track by $index">
+		        <td ng-repeat="(key, value) in row.viewableData" ng-include="cellTypes[key]">
+		      </tr>
+		    </tbody>
+		  </table>
+		 </div>
+	</div>
+</div>
