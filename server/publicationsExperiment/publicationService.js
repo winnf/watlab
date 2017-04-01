@@ -11,7 +11,7 @@ Server.prototype.createPublication = function (pubName) {
     var pub = new Publication({pubName: pubName});
     var deferred = Q.defer();
     
-    pub.save(function (err, xyzpub) {
+    pub.save(function (err) {
         if (err) {
             deferred.reject({err: err});
         } else {
