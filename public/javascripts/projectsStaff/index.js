@@ -3,22 +3,22 @@ var app = angular.module('App', ['ui.bootstrap', 'ngRoute']);
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/psr/notices', {
-        templateUrl : '/psr/view/test.ejs'
+        templateUrl : '/psr/view/notices.ejs'
     })
     .when('/psr/tasks', {
         templateUrl : '/psr/view/tasks.ejs'
     })
     .when('/psr/projects', {
-        templateUrl : '/psr/view/test.ejs'
+        templateUrl : '/psr/view/projects.ejs'
     })
     .when('/psr/compensation', {
-        templateUrl : '/psr/view/test.ejs'
+        templateUrl : '/psr/view/compensation.ejs'
     })
     .when('/psr/budget', {
-        templateUrl : '/psr/view/test.ejs'
+        templateUrl : '/psr/view/budget.ejs'
     })
     .otherwise({
-    	redirectTo: '/psr/'
+    	redirectTo: '/psr/notices'
     });
 
 	$locationProvider.html5Mode({
