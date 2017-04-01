@@ -12,10 +12,10 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl : '/psr/view/projects.ejs'
     })
     .when('/psr/compensation', {
-        templateUrl : '/psr/view/compensation.ejs'
+        templateUrl : '/psr/view/compensations.ejs'
     })
     .when('/psr/budget', {
-        templateUrl : '/psr/view/budget.ejs'
+        templateUrl : '/psr/view/budgets.ejs'
     })
     .otherwise({
     	redirectTo: '/psr/notices'
