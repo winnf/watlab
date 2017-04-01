@@ -13,12 +13,12 @@ var dummyData = [
 ];
 
 // Clear collection
-Dog.remove({}, function(err, removed){
+Dog.remove({}, function (err, removed) {
 	console.log('Removed');
 	console.log(removed.result);
 
-	Dog.collection.insert(dummyData, function(err, dogs){
+	Dog.collection.insert(dummyData, function (err, dogs) {
 		console.log('Insertion completed');
-		console.log(dogs)
+		console.log(dogs);
 	});
 });
