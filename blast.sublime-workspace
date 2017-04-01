@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"padd",
+				"padding-top"
+			],
+			[
 				"marg",
 				"margin-left"
 			],
@@ -510,10 +514,6 @@
 			[
 				"boot",
 				"bootstrapModal"
-			],
-			[
-				"util",
-				"UtilHelper"
 			]
 		]
 	},
@@ -532,17 +532,58 @@
 			"file": "views/common/templates/dashboard.ejs",
 			"settings":
 			{
-				"buffer_size": 516,
+				"buffer_size": 655,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/projectsStaff/notices.ejs",
+			"settings":
+			{
+				"buffer_size": 368,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/javascripts/projectsStaff/index.js",
+			"settings":
+			{
+				"buffer_size": 1135,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "1 2 \n3 4 \n\n//90\n3\t1\n4\t2\n\n// 180\n4 3 \n2 1\n\n// 270\n2 4\n1 3\n\n// F\n2 1\n4 3\n\n// F 90\n4 2\n3 1\n\n// F 180\n3 4\n1 2\n\n// F 270\n1 3\n2 4\n",
+			"settings":
+			{
+				"buffer_size": 124,
+				"line_ending": "Windows",
+				"name": "1 2"
 			}
 		},
 		{
 			"file": "public/javascripts/common/dashboard-ctrl.js",
 			"settings":
 			{
-				"buffer_size": 395,
+				"buffer_size": 491,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/javascripts/projectsStaff/notices-ctrl.js",
+			"settings":
+			{
+				"buffer_size": 2001,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 441,
 				"line_ending": "Windows"
 			}
 		},
@@ -550,7 +591,7 @@
 			"file": "public/stylesheets/common/dashboard.css",
 			"settings":
 			{
-				"buffer_size": 349,
+				"buffer_size": 728,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -660,10 +701,14 @@
 	"expanded_folders":
 	[
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/images",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates"
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/templates",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates"
 	],
 	"file_history":
 	[
@@ -820,6 +865,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"notices",
+			"around",
 			"1.08",
 			"clickHandlerMap",
 			"viewabledata",
@@ -945,9 +992,7 @@
 			"sigma_A",
 			",",
 			")",
-			"isMatch(",
-			" * ",
-			"SAFE"
+			"isMatch("
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1002,14 +1047,14 @@
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -1018,15 +1063,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 516,
+						"buffer_size": 655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								201,
-								201
+								528,
+								528
 							]
 						],
 						"settings":
@@ -1038,29 +1083,30 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "public/javascripts/common/dashboard-ctrl.js",
-					"semi_transient": false,
+					"file": "views/projectsStaff/notices.ejs",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 395,
+						"buffer_size": 368,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								197,
-								197
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1071,23 +1117,163 @@
 				},
 				{
 					"buffer": 3,
-					"file": "public/stylesheets/common/dashboard.css",
+					"file": "public/javascripts/projectsStaff/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 349,
+						"buffer_size": 1135,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								319,
-								319
-							],
+								1135,
+								1135
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 380.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 124,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-								345,
-								345
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"auto_name": "1 2",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/javascripts/common/dashboard-ctrl.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 491,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								309,
+								309
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/javascripts/projectsStaff/notices-ctrl.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2001,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								456,
+								456
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": -0.0,
+						"translation.y": 36.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 441,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								94,
+								97
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "public/stylesheets/common/dashboard.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 728,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								358,
+								358
 							]
 						],
 						"settings":
@@ -1099,7 +1285,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1157,6 +1343,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"notic",
+				"public\\javascripts\\projectsStaff\\notices-ctrl.js"
+			],
 			[
 				"das",
 				"public\\javascripts\\common\\dashboard-ctrl.js"
@@ -1660,14 +1854,6 @@
 			[
 				"port",
 				"Algorithm\\preOrderTraversal.js"
-			],
-			[
-				"quics",
-				"Sorting\\quickSort.js"
-			],
-			[
-				"main.js",
-				"static\\scripts\\main.js"
 			]
 		],
 		"width": 0.0
@@ -1675,9 +1861,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "j",
+		"last_filter": "usa",
 		"selected_items":
 		[
+			[
+				"usa",
+				"C:\\Users\\simon\\Documents\\GitHub\\usaco\\usaco.sublime-project"
+			],
 			[
 				"j",
 				"C:\\Users\\simon\\Documents\\Web Dev\\jamarshon.appspot.com\\jamarshon.sublime-project"

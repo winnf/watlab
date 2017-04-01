@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
-var LabbookSchema = mongoose.Schema({
+
+var LabBookSchema = mongoose.Schema({
     name: String,
-    entryids: [mongoose.Types.ObjectId]
+    entryIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Entry'}]
 });
-module.exports = mongoose.model('labbook' , LabbookSchema);
+
+module.exports = mongoose.model('LabBook' , LabBookSchema);
