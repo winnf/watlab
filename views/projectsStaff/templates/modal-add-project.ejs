@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add New Project</h4>
+  <button type="button" class="close" aria-label="Close" ng-click="closeModal()" style="margin-top: -25px;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+<div style="margin: 0px 0px 8px;"><label>Project Name</label></div> 
+ <div class="input-group">
+	  <span class="input-group-addon"><i class="fa fa-clipboard" aria-hidden="true"></i></i></span>
+	  <input type="text" class="form-control" ng-model="projectName" placeholder="Project Name">
+	</div>
+
+    <div style="margin: 24px 0px 8px; margin-left: 15px"><label>Description</label></div>
+    <div id = "description">
+        <div class="input-group input-area" style="width: 70%; margin-left: 15px">
+            <input type="text" class="form-control" ng-model="description" placeholder="Description"> 
+        </div>
+    </div>
+
+    <div style="margin: 24px 0px 8px; margin-left: 15px"><label>Assignees</label></div> 
+  <div class="input-group" style="width: 70%; margin-left: 15px">
+	  <input type="text" class="form-control" ng-model="assignees" placeholder="Assignees">
+	</div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="addProject()">Create Project</button>
+  <button type="button" class="btn btn-secondary" ng-click="closeModal()">Close</button>
+</div>
