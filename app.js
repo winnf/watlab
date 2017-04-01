@@ -10,6 +10,7 @@ var commonRoutes                  = require('./routes/commonRoutes');
 var equipmentSafetyRoutes         = require('./routes/equipmentSafetyRoutes');
 var projectsStaffRoutes           = require('./routes/projectsStaffRoutes');
 var publicationsExperimentRoutes  = require('./routes/publicationsExperimentRoutes');
+var dogRoutes                     = require('./routes/legacy/dogRoutes');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/', commonRoutes);
 app.use('/esr', equipmentSafetyRoutes);
 app.use('/psr', projectsStaffRoutes);
 app.use('/per', publicationsExperimentRoutes);
+app.use('/dog', dogRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
