@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add New Budget</h4>
+  <button type="button" class="close" aria-label="Close" ng-click="closeModal()" style="margin-top: -25px;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+    <div style="margin: 0px 0px 8px; margin-left: 15px"><label>Name</label></div> 
+    <div class="input-group" style="width: 70%; margin-left: 15px">
+	  <input type="text" class="form-control" ng-model="name" placeholder="Name">
+
+    <div style="margin: 50px 0px 8px;"><label>Amount</label></div> 
+    <div class="input-group">
+	  <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></i></span>
+	  <input type="text" class="form-control" ng-model="amount" placeholder="Amount">
+	</div>
+    </div>
+
+    <div style="margin: 20px 0px 8px 15px;"><label>Category</label></div> 
+    <div class="input-group">
+	  <input type="text" class="form-control" ng-model="category" placeholder="Category" style="width: 100%; margin-left: 15px">
+	</div>
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="addBudget()">Add Budget</button>
+  <button type="button" class="btn btn-secondary" ng-click="closeModal()">Close</button>
+</div>
