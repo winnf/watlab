@@ -25,8 +25,8 @@ app.config(function ($routeProvider, $locationProvider) {
 
 app.controller('TestCtrl', function (CommonDataService) {
 	CommonDataService.setNavBarOptions([
-		{text: 'Experiments', url: '/experiments', isActive: true},
-		{text: 'Publications', url: '/publications', isActive: false}
+		{text: 'Experiments', url: '/per/experiments', isActive: true},
+		{text: 'Publications', url: '/per/publications', isActive: false}
 	]);
 	CommonDataService.setLoggedIn(true);
 });
