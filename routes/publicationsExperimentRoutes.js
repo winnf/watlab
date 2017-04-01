@@ -12,6 +12,9 @@ router.get(['/', '/experiments', '/publications', '/experiment/:experimentId'], 
   res.render('publicationsExperiment/index');
 });
 
+router.get(['/createExperiment'], function(req,res){
+	//Server.createExperiment
+});
 
 router.get('/view/:fileName', function(req, res) {
 	res.render('publicationsExperiment/templates/' + req.params.fileName);
