@@ -9,7 +9,7 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
   $scope.rowHeaders = ['Title','Due','Description', 'Assignees'];
 
   $scope.cellTypes = {
-    title: CELLTYPES.PLAIN,
+    title: CELLTYPES.CLICKABLE,
     'due-date': CELLTYPES.DATE,
     description: CELLTYPES.PLAIN,
     assignees: CELLTYPES.PLAIN,
@@ -32,13 +32,34 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
     });
 	};
 
+    var editNotice = function(){
+		var modalInstance = $uibModal.open({
+			backdrop: 'static',
+      templateUrl: '/psr/view/modal-edit-notice.ejs',
+      controller: 'EditNoticeModalCtrl',
+      appendTo: $('body')
+    });
+    
+    //need it to update the row itself and not add an additional row
+    modalInstance.result.then(function(notice){
+  		$scope.rows.push(notice);
+  		$timeout(function(){
+  			var addedNotice = $('#abstract-table tr').last();
+  			$('#abstract-table').DataTable().row.add(addedNotice[0]);
+  		});
+    });
+	};
+
 	$scope.clickHandlerMap = {
 		button: function() {
 			addNewNotice();
 		},
 		name: function(row) {
 			$location.url('/psr/notice/' + row.hiddenData.id);
-		}
+		},
+        row: function(){
+            editNotice();
+        }
 	};
 
 
@@ -62,6 +83,31 @@ app.controller('AddNewNoticeModalCtrl', function($scope, $uibModalInstance){
 		$uibModalInstance.close({
 			viewableData: {
 				"title": $scope.noticeName, 
+				"due-date": $scope.dueDate.date,
+                "description": $scope.description,
+				"assignees": $scope.assignees
+			}, hiddenData: {"id": 'notice-0A'} });
+	};
+	$scope.closeModal = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+
+app.controller('EditNoticeModalCtrl', function($scope, $uibModalInstance){
+	var genericDateObj = {
+		date: new Date(),
+		isOpen: false,
+		placement: 'bottom-right',
+		format: 'MMM dd, yyyy',
+		altInputFormats: ['MMM dd, yyyy'],
+		options: {},
+	};
+
+	$scope.dueDate = _.clone(genericDateObj);
+	$scope.editNotice = function() {
+		$uibModalInstance.close({
+			viewableData: {
+				"title": $scope.noticeName,
 				"due-date": $scope.dueDate.date,
                 "description": $scope.description,
 				"assignees": $scope.assignees
