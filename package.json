@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "populate": "node ./db/populate-script"
+    "populate": "node ./db/populateScript"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
