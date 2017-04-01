@@ -20,7 +20,7 @@ router.get(['/createExperiment'], function(req,res){
 	//Server.createExperiment
 });
 
-router.get('/createDog/:pubName', function (req, res) {
+router.get('/createPublication/:pubName', function (req, res) {
     pubService.createPub(req.params.pubName).then(function (result) {
         var pubInstance = result.pubInstance;
         res.send(result);
