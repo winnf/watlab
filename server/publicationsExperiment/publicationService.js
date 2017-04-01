@@ -23,4 +23,18 @@ Server.prototype.createPublication = function (pubName) {
     return deferred.promise;
 };
 
+Server.prototype.displayDB = function() {
+    var deferred = Q.defer();
+    
+    Publication.find({}, function (err, pubs) {
+        if (err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(pubs);
+        }
+    });
+    
+    return deferred.promise;
+};
+
 module.exports = new Server();
