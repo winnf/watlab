@@ -21,7 +21,7 @@ router.get(['/createExperiment'], function(req,res){
 });
 
 router.get('/createPublication/:pubName', function (req, res) {
-    pubService.createPub(req.params.pubName).then(function (result) {
+    pubService.createPublication(req.params.pubName).then(function (result) {
         var pubInstance = result.pubInstance;
         res.send(result);
     }, function (error) {
