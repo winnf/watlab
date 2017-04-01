@@ -4,7 +4,7 @@
 //get publications
 
 var Q = require('q');
-var Publication = require('../../db/pubModel');
+var Publication = require('../../db/publicationModel');
 var Server = function () {};
 
 Server.prototype.createPublication = function (pubName) {
