@@ -2,10 +2,13 @@
 	<div class="panel panel-default" style="height: 100%;">
 	  <div class="panel-body" style="height: 100%;">
 	  	<h2 style="margin-top: 12px; margin-bottom: 24px;">Dashboard</h2>
-	  	<div class="tile-container">
-	  		<div class="tile" 
-	  			ng-click="navigateTo(dTile)"
-	  			ng-repeat="dTile in dTiles">{{dTile.name}}</div>
+	  	<div class="row" style="height: calc(100% - 128px);">
+	  		<div class="col-md-4 col-xs-12" ng-repeat="dTile in dTiles" style="height: 100%;">
+		  		<div class="tile animated zoomIn" ng-click="navigateTo(dTile)">
+		  			<div class="tile-header">{{dTile.name}}</div>
+		  			<img class="tile-image" ng-src="{{dTile.imgSrc}}" style="margin: 0 auto; display: block;">
+	  			</div>
+  			</div>
 	  	</div>
 	  </div>
 	</div>
