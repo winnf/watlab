@@ -1,3 +1,6 @@
+/*jslint node: true */
+
+'use strict';
 var express = require('express');
 var Server = require('../server/publicationsExperiment/server');
 var router = express.Router();
@@ -8,15 +11,15 @@ var router = express.Router();
 	*/
 
 
-router.get(['/', '/experiments', '/publications', '/experiment/:experimentId'], function(req, res) {
-  res.render('publicationsExperiment/index');
+router.get(['/', '/experiments', '/publications', '/experiment/:experimentId'], function (req, res) {
+    res.render('publicationsExperiment/index');
 });
 
 router.get(['/createExperiment'], function(req,res){
 	//Server.createExperiment
 });
 
-router.get('/view/:fileName', function(req, res) {
+router.get('/view/:fileName', function (req, res) {
 	res.render('publicationsExperiment/templates/' + req.params.fileName);
 });
 

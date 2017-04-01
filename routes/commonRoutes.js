@@ -1,3 +1,6 @@
+/*jslint node: true */
+/*global $, jQuery, alert, angular*/
+'use strict';
 var express = require('express');
 var router = express.Router();
 
@@ -7,11 +10,11 @@ var router = express.Router();
 	*/
 
 // Home page	
-router.get(['/', '/login', '/dashboard'], function(req, res) {
-  res.render('common/index');
+router.get(['/', '/login', '/dashboard'], function (req, res) {
+    res.render('common/index');
 });
 
-router.get('/view/:fileName', function(req, res) {
+router.get('/view/:fileName', function (req, res) {
 	res.render('common/templates/' + req.params.fileName);
 });
 
