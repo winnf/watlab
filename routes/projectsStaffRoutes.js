@@ -6,7 +6,7 @@ var router = express.Router();
 	Root route is '/psr'
 	*/
 
-router.get(['/','/tasks'], function(req, res) {
+router.get(['/','/tasks', '/notices', '/projects', '/compensation', '/budget'], function(req, res) {
   res.render('projectsStaff/index');
 });
 
