@@ -11,13 +11,16 @@ Server.prototype.createPublication = function (pubName) {
     var pub = new Publication({pubName: pubName});
     var deferred = Q.defer();
     
-    pub.save(function (err) {
+    pub.save(function (err, pubInstance) {
         if (err) {
             deferred.reject({err: err});
         } else {
-            deferred.resolve();
+            console.log(pubInstance);
+            deferred.resolve(pubInstance);
         }
     });
     
     return deferred.promise;
 };
+
+module.exports = new Server();
