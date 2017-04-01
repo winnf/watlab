@@ -1,8 +1,6 @@
-/*jslint node: true */
-/*global $, jQuery, alert, angular*/
 // prepopulates the dog schema with dummy data
-// run by node ./db/populate-script.js
-'use strict';
+// command is npm run populate
+
 var mongoose = require('mongoose');
 var Dog = require('./dogModel.js');
 
@@ -14,7 +12,13 @@ var dummyData = [
 	{name: 'dummy3', favoriteFood: [{item: 'dogFood', cost: 1}, {item: 'dogFood', cost: 1}]}
 ];
 
-Dog.collection.insert(dummyData, function (err, dogs) {
-	console.log('insertion completed');
-	console.log(dogs);
+// Clear collection
+Dog.remove({}, function (err, removed) {
+	console.log('Removed');
+	console.log(removed.result);
+
+	Dog.collection.insert(dummyData, function (err, dogs) {
+		console.log('Insertion completed');
+		console.log(dogs);
+	});
 });
