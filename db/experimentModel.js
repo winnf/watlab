@@ -4,13 +4,11 @@ var ExperimentSchema = mongoose.Schema({
     name: String,
     startDate: Date,
     dueDate: Date,
-    owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    ownerId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    assignedUserIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     status: String,
     protocolIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Protocol'}],
     equipmentIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Equipment'}],
-    assignedUserIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    authorIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    labbookIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'LabBook'}],
     entryIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Entry'}]
 });
 
