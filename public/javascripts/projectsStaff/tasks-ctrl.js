@@ -69,10 +69,6 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         }
 	};
 
-  $scope.rows = [
-    {viewableData: {"task": "finish this goddamn project smh","dueDate":"Apr 1, 2017","assignees":"Igor", "description": "blah"}}
-  ];
-
   $http({
     method: 'GET',
     url: '/psr/allTask'

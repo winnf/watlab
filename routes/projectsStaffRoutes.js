@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+//var app = express();
+var Server = require('../server/projectsStaff/server');
 var taskServer = require('../server/projectsStaff/taskService');
 var noticeServer = require('../server/projectsStaff/noticeService');
 /*
@@ -51,5 +53,6 @@ router.get('/addNotice/:name/:date/:assignees/:description', function(req, res){
     res.status(500);
   });
 });
-
+//app.use(router);
+//app.listen(5000);
 module.exports = router;
