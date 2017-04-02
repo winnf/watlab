@@ -78,6 +78,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     url: '/psr/allTask'
   }).then(function successCallback(response){
     var tasks = response.data;
+  //  $scope.rows = [{viewableData: {"task": tasks[0].name, "dueDate":tasks[0].dueDate, "assignees":tasks[0].assignees, "description":tasks[0].description}};
     for(var i = 0; i < Object.keys(tasks).length; i++){
       $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description}});
     }

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var Server = require('../server/projectsStaff/taskService');
+var taskServer = require('../server/projectsStaff/taskService');
+var noticeServer = require('../server/projectsStaff/noticeService');
 /*
 	Routes for the manage lab projects and lab staff group
 	Root route is '/psr'
@@ -16,7 +17,7 @@ router.get('/view/:fileName', function(req, res) {
 });
 
 router.get('/allTask', function(req, res){
-  Server.displayTaskDB().then(function(result){
+  taskServer.displayTaskDB().then(function(result){
     res.send(result);
   }, function(err){
     var err = error.err;
@@ -26,7 +27,25 @@ router.get('/allTask', function(req, res){
 
 router.get('/addTask/:name/:date/:assignees/:description',function(req, res){
   var params = req.params;
-  Server.addTask(params.name, params.date, params.assignees, params.description).then(function(result){
+  taskServer.addTask(params.name, params.date, params.assignees, params.description).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.status(500);
+  });
+});
+
+router.get('/allNotice', function(req, res){
+  noticeServer.displayNoticeDB().then(function(result){
+    res.send(result);
+  }, function(err){
+    var err = error.err;
+    res.status(500);
+  });
+});
+
+router.get('/addNotice/:name/:date/:assignees/:description', function(req, res){
+  var params = req.params;
+  noticeServer.addNotice(params.name, params.date, params.assignees, params.description).then(function(result){
     res.send(result);
   }, function(err){
     res.status(500);

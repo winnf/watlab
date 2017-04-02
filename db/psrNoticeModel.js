@@ -1,11 +1,11 @@
 'use strict';
 var mongoose = require('mongoose');
 
-var TaskSchema = mongoose.Schema({
+var NoticeSchema = mongoose.Schema({
   name: String,
-  dueDate: Date,
+  postDate: Date,
   assignees: String,
   description: String
 });
 
-module.exports = mongoose.model('Task', TaskSchema);
+module.exports = mongoose.model('Notice', NoticeSchema);
