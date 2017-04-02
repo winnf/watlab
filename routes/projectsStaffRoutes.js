@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+//var app = express();
 var Server = require('../server/projectsStaff/server');
 /*
 	Routes for the manage lab projects and lab staff group
@@ -32,5 +33,6 @@ router.get('/addTask/:name/:date/:assignees/:description',function(req, res){
     res.status(500);
   });
 });
-
+//app.use(router);
+//app.listen(5000);
 module.exports = router;

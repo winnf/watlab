@@ -63,7 +63,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 	};
 
   $scope.rows = [
-    {viewableData: {"task": "finish this goddamn project smh","due-date":"Apr 1, 2017","assignees":"Igor", "description": "blah"}}
+    {viewableData: {"task": "finish this goddamn project smh","due-date":"Apr 1, 2017","assignees":"Igor", "description": "blah", hiddenData: {"id": 'task-0A'}}}
   ];
 
 });
