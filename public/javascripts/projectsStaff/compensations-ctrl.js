@@ -47,11 +47,21 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
 });
 
 app.controller('AddCompensationModalCtrl', function($scope, $uibModalInstance){
-	$scope.addCompensation = function() {
+  var genericDateObj = {
+		date: new Date(),
+		isOpen: false,
+		placement: 'bottom-right',
+		format: 'MMM dd, yyyy',
+		altInputFormats: ['MMM dd, yyyy'],
+		options: {},
+	};
+  $scope.dateAssigned = _.clone(genericDateObj);
+  $scope.addCompensation = function() {
 		$uibModalInstance.close({
 			viewableData: {
 				"assignee": $scope.assignee,
-                "amount": $scope.amount
+        "amount": $scope.amount,
+        "dateAssigned": $scope.dateAssigned.date
 			}, hiddenData: {"id": 'compensation-0A'} });
 	};
 	$scope.closeModal = function () {
