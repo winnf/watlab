@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var ExperimentSchema = mongoose.Schema({
-    name: String,
+    name: {type:String, unique:true},
     startDate: Date,
     dueDate: Date,
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},

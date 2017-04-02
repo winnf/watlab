@@ -2,8 +2,9 @@ var Server = function(){};
 var Q = require('q');
 var Experiment = require('../../db/experimentModel');
 Server.prototype.createExperiment = function(obj) {
-	console.log(obj.viewableData);
-	var experiment = new Experiment(obj.viewableData);
+	console.log(obj);
+	var experiment = new Experiment(obj);
+	console.log(experiment);
 	var deferred = Q.defer();
 
 	experiment.save(function(err , expInstance){
@@ -11,7 +12,7 @@ Server.prototype.createExperiment = function(obj) {
 			console.log(err);
 		    deferred.reject({err: err})
 		} else {
-		    console.log(expInstance);
+		    //console.log(expInstance);
 		    deferred.resolve({expInstance: expInstance});
 	  }
 	});
@@ -21,7 +22,7 @@ Server.prototype.createExperiment = function(obj) {
 Server.prototype.displayDB = function() {
     var deferred = Q.defer();
     
-    experiment.find({}, function (err, pubs) {
+    Experiment.find({}, function (err, pubs) {
         if (err) {
             deferred.reject(err);
         } else {
