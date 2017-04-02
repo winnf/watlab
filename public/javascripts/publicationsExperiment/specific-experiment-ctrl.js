@@ -175,9 +175,9 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 	    $http.post( '/per/uploadFile', formData, {
 	        headers: { 'Content-Type': undefined },
 	        transformRequest: angular.identity
-	    }).success(function (result) {
+	    }).then(function (result) {
 	        console.log('YAY');
-	    }).error(function () {
+	   	}, function () {
 	        console.log('NAY');
 	    });
 	}
