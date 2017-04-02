@@ -32,7 +32,6 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     		// console.log(newRows);
     		 $scope.rows = newRows;  		
     	} ,
-    	} ,
     		function errorCallback(response){
 
     		});
