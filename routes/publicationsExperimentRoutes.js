@@ -2,7 +2,12 @@
 
 'use strict';
 var express = require('express');
+var multer = require('multer');
+var upload = multer();
+
 var PublicationService = require('../server/publicationsExperiment/publicationService');
+var EntryService = require('../server/publicationsExperiment/entryService');
+
 var router = express.Router();
 
 /* 
@@ -36,6 +41,10 @@ router.get('/allPublications', function (req, res) {
         var err = error.err;
         res.status(500);
     });
+});
+
+router.post('/uploadFile', upload.any(), function (req, res) {
+    EntryService.addEntry(req.files);
 });
 
 router.get('/view/:fileName', function (req, res) {
