@@ -24,7 +24,7 @@ router.get('/allTask', function(req, res){
     res.send(result);
   }, function(err){
     var err = error.err;
-    res.status(500);
+    res.sendStatus(500);
   });
 });
 
@@ -33,7 +33,7 @@ router.get('/addTask/:name/:date/:assignees/:description',function(req, res){
   taskServer.addTask(params.name, params.date, params.assignees, params.description).then(function(result){
     res.send(result);
   }, function(err){
-    res.status(500);
+    res.sendStatus(500);
   });
 });
 
@@ -42,7 +42,7 @@ router.get('/allNotice', function(req, res){
     res.send(result);
   }, function(err){
     var err = error.err;
-    res.status(500);
+    res.sendStatus(500);
   });
 });
 
@@ -51,7 +51,7 @@ router.get('/addNotice/:name/:date/:assignees/:description', function(req, res){
   noticeServer.addNotice(params.name, params.date, params.assignees, params.description).then(function(result){
     res.send(result);
   }, function(err){
-    res.status(500);
+    res.sendStatus(500);
   });
 });
 
@@ -60,7 +60,7 @@ router.get('/allProject', function(req, res){
     res.send(result);
   }, function(err){
     var err= error.err;
-    res.status(500);
+    res.sendStatus(500);
   });
 });
 
@@ -69,7 +69,7 @@ router.get('/addProject/:name/:assignees/:description', function(req, res){
   projectServer.addProject(params.name, params.assignees, params.description).then(function(result){
     res.send(result);
   }, function(err){
-    res.status(500);
+    res.sendStatus(500);
   });
 });
 //app.use(router);

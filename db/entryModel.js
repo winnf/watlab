@@ -3,9 +3,10 @@ var mongoose = require('mongoose');
 var EntrySchema = mongoose.Schema({
     name: String,
     description: String,
-    date: Date,
+    date: {type: Date, default: Date.now},
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     archive: {type: Boolean, default: false},
+    format: String,
     filePath: String
 });
 
