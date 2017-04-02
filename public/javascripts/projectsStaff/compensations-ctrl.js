@@ -9,7 +9,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   $scope.rowHeaders = ['Assignee', 'Amount', 'Date Assigned'];
 
   $scope.cellTypes = {
-    assignee: CELLTYPES.PLAIN,
+    assignee: CELLTYPES.CLICKABLE,
     amount: CELLTYPES.PLAIN,
     dateAssigned: CELLTYPES.DATE
   };
@@ -38,17 +38,52 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
     });
 	};
 
+    var editCompensation = function(row) {
+        console.log('the row name is:' + row.viewableData.assignee);
+		var modalInstance = $uibModal.open({
+            backdrop: 'static',
+            templateUrl: '/psr/view/modal-edit-compensation.ejs',
+            controller: 'EditCompensationModalCtrl',
+            appendTo: $('body'),
+            resolve: {
+                items: function(){
+                    return row;
+                }
+            }
+    });
+
+    modalInstance.result.then(function(compensation){
+        console.log(compensation.viewableData);
+        if (row.viewableData.assignee != compensation.viewableData.assignee){
+            row.viewableData.assignee = compensation.viewableData.assignee;
+        }
+        if (row.viewableData.amount != compensation.viewableData.amount){
+            row.viewableData.amount = compensation.viewableData.amount;
+        }
+        if (row.viewableData.dateAssigned != compensation.viewableData.dateAssigned){
+            row.viewableData.dateAssigned = compensation.viewableData.dateAssigned;
+        }
+      $http({
+        method: 'GET',
+        url: '/psr/addCompensation/' + compensation.viewableData.assignee + '/' + compensation.viewableData.amount + '/' + compensation.viewableData.dateAssigned
+      }).then(function successCallback(response){
+      }, function errorCallback(response){
+        console.log(response);
+      });
+    });
+	};
+
 	$scope.clickHandlerMap = {
 		button: function() {
 			addCompensation();
 		},
-		name: function(row) {
-			$location.url('/psr/compensation/' + row.hiddenData.id);
-		}
+        assignee: function(row){
+            editCompensation(row);
+        }
 	};
 
   $scope.rows = [
-    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017"}}
+    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017", hiddenData: { "id": 'blah'}}}
   ];
 
   $http({
@@ -57,7 +92,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   }).then(function successCallback(response){
     var compensations = response.data;
     for(var i = 0; i < Object.keys(compensations).length; i++){
-      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date}});
+      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date, hiddenData: {"id": compensations[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -80,9 +115,36 @@ app.controller('AddCompensationModalCtrl', function($scope, $uibModalInstance){
 		$uibModalInstance.close({
 			viewableData: {
 				"assignee": $scope.assignee,
-        "amount": $scope.amount,
-        "dateAssigned": $scope.dateAssigned.date
+                "amount": $scope.amount,
+                "dateAssigned": $scope.dateAssigned.date
 			}, hiddenData: {"id": 'compensation-0A'} });
+	};
+	$scope.closeModal = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+app.controller('EditCompensationModalCtrl', function($scope, $uibModalInstance, items){
+	var genericDateObj = {
+		date: new Date(),
+		isOpen: false,
+		placement: 'bottom-right',
+		format: 'MMM dd, yyyy',
+		altInputFormats: ['MMM dd, yyyy'],
+		options: {},
+	};
+    $scope.compensationAmount = items.viewableData.amount;
+    $scope.compensationAssignee = items.viewableData.assignee;
+    $scope.dateAssigned = items.viewableData.dateAssigned;
+
+    $scope.compensationId = items.viewableData.hiddenData.id;
+
+	$scope.editCompensation = function() {
+		$uibModalInstance.close({
+			viewableData: {
+				"assignee": $scope.compensationAssignee,
+                "amount": $scope.compensationAmount,
+                "dateAssigned": $scope.dateAssigned
+			}, hiddenData: {"id": $scope.compensationId} });
 	};
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
