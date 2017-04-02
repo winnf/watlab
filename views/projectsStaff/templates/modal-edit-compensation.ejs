@@ -9,7 +9,7 @@
 <div style="margin: 0px 0px 8px;"><label>Assignee</label></div> 
  <div class="input-group">
 	  <span class="input-group-addon"><i class="fa fa-clipboard" aria-hidden="true"></i></i></span>
-	  <input type="text" class="form-control" ng-model="assignee" placeholder="Assignee Name">
+	  <input type="text" class="form-control" ng-model="compensationAssignee">
 	</div>
 
 	<div style="margin: 20px 0px 8px"><label>Date Assigned</label></div>
@@ -28,10 +28,10 @@
 
     <div style="margin: 24px 0px 8px; margin-left: 15px"><label>Amount</label></div> 
   <div class="input-group" style="width: 70%; margin-left: 15px">
-	  <input type="text" class="form-control" ng-model="amount" placeholder="Amount">
+	  <input type="text" class="form-control" ng-model="compensationAmount">
 	</div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" ng-click="addCompensation()">Add Compensation</button>
+  <button type="button" class="btn btn-primary" ng-click="editCompensation()">Edit Compensation</button>
   <button type="button" class="btn btn-secondary" ng-click="closeModal()">Close</button>
 </div>
