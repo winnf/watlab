@@ -41,8 +41,8 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 	        transformRequest: angular.identity
 	    }).then(function (result) {
 	        $scope.closeModal(result.data);
-	   	}, function () {
-	        $scope.dismissModal();
+	   	}, function (err) {
+	        $scope.closeModal({err: err});
 	    });
 	}
 
@@ -50,8 +50,8 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
         $uibModalInstance.close(obj);
     };
 
-    $scope.dismissModal = function(obj) {
-    	$uibModalInstance.dismiss(obj);;
+    $scope.dismissModal = function() {
+    	$uibModalInstance.dismiss();;
     }
 
     $scope.primaryBtn = function () {

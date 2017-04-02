@@ -95,12 +95,15 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
             appendTo: $('body')
         });
 
-        modalInstance.result.then(function(files){
+        modalInstance.result.then(function(result){
         	$scope.showToast = true;
-	    	$timeout(function(){ ngToast.create('Success uploading ' + files.join(', ')); });
-        }, function(){
-        	$scope.showToast = true;
-	    	$timeout(function(){ ngToast.create({className: 'danger', content: 'Error uploading data'}); });
+	    	$timeout(function(){ 
+	    		if(typeof result.err === 'undefined') {
+		    		ngToast.create('Success uploading ' + files.join(', ')); 
+	    		} else {
+	    			ngToast.create({className: 'danger', content: 'Error uploading data'}); 
+	    		}
+	    	});
         })
 	};
 
