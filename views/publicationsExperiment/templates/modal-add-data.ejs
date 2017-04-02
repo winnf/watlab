@@ -47,14 +47,15 @@
 </div>
 
 <div id="upload-file" ng-show="currentPage === 1">
-	<div style="margin: 0px 0px 8px;"><label>Upload File</label></div> 
+	<div style="margin: 0px 0px 8px;"><label>Upload File {{fileName}}</label></div> 
   <div class="input-group" style="width: 100%;">
-	  <input type="file" class="form-control" ng-model="file">
+	  <input id="upload-file-input" type="file" class="form-control">
 	</div>
 
-	<div style="cursor: pointer; border-radius: 12px; border: 6px dashed lightgrey; margin-top: 24px; height: 150px; line-height: 150px; text-align: center;">
+	<fieldset id="zthumbs" ng-click="clickUploadFile()"
+		style="cursor: pointer; border-radius: 12px; border: 6px dashed lightgrey; margin-top: 24px; height: 150px; line-height: 150px; text-align: center;">
 		<span style="display: inline-block; vertical-align: middle; line-height: normal;">Drag and Drop File Here!</span>
-	</div>
+	</fieldset>
 </div>
 
 </div>

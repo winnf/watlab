@@ -520,40 +520,6 @@
 	"buffers":
 	[
 		{
-			"file": "views/common/index.ejs",
-			"settings":
-			{
-				"buffer_size": 1029,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/common/templates/dashboard.ejs",
-			"settings":
-			{
-				"buffer_size": 655,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/projectsStaff/notices.ejs",
-			"settings":
-			{
-				"buffer_size": 368,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "public/javascripts/projectsStaff/index.js",
-			"settings":
-			{
-				"buffer_size": 1135,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"contents": "1 2 \n3 4 \n\n//90\n3\t1\n4\t2\n\n// 180\n4 3 \n2 1\n\n// 270\n2 4\n1 3\n\n// F\n2 1\n4 3\n\n// F 90\n4 2\n3 1\n\n// F 180\n3 4\n1 2\n\n// F 270\n1 3\n2 4\n",
 			"settings":
 			{
@@ -563,35 +529,54 @@
 			}
 		},
 		{
-			"file": "public/javascripts/common/dashboard-ctrl.js",
+			"contents": "var mongoose = require('mongoose');\nvar User = require('./userModel.js');\n\nmongoose.connect('mongodb://localhost/database');\n\nvar dummyUserData = [\n\t{name: 'Andrew'},\n\t{name: 'Jason'},\n\t{name: 'Sam'}\n];\n\nvar dummyPublicationData = [\n\t{pubName: \"Correlated diffusion imaging (CDI) for cancer imaging\", experimentIds: [], authors: [], versions: [], status: \"In Progress\"}\n\t{pubName: \"Deep De-Noising Autoencoders\", experimentIds: [], authors: [], versions: [], status: \"In Progress\"}  ,\n\t{pubName: \"Convolutional Nets and Radon Transform\", experimentIds: [], authors: [], versions: [], status: \"Complete\"} ,\n\t{pubName: \"Evolutionary Projection Selection\", experimentIds: [], authors: [], versions: [], status: \"Approaching Deadline\"} ,\n\t{pubName: \"ROI Estimation in Ultrasound Images\", experimentIds: [], authors: [], versions: [], status: \"Overdue\"} ,\n\t{pubName: \"Image Segmentation with Self-Configuration\", experimentIds: [], authors: [], versions: [], status: \"In Progress\"} ,\n\t{pubName: \"Learning Opposites with Evolving Rules\", experimentIds: [], authors: [], versions: [], status: \"Complete\"} ,\n\t{pubName: \"Validation of Atlas-Based Segmentation\", experimentIds: [], authors: [], versions: [], status: \"Approaching Deadline\"} \n];\n\n\nfunction clearAndInsert(model, tableName, data, callback) {\n\tmodel.remove({}, function(err, removed){\n\t\tconsole.log('Cleared table ' + tableName);\n\t\tconsole.log(removed.result);\n\n\t\tmodel.collection.insert(data, function(err, insertedData){\n\t\t\tconsole.log('Insertion completed ' + tableName);\n\t\t\tcallback(insertedData);\n\t\t});\n\t})\n}\n\nfunction populateUserTable() {\n\tclearAndInsert(User, 'User', dummyUserData, function(users){\n\t\t\n\t});\n}\n\n",
+			"file": "db/populateScript.js",
+			"file_size": 1706,
+			"file_write_time": 131355591287192074,
 			"settings":
 			{
-				"buffer_size": 491,
+				"buffer_size": 1673,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/javascripts/projectsStaff/notices-ctrl.js",
+			"file": "routes/publicationsExperimentRoutes.js",
 			"settings":
 			{
-				"buffer_size": 2001,
+				"buffer_size": 587,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "package.json",
+			"file": "server/publicationsExperiment/server.js",
 			"settings":
 			{
-				"buffer_size": 441,
+				"buffer_size": 403,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/stylesheets/common/dashboard.css",
+			"file": "server/legacy/dogServer.js",
 			"settings":
 			{
-				"buffer_size": 728,
+				"buffer_size": 1354,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/javascripts/publicationsExperiment/publications-ctrl.js",
+			"settings":
+			{
+				"buffer_size": 2380,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "db/publicationModel.js",
+			"settings":
+			{
+				"buffer_size": 523,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -701,30 +686,53 @@
 	"expanded_folders":
 	[
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/images",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/templates",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates"
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment"
 	],
 	"file_history":
 	[
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/README.md",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/legacy/dogRoutes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/userModel.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment/server.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/app.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/publicationsExperimentRoutes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populate-script.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/legacy/populateScript.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/legacy/dogModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populateScript.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/package.json",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/publicationsExperimentRoutes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/legacy/dogServer.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/experiments-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/app.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populate-script2.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/dogModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/dashboard.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/equipmentSafety/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/versionModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/publicationModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/labbookModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/experimentModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/navbar-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/common-data-service.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/entryModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/dashboard.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/celltypes-constants.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/index.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates/compensations.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/compensations-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/modal-add-data.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/notices-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/dashboard-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/README.md",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populate-script.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/animate.ejs",
 		"/C/Users/simon/Desktop/GitHubLog.txt",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/angular-angularbootstrap.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/common-data-service.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/experiments-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates/abstract-table.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/abstract-table.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/abstract-table-directive.js",
@@ -737,25 +745,13 @@
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/common/server.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/commonRoutes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/index.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/equipmentSafety/index.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/index.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/navbar-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/projectsStaff/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/equipmentSafety/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/projectsStaffRoutes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/index.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/index.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates/test.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/index.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/templates/test.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/index.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/dashboard.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/login-box.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/dashboard-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/login-ctrl.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/celltypes-constants.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/dashboard.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/equipmentSafetyRoutes.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/navbar.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/login-box.css",
@@ -823,23 +819,7 @@
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/blue.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/index.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/layout.jade",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/index.jade",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/error.jade",
-		"/C/Users/simon/Documents/GitHub/leetcode/10-19/13RomantoInteger.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/40-49/49GroupAnagrams.cpp",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/index.js",
-		"/C/Users/simon/Documents/GitHub/leetcode/10-19/11ContainerWithMostWater.cpp",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/output/http-file-server.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/output/filtered-ls-output.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/output/http-collect.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/output/http-client.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/output/time-server.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/test-cases/output/http-json-api-server.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/custom-api-1-output.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/custom-api-2-output.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise4/node‐exercise4.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise3/http-json-api-server.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/322 A2/node-exercise2/time-server.js"
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/index.jade"
 	],
 	"find":
 	{
@@ -865,6 +845,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"status",
+			"date",
+			"status",
+			"\"name\"",
+			"viewableData:",
+			"hiddenData",
+			"viewableData",
+			"Entry",
+			"TestCtrl",
+			"html5Mode",
 			"notices",
 			"around",
 			"1.08",
@@ -982,17 +972,7 @@
 			"TRON",
 			"CS",
 			"1 - 2 hours",
-			"Less than 1 hour",
-			"Z",
-			");",
-			"Z",
-			"a",
-			"A",
-			"sigma",
-			"sigma_A",
-			",",
-			")",
-			"isMatch("
+			"Less than 1 hour"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1024,75 +1004,72 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "views/common/index.ejs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1029,
+						"buffer_size": 124,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								250,
-								250
+								40,
+								40
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"auto_name": "1 2",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "views/common/templates/dashboard.ejs",
+					"file": "db/populateScript.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 655,
+						"buffer_size": 1673,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								528,
-								528
+								282,
+								282
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "views/projectsStaff/notices.ejs",
-					"semi_transient": true,
+					"file": "routes/publicationsExperimentRoutes.js",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 368,
+						"buffer_size": 587,
 						"regions":
 						{
 						},
@@ -1105,8 +1082,35 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server/publicationsExperiment/server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 403,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								403,
+								403
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1116,141 +1120,83 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "public/javascripts/projectsStaff/index.js",
+					"buffer": 4,
+					"file": "server/legacy/dogServer.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1135,
+						"buffer_size": 1354,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1135,
-								1135
+								670,
+								681
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 380.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 124,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								115,
-								115
-							]
-						],
-						"settings":
-						{
-							"auto_name": "1 2",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "public/javascripts/common/dashboard-ctrl.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 491,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								309,
-								309
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "public/javascripts/projectsStaff/notices-ctrl.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2001,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								456,
-								456
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": -0.0,
-						"translation.y": 36.0,
+						"translation.y": 252.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "package.json",
+					"buffer": 5,
+					"file": "public/javascripts/publicationsExperiment/publications-ctrl.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 441,
+						"buffer_size": 2380,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								94,
-								97
+								1376,
+								1389
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 247.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "db/publicationModel.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 523,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								50,
+								50
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1258,42 +1204,13 @@
 					},
 					"stack_index": 4,
 					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "public/stylesheets/common/dashboard.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 728,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								358,
-								358
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 21.0
 	},
 	"input":
 	{
@@ -1324,17 +1241,17 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 166.0
+		"height": 119.0
 	},
 	"output.find_results":
 	{
-		"height": 255.0
+		"height": 298.0
 	},
 	"pinned_build_system": "Packages/User/CustomC++Build.sublime-build",
 	"project": "blast.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 38.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1343,6 +1260,114 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"routes",
+				"routes\\publicationsExperimentRoutes.js"
+			],
+			[
+				"pubmod",
+				"db\\publicationModel.js"
+			],
+			[
+				"dogrout",
+				"routes\\legacy\\dogRoutes.js"
+			],
+			[
+				"dogserv",
+				"server\\legacy\\dogServer.js"
+			],
+			[
+				"server.js",
+				"server\\publicationsExperiment\\server.js"
+			],
+			[
+				"publication-c",
+				"public\\javascripts\\publicationsExperiment\\publications-ctrl.js"
+			],
+			[
+				"publ",
+				"db\\publicationModel.js"
+			],
+			[
+				"publicationct",
+				"public\\javascripts\\publicationsExperiment\\publications-ctrl.js"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"populat",
+				"db\\populateScript.js"
+			],
+			[
+				"app.js",
+				"app.js"
+			],
+			[
+				"packag",
+				"package.json"
+			],
+			[
+				"serv",
+				"server\\publicationsExperiment\\server.js"
+			],
+			[
+				"index.js",
+				"public\\javascripts\\publicationsExperiment\\index.js"
+			],
+			[
+				"inde",
+				"views\\publicationsExperiment\\index.ejs"
+			],
+			[
+				"commondate",
+				"public\\javascripts\\common\\common-data-service.js"
+			],
+			[
+				"navbar-",
+				"public\\javascripts\\common\\navbar-ctrl.js"
+			],
+			[
+				"dash",
+				"public\\stylesheets\\common\\dashboard.css"
+			],
+			[
+				"",
+				"views\\common\\templates\\dashboard.ejs"
+			],
+			[
+				"celltye",
+				"public\\javascripts\\publicationsExperiment\\celltypes-constants.js"
+			],
+			[
+				"ind",
+				"public\\javascripts\\common\\index.js"
+			],
+			[
+				"compens",
+				"public\\javascripts\\projectsStaff\\compensations-ctrl.js"
+			],
+			[
+				"compen",
+				"views\\projectsStaff\\templates\\compensations.ejs"
+			],
+			[
+				"s",
+				"server\\publicationsExperiment\\server.js"
+			],
+			[
+				"model",
+				"db\\dogModel.js"
+			],
+			[
+				"exper",
+				"public\\javascripts\\publicationsExperiment\\experiments-ctrl.js"
+			],
+			[
+				"modal",
+				"views\\publicationsExperiment\\templates\\modal-add-data.ejs"
+			],
 			[
 				"package",
 				"package.json"
@@ -1356,10 +1381,6 @@
 				"public\\javascripts\\common\\dashboard-ctrl.js"
 			],
 			[
-				"dash",
-				"public\\stylesheets\\common\\dashboard.css"
-			],
-			[
 				"po",
 				"db\\populate-script.js"
 			],
@@ -1370,10 +1391,6 @@
 			[
 				"angular",
 				"views\\_libraries\\angular-angularbootstrap.ejs"
-			],
-			[
-				"pack",
-				"package.json"
 			],
 			[
 				"abstra",
@@ -1408,10 +1425,6 @@
 				"public\\javascripts\\common\\common-data-service.js"
 			],
 			[
-				"index.js",
-				"public\\javascripts\\publicationsExperiment\\index.js"
-			],
-			[
 				"public",
 				"public\\javascripts\\publicationsExperiment\\publications-ctrl.js"
 			],
@@ -1420,24 +1433,12 @@
 				"public\\javascripts\\common\\common-data-service.js"
 			],
 			[
-				"navbar-",
-				"public\\javascripts\\common\\navbar-ctrl.js"
-			],
-			[
 				"inde.",
 				"public\\javascripts\\projectsStaff\\index.js"
 			],
 			[
 				"inde.js",
 				"public\\javascripts\\equipmentSafety\\index.js"
-			],
-			[
-				"routes",
-				"routes\\projectsStaffRoutes.js"
-			],
-			[
-				"ind",
-				"views\\common\\index.ejs"
 			],
 			[
 				"abs",
@@ -1456,10 +1457,6 @@
 				"public\\stylesheets\\common\\style.css"
 			],
 			[
-				"inde",
-				"views\\common\\index.ejs"
-			],
-			[
 				"nav",
 				"views\\common\\templates\\navbar.ejs"
 			],
@@ -1476,10 +1473,6 @@
 				"public\\stylesheets\\common\\style.css"
 			],
 			[
-				"modal",
-				"views\\modal-add-data.ejs"
-			],
-			[
 				"ab",
 				"views\\abstract-table.ejs"
 			],
@@ -1489,10 +1482,6 @@
 			],
 			[
 				"exp",
-				"public\\javascripts\\experiments-ctrl.js"
-			],
-			[
-				"exper",
 				"public\\javascripts\\experiments-ctrl.js"
 			],
 			[
@@ -1782,78 +1771,6 @@
 			[
 				"root",
 				"Algorithm\\squareRoot.js"
-			],
-			[
-				"qi",
-				"Sorting\\quickSort.js"
-			],
-			[
-				"bs.",
-				"Sorting\\bubbleSort.js"
-			],
-			[
-				"sq",
-				"Algorithm\\squareRoot.js"
-			],
-			[
-				"jquer",
-				"JSConcepts\\javascript-vs-jQuery.js"
-			],
-			[
-				"avl",
-				"DataStructures\\avlTree.js"
-			],
-			[
-				"bs",
-				"Sorting\\bubbleSort.js"
-			],
-			[
-				"se",
-				"Sorting\\selectionSort.js"
-			],
-			[
-				"sqr",
-				"Algorithm\\squareRoot.js"
-			],
-			[
-				"",
-				"test.js"
-			],
-			[
-				"ms",
-				"Sorting\\mergeSort.js"
-			],
-			[
-				"ide",
-				"JSConcepts\\identying-variable-type.js"
-			],
-			[
-				"pos",
-				"Algorithm\\postOrderTraversal.js"
-			],
-			[
-				"in",
-				"Algorithm\\inOrderTraversal.js"
-			],
-			[
-				"pre",
-				"Algorithm\\preOrderTraversal.js"
-			],
-			[
-				"post",
-				"Algorithm\\postOrderTraversal.js"
-			],
-			[
-				"pot",
-				"Algorithm\\preOrderTraversal.js"
-			],
-			[
-				"iot",
-				"Algorithm\\inOrderTraversal.js"
-			],
-			[
-				"port",
-				"Algorithm\\preOrderTraversal.js"
 			]
 		],
 		"width": 0.0
@@ -1861,9 +1778,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "usa",
+		"last_filter": "nem",
 		"selected_items":
 		[
+			[
+				"nem",
+				"C:\\Users\\simon\\Documents\\Web Dev\\nemoo\\nemoo.sublime-project"
+			],
 			[
 				"usa",
 				"C:\\Users\\simon\\Documents\\GitHub\\usaco\\usaco.sublime-project"
@@ -1875,10 +1796,6 @@
 			[
 				"lee",
 				"C:\\Users\\simon\\Documents\\GitHub\\leetcode\\leetcode.sublime-project"
-			],
-			[
-				"nem",
-				"C:\\Users\\simon\\Documents\\Web Dev\\nemoo\\nemoo.sublime-project"
 			],
 			[
 				"ne",

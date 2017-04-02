@@ -133,7 +133,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 	};
 });
 
-app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance) {
+app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window, $http) {
 	$scope.currentPage = 0;
 	var genericDateObj = {
 		date: new Date(),
@@ -144,18 +144,58 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance) {
 		options: {}
 	};
 
+    $window.fd.logging = false;
+
 	$scope.startDate = _.clone(genericDateObj);
 	$scope.dueDate = _.clone(genericDateObj);
+
+	$scope.clickUploadFile = function() {
+		$('#upload-file-input').click();
+	};
+
+
+	$scope.handleManualInputChange = function(e) {
+		$scope.files = e.target.files;
+		$scope.fileName = Array.prototype.map.call($scope.files, x => x.name).join(', ');
+		$scope.$apply();
+	};
+
+	$scope.handleUpload = function(e) {
+		$scope.files = $scope.zone.eventFiles(e);
+		$scope.fileName = Array.prototype.map.call($scope.files, x => x.name).join(', ');
+		$scope.$apply();
+	};
+
+	$scope.upload = function() {
+		var files = $scope.files;
+		var formData = new FormData();
+	    for (var i = 0; i < files.length; i++) {
+	        formData.append('file' + i, files[i]);
+	    }
+	    $http.post( '/per/uploadFile', formData, {
+	        headers: { 'Content-Type': undefined },
+	        transformRequest: angular.identity
+	    }).success(function (result) {
+	        console.log('YAY');
+	    }).error(function () {
+	        console.log('NAY');
+	    });
+	}
 
 	$scope.closeModal = function () {
         $uibModalInstance.dismiss('cancel');
     };
 
+
     $scope.primaryBtn = function () {
 		if ($scope.currentPage === 0) {
 			$scope.currentPage++;
+			$scope.zone = new FileDrop('zthumbs', {input: false});
+			$scope.zone.event('upload', $scope.handleUpload);
+			$('#upload-file-input').change($scope.handleManualInputChange);
 		} else {
-			$scope.closeModal();
+			$scope.upload();
+			// $scope.closeModal();
 		}
 	};
 });

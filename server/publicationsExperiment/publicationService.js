@@ -1,17 +1,16 @@
 /*jslint node: true */
 //publications service
-//
-//get publications
-
+'use strict';
 var Q = require('q');
 var Publication = require('../../db/publicationModel');
-var Server = function () {};
 
-Server.prototype.createPublication = function (pubName) {
-    var pub = new Publication({pubName: pubName});
-    var deferred = Q.defer();
+var PublicationService = function () {};
+
+PublicationService.prototype.createPublication = function (pubName) {
+    var publication = new Publication({pubName: pubName}),
+        deferred = Q.defer();
     
-    pub.save(function (err, pubInstance) {
+    publication.save(function (err, pubInstance) {
         if (err) {
             deferred.reject({err: err});
         } else {
@@ -23,7 +22,7 @@ Server.prototype.createPublication = function (pubName) {
     return deferred.promise;
 };
 
-Server.prototype.displayDB = function() {
+PublicationService.prototype.displayDB = function () {
     var deferred = Q.defer();
     
     Publication.find({}, function (err, pubs) {
@@ -37,4 +36,18 @@ Server.prototype.displayDB = function() {
     return deferred.promise;
 };
 
-module.exports = new Server();
+PublicationService.prototype.getPublication = function (name) {
+    var deferred = Q.defer();
+    
+    Publication.findOne({pubName: name}, function (err, pubs) {
+        if (err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(pubs);
+        }
+    });
+    
+    return deferred.promise;
+};
+
+module.exports = new PublicationService();

@@ -1,9 +1,18 @@
-var Server = function(){};
 var Q = require('q');
 var Experiment = require('../../db/experimentModel');
+<<<<<<< HEAD:server/publicationsExperiment/experimentController.js
 Server.prototype.createExperiment = function(obj) {
+	console.log(obj);
+	var experiment = new Experiment(obj);
+	console.log(experiment);
+=======
+
+var ExperimentService = function(){};
+
+ExperimentService.prototype.createExperiment = function(obj) {
 	console.log(obj.viewableData);
 	var experiment = new Experiment(obj.viewableData);
+>>>>>>> 3116250da2f5cf2d33d11a621eaded48b8f3b5f9:server/publicationsExperiment/experimentService.js
 	var deferred = Q.defer();
 
 	experiment.save(function(err , expInstance){
@@ -11,17 +20,18 @@ Server.prototype.createExperiment = function(obj) {
 			console.log(err);
 		    deferred.reject({err: err})
 		} else {
-		    console.log(expInstance);
+		    //console.log(expInstance);
 		    deferred.resolve({expInstance: expInstance});
 	  }
 	});
 
 	return deferred.promise;
 };
-Server.prototype.displayDB = function() {
+
+ExperimentService.prototype.displayDB = function() {
     var deferred = Q.defer();
     
-    experiment.find({}, function (err, pubs) {
+    Experiment.find({}, function (err, pubs) {
         if (err) {
             deferred.reject(err);
         } else {
@@ -31,4 +41,5 @@ Server.prototype.displayDB = function() {
     
     return deferred.promise;
 };
-module.exports = new Server();
+
+module.exports = new ExperimentService();
