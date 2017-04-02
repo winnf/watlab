@@ -3,7 +3,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('PublicationsCtrl', function ($scope, $location, CELLTYPES) {
+app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $timeout, CELLTYPES, $http) {
 	$scope.tableClassName = 'publications-table';
 	$scope.title = 'Publications';
 	$scope.buttonText = 'Add Publication';
@@ -11,14 +11,40 @@ app.controller('PublicationsCtrl', function ($scope, $location, CELLTYPES) {
 	$scope.rowHeaders = ['Publication', 'Date', 'Status'];
 
 	$scope.cellTypes = {
-		name: CELLTYPES.CLICKABLE,
+		pubName: CELLTYPES.CLICKABLE,
+        authors: CELLTYPES.CLICKABLE,
 		date: CELLTYPES.DATE,
 		status: CELLTYPES.STATUS
 	};
-	
+    
+    var createPublication = function () {
+        var modalInstance = $uibModal.open({
+            backdrop: 'static',
+            templateUrl: '/per/view/modal-create-publication.ejs',
+            controller: 'CreatePublicationModalCtrl',
+            appendTo: $('body')
+        });
+        
+        modalInstance.result.then(function (publication) {
+            console.log(publication);
+            $http({
+                method: 'GET',
+                url: '/per/createPublication/' + publication.viewableData.pubName
+            }).then(function successCallback(response) {
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+            $scope.rows.push(publication);
+            $timeout(function () {
+                var addedPublication = $('#absract-table tr').last();
+                $('#abstract-table').DataTable().row.add(addedPublication[0]);
+            });
+        });
+    };
+    
 	$scope.clickHandlerMap = {
 		button: function () {
-			alert('Created Publication');
+            createPublication();
 		},
 		name: function (row) {
 			$location.url('/per/publication/' + row.hiddenData.id);
@@ -33,12 +59,38 @@ app.controller('PublicationsCtrl', function ($scope, $location, CELLTYPES) {
 	};
 	// {"publication-0A": "Deep De-Noising Autoencoders","publication-0B": "Convolutional Nets and Radon Transform","publication-3": "Evolutionary Projection Selection","publication-4": "ROI Estimation in Ultrasound Images","publication-5": "Image Segmentation with Self-Configuration","publication-6": "Learning Opposites with Evolving Rules","publication-7": "Validation of Atlas-Based Segmentation"}
 	$scope.rows = [
-		{viewableData: {"name": "Deep De-Noising Autoencoders", "date": "Jan 1, 1928", "status": "In Progress"}, hiddenData: {"id": 'publication-0A'}  },
-		{viewableData: {"name": "Convolutional Nets and Radon Transform", "date": "Jan 1, 1952", "status": "Complete"}, hiddenData: {"id": 'publication-0B'} },
-		{viewableData: {"name": "Evolutionary Projection Selection", "date": "Jan 1, 1964", "status": "Approaching Deadline"}, hiddenData: {"id": 'publication-3'} },
-		{viewableData: {"name": "ROI Estimation in Ultrasound Images", "date": "Jan 1, 1964", "status": "Overdue"}, hiddenData: {"id": 'publication-4'} },
-		{viewableData: {"name": "Image Segmentation with Self-Configuration", "date": "Jan 1, 1995", "status": "In Progress"}, hiddenData: {"id": 'publication-5'} },
-		{viewableData: {"name": "Learning Opposites with Evolving Rules", "date": "Jan 1, 1974", "status": "Complete"}, hiddenData: {"id": 'publication-6'} },
-		{viewableData: {"name": "Validation of Atlas-Based Segmentation", "date": "Jan 1, 1974", "status": "Approaching Deadline"}, hiddenData: {"id": 'publication-7'} }
+		{viewableData: {"pubName": "Deep De-Noising Autoencoders", "authors": "A.Z.", "date": "Jan 1, 1928", "status": "In Progress"}, hiddenData: {"id": 'publication-0A'}  },
+		{viewableData: {"pubName": "Convolutional Nets and Radon Transform", "authors": "A.Z.", "date": "Jan 1, 1952", "status": "Complete"}, hiddenData: {"id": 'publication-0B'} },
+		{viewableData: {"pubName": "Evolutionary Projection Selection", "authors": "A.Z.", "date": "Jan 1, 1964", "status": "Approaching Deadline"}, hiddenData: {"id": 'publication-3'} },
+		{viewableData: {"pubName": "ROI Estimation in Ultrasound Images", "authors": "A.Z.", "date": "Jan 1, 1964", "status": "Overdue"}, hiddenData: {"id": 'publication-4'} },
+		{viewableData: {"pubName": "Image Segmentation with Self-Configuration", "authors": "A.Z.", "date": "Jan 1, 1995", "status": "In Progress"}, hiddenData: {"id": 'publication-5'} },
+		{viewableData: {"pubName": "Learning Opposites with Evolving Rules", "authors": "A.Z.", "date": "Jan 1, 1974", "status": "Complete"}, hiddenData: {"id": 'publication-6'} },
+		{viewableData: {"pubName": "Validation of Atlas-Based Segmentation", "authors": "A.Z.", "date": "Jan 1, 1974", "status": "Approaching Deadline"}, hiddenData: {"id": 'publication-7'} }
 	];
+});
+
+app.controller('CreatePublicationModalCtrl', function ($scope, $uibModalInstance) {
+	var genericDateObj = {
+		date: new Date(),
+		isOpen: false,
+		placement: 'bottom-right',
+		format: 'MMM dd, yyyy',
+		altInputFormats: ['MMM dd, yyyy'],
+		options: {}
+	};
+
+	$scope.createPublication = function () {
+		$uibModalInstance.close({
+			viewableData: {
+				"pubName": $scope.publicationName,
+                "authors": $scope.publicationAuthors,
+				"date": "Apr 1, 2017",
+                "status": "In Progress"
+			},
+            hiddenData: {"id": 'publication-4T2'}
+        });
+	};
+	$scope.closeModal = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 });
