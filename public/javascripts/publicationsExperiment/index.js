@@ -1,7 +1,7 @@
 /*jslint node: true */
 /*global $, jQuery, alert, angular*/
 'use strict';
-var app = angular.module('App', ['ui.bootstrap', 'ngRoute']);
+var app = angular.module('App', ['ui.bootstrap', 'ngRoute', 'ngToast']);
 app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/per/experiments', {

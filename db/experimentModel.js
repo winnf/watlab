@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var ExperimentSchema = mongoose.Schema({
-    name: {type:String, unique:true},
+    name: String,
     startDate: Date,
     dueDate: Date,
     ownerId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    assignedUserIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    assigneeIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     status: String,
     protocolIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Protocol'}],
     equipmentIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Equipment'}],

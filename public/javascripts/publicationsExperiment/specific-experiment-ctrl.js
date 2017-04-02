@@ -3,7 +3,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES) {
+app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES, ngToast, $timeout) {
 	var experimentId = $routeParams.experimentId;
 
 	// Dummy http request for now
@@ -94,6 +94,17 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
             controller: 'AddDataModalCtrl',
             appendTo: $('body')
         });
+
+        modalInstance.result.then(function(result){
+        	$scope.showToast = true;
+	    	$timeout(function(){ 
+	    		if(typeof result.err === 'undefined') {
+		    		ngToast.create('Success uploading ' + files.join(', ')); 
+	    		} else {
+	    			ngToast.create({className: 'danger', content: 'Error uploading data'}); 
+	    		}
+	    	});
+        })
 	};
 
 	$scope.includeTabs = true;
@@ -130,72 +141,5 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 		'Complete': 'label-success',
 		'Approaching Deadline': 'label-warning',
 		'Overdue': 'label-danger'
-	};
-});
-
-app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window, $http) {
-	$scope.currentPage = 0;
-	var genericDateObj = {
-		date: new Date(),
-		isOpen: false,
-		placement: 'bottom-right',
-		format: 'MMM dd, yyyy',
-		altInputFormats: ['MMM dd, yyyy'],
-		options: {}
-	};
-
-    $window.fd.logging = false;
-
-	$scope.startDate = _.clone(genericDateObj);
-	$scope.dueDate = _.clone(genericDateObj);
-
-	$scope.clickUploadFile = function() {
-		$('#upload-file-input').click();
-	};
-
-
-	$scope.handleManualInputChange = function(e) {
-		$scope.files = e.target.files;
-		$scope.fileName = Array.prototype.map.call($scope.files, x => x.name).join(', ');
-		$scope.$apply();
-	};
-
-	$scope.handleUpload = function(e) {
-		$scope.files = $scope.zone.eventFiles(e);
-		$scope.fileName = Array.prototype.map.call($scope.files, x => x.name).join(', ');
-		$scope.$apply();
-	};
-
-	$scope.upload = function() {
-		var files = $scope.files;
-		var formData = new FormData();
-	    for (var i = 0; i < files.length; i++) {
-	        formData.append('file' + i, files[i]);
-	    }
-	    $http.post( '/per/uploadFile', formData, {
-	        headers: { 'Content-Type': undefined },
-	        transformRequest: angular.identity
-	    }).then(function (result) {
-	        console.log('YAY');
-	   	}, function () {
-	        console.log('NAY');
-	    });
-	}
-
-	$scope.closeModal = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-
-
-    $scope.primaryBtn = function () {
-		if ($scope.currentPage === 0) {
-			$scope.currentPage++;
-			$scope.zone = new FileDrop('zthumbs', {input: false});
-			$scope.zone.event('upload', $scope.handleUpload);
-			$('#upload-file-input').change($scope.handleManualInputChange);
-		} else {
-			$scope.upload();
-			// $scope.closeModal();
-		}
 	};
 });

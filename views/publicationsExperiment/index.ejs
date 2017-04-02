@@ -7,6 +7,7 @@
     <% include ../_libraries/angular-angularbootstrap %>
     <% include ../_libraries/datatables %>
     <% include ../_libraries/filedrop %>
+    <% include ../_libraries/ngToast %>
 
     <link rel='stylesheet' href='/stylesheets/common/style.css'>
     <link rel='stylesheet' href='/stylesheets/publicationsExperiment/style.css'>
@@ -21,6 +22,7 @@
     <script src="/javascripts/publicationsExperiment/experiments-ctrl.js"></script>
     <script src="/javascripts/publicationsExperiment/publications-ctrl.js"></script>
     <script src="/javascripts/publicationsExperiment/specific-experiment-ctrl.js"></script>
+    <script src="/javascripts/publicationsExperiment/add-data-modal-ctrl.js"></script>
   </head>
   <body id="lab-manager-app" ng-app="App">
     <div ng-include="'/view/navbar.ejs'" ng-controller="TestCtrl"></div>

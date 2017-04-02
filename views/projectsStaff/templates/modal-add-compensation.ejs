@@ -5,15 +5,28 @@
   </button>
 </div>
 <div class="modal-body">
-    <div style="margin: 24px 0px 8px; margin-left: 15px"><label>Assignee</label></div> 
+    <div style="margin: 24px 0px 8px; margin-left: 15px"><label>Assignee</label></div>
     <div class="input-group" style="width: 70%; margin-left: 15px">
 	  <input type="text" class="form-control" ng-model="assignee" placeholder="Assignee">
 
-    <div style="margin: 0px 0px 8px;"><label>Amount</label></div> 
+    <div style="margin: 0px 0px 8px;"><label>Amount</label></div>
     <div class="input-group">
 	  <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></i></span>
 	  <input type="text" class="form-control" ng-model="amount" placeholder="Amount">
 	</div>
+    </div>
+    <div style="margin: 20px 0px 8px; margin-left: 15px"><label>Date Assigned</label></div>
+    <div style="display: flex; flex-direction: row;">
+      </div>
+      <div class="input-group" style="width: 45%; margin-left: 15px">
+        <input type="text" class="form-control"
+            popup-placement="{{dateAssigned.placement}}" is-open="dateAssigned.isOpen" datepicker-options="dateAssigned.options"
+            uib-datepicker-popup="{{dateAssigned.format}}" ng-model="dateAssigned.date" show-button-bar="false"
+            alt-input-formats="dateAssigned.format" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="dateAssigned.isOpen = !dateAssigned.isOpen"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
     </div>
 </div>
 <div class="modal-footer">
