@@ -2,8 +2,14 @@
 
 'use strict';
 var express = require('express');
+var multer = require('multer');
+var upload = multer();
+
 var PublicationService = require('../server/publicationsExperiment/publicationService');
+var EntryService = require('../server/publicationsExperiment/entryService');
+
 var router = express.Router();
+var experimentService = require('../server/publicationsExperiment/experimentService');
 
 /* 
 	Routes for the manage publications and experiment group
@@ -15,10 +21,29 @@ router.get(['/', '/experiments', '/publications', '/experiment/:experimentId'], 
     res.render('publicationsExperiment/index');
 });
 
-router.get(['/createExperiment'], function (req, res) {
-	//Server.createExperiment
-});
+router.post('/createExperiment', function (req, res) {
+	//console.log('ssssd' , req.body);
+	experimentService.createExperiment(req.body).then(
+		function(result){
+		var experimentInstance = result.expInstance;
+		//console.log(result);
+		res.send(result);
+	}
+	, function(err){
+		console.log(err);
+		var err = err.err;
+		res.status(500);
+	});
+	});
 
+router.get('/allExperiments' , function(req , res){
+	experimentService.displayDB().then(function (result) {
+        res.send(result);
+    }, function (error) {
+        var err = error.err;
+        res.status(500);
+    });
+});
 router.get('/createPublication/:pubName', function (req, res) {
     PublicationService.createPublication(req.params.pubName).then(function (result) {
         var pubInstance = result.pubInstance;
@@ -36,6 +61,10 @@ router.get('/allPublications', function (req, res) {
         var err = error.err;
         res.status(500);
     });
+});
+
+router.post('/uploadFile', upload.any(), function (req, res) {
+    EntryService.addEntry(req.files);
 });
 
 router.get('/getPublication/:name', function (req, res) {

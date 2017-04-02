@@ -1,27 +1,28 @@
+/*jslint node: true */
+'use strict';
 var Q = require('q');
 var Experiment = require('../../db/experimentModel');
+var ExperimentService = function () {};
 
-var ExperimentService = function(){};
+ExperimentService.prototype.createExperiment = function (obj) {
+	console.log(obj);
+	var experiment = new Experiment(obj),
+        deferred = Q.defer();
 
-ExperimentService.prototype.createExperiment = function(obj) {
-	console.log(obj.viewableData);
-	var experiment = new Experiment(obj.viewableData);
-	var deferred = Q.defer();
-
-	experiment.save(function(err , expInstance){
-		if(err) {
+	experiment.save(function (err, expInstance) {
+		if (err) {
 			console.log(err);
-		    deferred.reject({err: err})
+		    deferred.reject({err: err});
 		} else {
-		    console.log(expInstance);
+		    //console.log(expInstance);
 		    deferred.resolve({expInstance: expInstance});
-	  }
+	    }
 	});
 
 	return deferred.promise;
 };
 
-ExperimentService.prototype.displayDB = function() {
+ExperimentService.prototype.displayDB = function () {
     var deferred = Q.defer();
     
     Experiment.find({}, function (err, pubs) {
