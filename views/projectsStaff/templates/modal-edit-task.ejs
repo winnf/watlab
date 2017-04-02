@@ -1,18 +1,18 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add New Notice</h4>
+  <h4 class="modal-title">Edit Task</h4>
   <button type="button" class="close" aria-label="Close" ng-click="closeModal()" style="margin-top: -25px;">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
 
-	<div style="margin: 0px 0px 8px;"><label>Notice Name</label></div> 
+	<div style="margin: 0px 0px 8px;"><label>Task Name</label></div> 
   <div class="input-group">
 	  <span class="input-group-addon"><i class="fa fa-sticky-note-o " aria-hidden="true"></i></i></span>
-	  <input type="text" class="form-control" ng-model="noticeName" placeholder="Notice Name">
+	  <input type="text" class="form-control" ng-model="taskName" placeholder="Task Name">
 	</div>
 
-	<div style="margin: 20px 0px 8px"><label>Due Date</label></div> 
+	<div style="margin: 24px 0px 8px"><label>Due Date</label></div> 
 	<div style="display: flex; flex-direction: row;">
 	  </div>
 	 	<div class="input-group" style="width: 45%;">
@@ -38,6 +38,6 @@
 	</div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" ng-click="addNewNotice()">Create Notice</button>
+  <button type="button" class="btn btn-primary" ng-click="editTask()">Edit Task</button>
   <button type="button" class="btn btn-secondary" ng-click="closeModal()">Close</button>
 </div>
