@@ -10,7 +10,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 
   $scope.cellTypes = {
     task: CELLTYPES.CLICKABLE,
-  dueDate: CELLTYPES.DATE,
+    dueDate: CELLTYPES.DATE,
     assignees: CELLTYPES.PLAIN,
     description: CELLTYPES.PLAIN
   };
@@ -73,6 +73,17 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     {viewableData: {"task": "finish this goddamn project smh","dueDate":"Apr 1, 2017","assignees":"Igor", "description": "blah"}}
   ];
 
+  $http({
+    method: 'GET',
+    url: '/psr/allTask'
+  }).then(function successCallback(response){
+    var tasks = response.data;
+    for(var i = 0; i < Object.keys(tasks).length; i++){
+      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description}});
+    }
+  }, function errorCallback(response){
+    console.log(response);
+  });
 });
 
 app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
