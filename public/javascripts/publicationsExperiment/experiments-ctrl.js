@@ -49,6 +49,10 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     			// this callback will be called asynchronously
     			// when the response is available
     			//console.log(response);
+    			var myExpView = response.data.expInstance.viewableData;
+    			var myExpHid = response.data.expInstance.hiddenData;
+
+    			var displayableExp = {viewableData: {} , hiddenData: {}};
     			$scope.rows.push(experiment);
 			}, function errorCallback(response) {
     			// called asynchronously if an error occurs
