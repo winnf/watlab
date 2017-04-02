@@ -25,11 +25,11 @@ ExperimentService.prototype.createExperiment = function (obj) {
 ExperimentService.prototype.displayDB = function () {
     var deferred = Q.defer();
     
-    Experiment.find({}, function (err, pubs) {
+    Experiment.find({}, function (err, experiments) {
         if (err) {
             deferred.reject(err);
         } else {
-            deferred.resolve(pubs);
+            deferred.resolve(experiments);
         }
     });
     
