@@ -3,7 +3,6 @@ var ObjectID = require('mongodb').ObjectID;
 
 var Entries = require('./entryModel.js');
 var Experiment = require('./experimentModel.js');
-var LabBook = require('./labBookModel.js');
 var Publication = require('./publicationModel.js');
 var User = require('./userModel.js');
 var Version = require('./versionModel.js');
@@ -11,7 +10,7 @@ var Version = require('./versionModel.js');
 mongoose.connect('mongodb://localhost/database');
 
 /**
-	Populates Entries, Experiment, LabBook, Publication, User, and Version
+	Populates Entries, Experiment, Publication, User, and Version
 */
 
 // http://stackoverflow.com/questions/17891173/javascript-how-to-efficiently-randomly-select-array-item-without-repeats
@@ -43,28 +42,34 @@ var dummyUserData = [
 ];
 
 var dummyEntriesData = [
-	{name: "Cell Sample Data", description: 'Sample', date: "Jan 1, 1928", owner: '', labBook: '', archive: false, filepath: [] },
-	{name: "Microwave Data", description: 'Wave', date: "Jan 1, 1952", owner: '', labBook: '', archive: false, filepath: []},
-	{name: "Radiation Data", description: 'Gamma', date: "Jun 1, 1964", owner: '', labBook: '', archive: false, filepath: [] },
-	{name: "Bird Calls", description: 'Chicken', date: "Jul 1, 1995", owner: '', labBook: '', archive: false, filepath: [] },
-	{name: "Seisometer", description: 'Earth', date: "Feb 1, 1974", owner: '', labBook: '', archive: false, filepath: []},
-	{name: "Lochness Monster Sighting", description: 'Whale', date: "Jan 1, 1964", owner: '', labBook: '', archive: false, filepath: [] }
+	{name: "Cell Sample Data", description: 'Collection of blood, saliva, and buccal cell samples in a pilot study on the Danish nurse cohort: comparison of the response rate and quality of genomic DNA.', 
+			date: "Jan 1, 1928", owner: '', archive: false, filePath: '' },
+	{name: "Microwave Data", description: 'We present a full-sky 100 μm map that is a reprocessed composite of the COBE/DIRBE and IRAS/ISSA maps, with the zodiacal foreground and confirmed point sources removed. Before using the ISSA maps, we remove the remaining artifacts', 
+			date: "Jan 1, 1952", owner: '', archive: false, filePath: '' },
+	{name: "Radiation Data", description: 'The phenomenon of growth, decline and death—aging—has been the source of considerable speculation. This cycle seems to be a more or less direct function of the metabolic rate and this in turn depends on the species (animal or plant)', 
+			date: "Jun 1, 1964", owner: '', archive: false, filePath: '' },
+	{name: "Bird Calls", description: 'Automatic identification of bird calls without manual intervention has been a challenging task for meaningful research on the taxonomy and monitoring of bird migrations in ornithology', 
+			date: "Jul 1, 1995", owner: '', archive: false, filePath: '' },
+	{name: "Seisometer", description: 'A tomographic image of the upper mantle beneath central Tibet from INDEPTH data has revealed a subvertical high-velocity zone from∼ 100-to∼ 400-kilometers depth, located approximately south of the Bangong-Nujiang Suture', 
+			date: "Feb 1, 1974", owner: '', archive: false, filePath: ''},
+	{name: "Lochness Monster Sighting", description: 'Recent publicity concerning new claims for the existence of the Loch Ness monster has focused on the evidence offered by Sir Peter Scott and Robert Rines.', 
+			date: "Jan 1, 1964", owner: '', archive: false, filePath: '' }
 ];
 
 var dummyExperimentData = [
-	{name: "Correlated diffusion imaging (CDI) for cancer imaging", startDate: "Jan 1, 1928", dueDate: "Feb 1, 1928", owner: "", assigneeIds: [], status: "In Progress",
+	{name: "Correlated diffusion imaging (CDI) for cancer imaging", startDate: "Jan 1, 1928", dueDate: "Feb 1, 1928", ownerId: "", assigneeIds: [], status: "In Progress",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Evolutionary deep intelligence for operational deep intelligence", startDate: "Jan 1, 1952", dueDate: "Nov 1, 1952", owner: "", assigneeIds: [], status: "Complete",
+	{name: "Evolutionary deep intelligence for operational deep intelligence", startDate: "Jan 1, 1952", dueDate: "Nov 1, 1952", ownerId: "", assigneeIds: [], status: "Complete",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Musculoskeletal kinematic analysis using video fluoroscopy", startDate: "Jan 1, 1964", dueDate: "Apr 1, 1964", owner: "", assigneeIds: [], status: "Approaching Deadline",
+	{name: "Musculoskeletal kinematic analysis using video fluoroscopy", startDate: "Jan 1, 1964", dueDate: "Apr 1, 1964", ownerId: "", assigneeIds: [], status: "Approaching Deadline",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Ocular morphological analysis", startDate: "Jan 1, 1964", dueDate: "Jun 1, 1964", owner: "", assigneeIds: [], status: "Overdue",
+	{name: "Ocular morphological analysis", startDate: "Jan 1, 1964", dueDate: "Jun 1, 1964", ownerId: "", assigneeIds: [], status: "Overdue",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Sea ice analysis using synthetic aperture radar ", startDate: "Jul 1, 1995", dueDate: "Feb 1, 1995", owner: "", assigneeIds: [], status: "In Progress",
+	{name: "Sea ice analysis using synthetic aperture radar ", startDate: "Jul 1, 1995", dueDate: "Feb 1, 1995", ownerId: "", assigneeIds: [], status: "In Progress",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Image and video noise reduction and artifact reduction", startDate: "Feb 1, 1974", dueDate: "Jan 1, 1974", owner: "", assigneeIds: [], status: "Complete",
+	{name: "Image and video noise reduction and artifact reduction", startDate: "Feb 1, 1974", dueDate: "Jan 1, 1974", ownerId: "", assigneeIds: [], status: "Complete",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Spectral demultiplexed imaging (SDI) for single-shot", startDate: "Jun 1, 1974", dueDate: "Dec 1, 1974", owner: "", assigneeIds: [], status: "Approaching Deadline",
+	{name: "Spectral demultiplexed imaging (SDI) for single-shot", startDate: "Jun 1, 1974", dueDate: "Dec 1, 1974", ownerId: "", assigneeIds: [], status: "Approaching Deadline",
 		protocolIds: [], equipmentIds: [], entryIds: []} 
 ];
 
@@ -109,31 +114,29 @@ function clearAndInsert(model, tableName, data, callback) {
 
 clearAndInsert(User, 'User', dummyUserData, function(){});
 
-var dummyLabBookData = [];
-var counter = 0;
+var entriesArr = [];
 dummyExperimentData.forEach(experiment => {
 	experiment.startDate = new Date(experiment.startDate);
 	experiment.dueDate = new Date(experiment.dueDate);
-	experiment.owner = generateRandom(dummyUserData, 1, 1)[0]._id;
+	experiment.ownerId = generateRandom(dummyUserData, 1, 1)[0]._id;
 	experiment.assigneeIds = generateRandom(dummyUserData, 1, dummyUserData.length).map(y => y._id);
 
 	var entries = generateRandom(dummyEntriesData, 1, dummyEntriesData.length);
 
 	entries.forEach(entry => {
-		var newLabBook = {name: 'labbook' + (counter++), _id: new ObjectID()};
-		dummyLabBookData.push(newLabBook);
 		entry.owner = generateRandom(dummyUserData, 1, 1)[0]._id;
-		entry.labBook = newLabBook._id;
 		entry._id = new ObjectID();
+		entriesArr.push({name: entry.name, description: entry.description, 
+			date: entry.date, owner: entry.owner, archive: false, filePath: '', _id: entry._id});
 	});
 
 	experiment.entryIds = entries.map(y => y._id);
 });
 
-clearAndInsert(LabBook, 'LabBook', dummyLabBookData, function(){});
 clearAndInsert(Experiment, 'Experiment', dummyExperimentData, function(){});
 clearAndInsert(Version, 'Version', dummyVersionData, function(){});
 clearAndInsert(Publication, 'Publication', dummyPublicationData, function(){});
+clearAndInsert(Entries, 'Entries', entriesArr, function(){});
 
 
 

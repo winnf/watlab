@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+
 
 var commonRoutes                  = require('./routes/commonRoutes');
 var equipmentSafetyRoutes         = require('./routes/equipmentSafetyRoutes');
@@ -12,6 +12,11 @@ var projectsStaffRoutes           = require('./routes/projectsStaffRoutes');
 var publicationsExperimentRoutes  = require('./routes/publicationsExperimentRoutes');
 var dogRoutes                     = require('./routes/legacy/dogRoutes');
 
+var DB                            = require('./db/DB-setup');
+
+
+// Setup database
+DB.setup();
 var app = express();
 
 // view engine setup
@@ -25,9 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// setup database
-mongoose.connect('mongodb://localhost/database');
 
 app.use('/', commonRoutes);
 app.use('/esr', equipmentSafetyRoutes);

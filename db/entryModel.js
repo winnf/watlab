@@ -5,9 +5,8 @@ var EntrySchema = mongoose.Schema({
     description: String,
     date: Date,
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    labBook: {type: mongoose.Schema.Types.ObjectId, ref: 'LabBook'},
-    archive: Boolean,
-    filepath: [String]
+    archive: {type: Boolean, default: false},
+    filePath: String
 });
 
 module.exports = mongoose.model('Entry' , EntrySchema);

@@ -3,6 +3,8 @@ var router = express.Router();
 //var app = express();
 var taskServer = require('../server/projectsStaff/taskService');
 var noticeServer = require('../server/projectsStaff/noticeService');
+var projectServer = require('../server/projectsStaff/projectService');
+
 /*
 	Routes for the manage lab projects and lab staff group
 	Root route is '/psr'
@@ -47,6 +49,24 @@ router.get('/allNotice', function(req, res){
 router.get('/addNotice/:name/:date/:assignees/:description', function(req, res){
   var params = req.params;
   noticeServer.addNotice(params.name, params.date, params.assignees, params.description).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.status(500);
+  });
+});
+
+router.get('/allProject', function(req, res){
+  projectServer.displayProjectDB().then(function(result){
+    res.send(result);
+  }, function(err){
+    var err= error.err;
+    res.status(500);
+  });
+});
+
+router.get('/addProject/:name/:assignees/:description', function(req, res){
+  var params = req.params;
+  projectServer.addProject(params.name, params.assignees, params.description).then(function(result){
     res.send(result);
   }, function(err){
     res.status(500);
