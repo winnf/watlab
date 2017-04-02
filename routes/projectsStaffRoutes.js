@@ -33,5 +33,4 @@ router.get('/addTask/:name/:date/:assignees/:description',function(req, res){
   });
 });
 
-router.listen(3000);
 module.exports = router;
