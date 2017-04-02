@@ -13,7 +13,6 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     	$http.get('/per/allExperiments').then(function successCallback(response){
     		
     		//$scope.rows = response.data;
-<<<<<<< HEAD
     		// console.log(response.data);
     		var newRows = [];
     		var newExp =[];
@@ -32,10 +31,8 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     		 }
     		// console.log(newRows);
     		 $scope.rows = newRows;  		
-    	} , 
-=======
     	} ,
->>>>>>> d15c2e598aa58c775533f1b39d03fd27f04533c1
+    	} ,
     		function errorCallback(response){
 
     		});
