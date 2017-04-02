@@ -53,15 +53,29 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
             }
         });
 
-        //need it to update the row itself and not add an additional row
         modalInstance.result.then(function(task){
-            $scope.rows.push(task);
-            $timeout(function(){
-                var editedTask = $('#abstract-table tr').last();
-                $('#abstract-table').DataTable().row.add(editedTask[0]);
-            });
-        });
-	};
+            if (row.viewableData.task != task.viewableData.task){
+                row.viewableData.task = task.viewableData.task;
+            }
+            if (row.viewableData.assignees != task.viewableData.assignees){
+                row.viewableData.assignees = task.viewableData.assignees;
+            }
+            if (row.viewableData.description != task.viewableData.description){
+                row.viewableData.description = task.viewableData.description;
+            }
+            if (row.viewableData.dueDate != task.viewableData.dueDate){
+                row.viewableData.dudeDate = task.viewableData.dueDate;
+            }
+
+          $http({
+            method: 'GET',
+            url: '/psr/addTask/' + task.viewableData.task + '/' + task.viewableData.dueDate + '/' + task.viewableData.assignees + '/' + task.viewableData.description
+          }).then(function successCallback(response) {
+          }, function errorCallback(response) {
+              console.log(response);
+          });
+	    });
+    };
 
 	$scope.clickHandlerMap = {
 		button: function() {
@@ -117,6 +131,14 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
 });
 
 app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
+	var genericDateObj = {
+		date: new Date(),
+		isOpen: false,
+		placement: 'bottom-right',
+		format: 'MMM dd, yyyy',
+		altInputFormats: ['MMM dd, yyyy'],
+		options: {},
+	};
     $scope.taskName = items.viewableData.task;
 	$scope.dueDate = items.viewableData.dueDate;
     $scope.taskDescription = items.viewableData.description;

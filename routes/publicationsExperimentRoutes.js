@@ -32,7 +32,7 @@ router.post('/createExperiment', function (req, res) {
 	, function(err){
 		console.log(err);
 		var err = err.err;
-		res.status(500);
+		res.sendStatus(500);
 	});
 	});
 
@@ -41,7 +41,7 @@ router.get('/allExperiments' , function(req , res){
         res.send(result);
     }, function (error) {
         var err = error.err;
-        res.status(500);
+        res.sendStatus(500);
     });
 });
 router.get('/createPublication/:pubName', function (req, res) {
@@ -50,7 +50,7 @@ router.get('/createPublication/:pubName', function (req, res) {
         res.send(result);
     }, function (error) {
         var err = error.err;
-        res.status(500);
+        res.sendStatus(500);
     });
 });
 
@@ -59,12 +59,21 @@ router.get('/allPublications', function (req, res) {
         res.send(result);
     }, function (error) {
         var err = error.err;
-        res.status(500);
+        res.sendStatus(500);
     });
 });
 
 router.post('/uploadFile', upload.any(), function (req, res) {
-    EntryService.addEntry(req.files);
+    var body = req.body;
+    var fileName = body.fileName;
+    var format = body.format;
+    var description = body.description;
+
+    EntryService.addEntry(req.files, fileName, format, description).then(function(){
+        res.sendStatus(200);
+    }, function(){
+        res.sendStatus(500);
+    });
 });
 
 router.get('/getPublication/:name', function (req, res) {
@@ -72,17 +81,17 @@ router.get('/getPublication/:name', function (req, res) {
         res.send(result);
     }, function (error) {
         var err = error.err;
-        res.status(500);
+        res.sendStatus(500);
     });
 });
 
 router.post('/editPublication', function (req, res) {
     var d = req.body.viewableData;
-    PublicationService.editPublication(d.pubName, d.authors, d.date, d.status, d.version, d.experimentId).then(function (result) {
+    PublicationService.editPublication(d.pubName, d.authors, d.date, d.sendStatus, d.version, d.experimentId).then(function (result) {
         res.send(result);
     }, function (error) {
         var err = error.err;
-        res.status(500);
+        res.sendStatus(500);
     });
 });
 

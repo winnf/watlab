@@ -25,7 +25,11 @@ ExperimentService.prototype.createExperiment = function (obj) {
 ExperimentService.prototype.displayDB = function () {
     var deferred = Q.defer();
     
+<<<<<<< HEAD
     Experiment.find().populate('ownerId entryIds assigneeIds').exec( function (err, experiments) {
+=======
+    Experiment.find({}).populate('assigneeIds').exec( function (err, experiments) {
+>>>>>>> e6b6468602198dda998934150330d72b436ac8a9
         if (err) {
             deferred.reject(err);
         } else {
