@@ -5,7 +5,7 @@ var ExperimentSchema = mongoose.Schema({
     startDate: Date,
     dueDate: Date,
     ownerId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    assignedUserIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    assigneeIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     status: String,
     protocolIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Protocol'}],
     equipmentIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Equipment'}],
