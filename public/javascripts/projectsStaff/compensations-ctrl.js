@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('App');
 
-app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES){
+app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES, $http){
   $scope.tableClassName = 'compensations-table';
   $scope.title = 'Compensations';
   //$scope.description = ''
@@ -23,7 +23,14 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
     });
 
     modalInstance.result.then(function(compensation){
-  		$scope.rows.push(compensation);
+      $http({
+        method: 'GET',
+        url: '/psr/addCompensation/' + compensation.viewableData.assignee + '/' + compensation.viewableData.amount + '/' + compensation.viewableData.dateAssigned
+      }).then(function successCallback(response){
+      }, function errorCallback(response){
+        console.log(response);
+      });
+      $scope.rows.push(compensation);
   		$timeout(function(){
   			var addedCompensation = $('#abstract-table tr').last();
   			$('#abstract-table').DataTable().row.add(addedCompensation[0]);
@@ -43,6 +50,19 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   $scope.rows = [
     {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017"}}
   ];
+
+  $http({
+    method: 'GET',
+    url: '/psr/allCompensation'
+  }).then(function successCallback(response){
+    var compensations = response.data;
+    for(var i = 0; i < Object.keys(compensations).length; i++){
+      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date}});
+    }
+  }, function errorCallback(response){
+    console.log(response);
+  });
+
 
 });
 
