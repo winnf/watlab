@@ -39,33 +39,36 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     });
 	};
 
-    var editTask = function(){
+    var editTask = function(row){
+        console.log('the row name is:' + row.viewableData.task);
 		var modalInstance = $uibModal.open({
-			backdrop: 'static',
-      templateUrl: '/psr/view/modal-edit-task.ejs',
-      controller: 'EditTaskModalCtrl',
-      appendTo: $('body')
-    });
+            backdrop: 'static',
+            templateUrl: '/psr/view/modal-edit-task.ejs',
+            controller: 'EditTaskModalCtrl',
+            appendTo: $('body'),
+            resolve: {
+                items: function(){
+                    return row;
+                }
+            }
+        });
 
-    //need it to update the row itself and not add an additional row
-    modalInstance.result.then(function(task){
-  		$scope.rows.push(task);
-  		$timeout(function(){
-  			var editedTask = $('#abstract-table tr').last();
-  			$('#abstract-table').DataTable().row.add(editedTask[0]);
-  		});
-    });
+        //need it to update the row itself and not add an additional row
+        modalInstance.result.then(function(task){
+            $scope.rows.push(task);
+            $timeout(function(){
+                var editedTask = $('#abstract-table tr').last();
+                $('#abstract-table').DataTable().row.add(editedTask[0]);
+            });
+        });
 	};
 
 	$scope.clickHandlerMap = {
 		button: function() {
 			addTask();
 		},
-		name: function(row) {
-			$location.url('/psr/task/' + row.hiddenData.id);
-		},
-        row: function(){
-            editTask();
+        task: function(row){
+            editTask(row);
         }
 	};
 
@@ -113,25 +116,21 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
   };
 });
 
-app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance){
-	var genericDateObj = {
-		date: new Date(),
-		isOpen: false,
-		placement: 'bottom-right',
-		format: 'MMM dd, yyyy',
-		altInputFormats: ['MMM dd, yyyy'],
-		options: {},
-	};
+app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
+    $scope.taskName = items.viewableData.task;
+	$scope.dueDate = items.viewableData.dueDate;
+    $scope.taskDescription = items.viewableData.description;
+    $scope.taskAssignees = items.viewableData.assignees;
+    $scope.taskId = items.viewableData.hiddenData.id;
 
-	$scope.dueDate = _.clone(genericDateObj);
-	$scope.editTask = function() {
+    $scope.editTask = function() {
 		$uibModalInstance.close({
 			viewableData: {
 				"task": $scope.taskName,
-				"dueDate": $scope.dueDate.date,
-                "description": $scope.description,
-				"assignees": $scope.assignees
-			}, hiddenData: {"id": $scope._id} });
+				"dueDate": $scope.dueDate,
+                "description": $scope.taskDescription ,
+				"assignees": $scope.taskAssignees
+            }, hiddenData: {"id": $scope.taskId } });
 	};
 
 	$scope.closeModal = function () {
