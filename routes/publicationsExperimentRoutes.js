@@ -47,6 +47,15 @@ router.post('/uploadFile', upload.any(), function (req, res) {
     EntryService.addEntry(req.files);
 });
 
+router.get('/getPublication/:name', function (req, res) {
+    PublicationService.getPublication(req.params.name).then(function (result) {
+        res.send(result);
+    }, function (error) {
+        var err = error.err;
+        res.status(500);
+    });
+});
+
 router.get('/view/:fileName', function (req, res) {
 	res.render('publicationsExperiment/templates/' + req.params.fileName);
 });

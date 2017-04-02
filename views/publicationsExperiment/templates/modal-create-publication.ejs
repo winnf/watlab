@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create a Publication</h4>
+  <button type="button" class="close" aria-label="Close" ng-click="closeModal()" style="margin-top: -25px;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+	<div style="margin: 0px 0px 8px;"><label>Publication name</label></div> 
+  <div class="input-group">
+	  <span class="input-group-addon"><i class="fa fa-flask" aria-hidden="true"></i></i></span>
+	  <input type="text" class="form-control" ng-model="publicationName" placeholder="Publication Name">
+	</div>
+    
+	<div style="margin: 24px 0px 8px;"><label>Authors</label></div> 
+  <div class="input-group" style="width: 100%;">
+	  <input type="text" class="form-control" ng-model="publicationAuthors" placeholder="Authors">
+	</div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="createPublication()">Create Publication</button>
+  <button type="button" class="btn btn-secondary" ng-click="closeModal()">Close</button>
+</div>
