@@ -2,7 +2,7 @@
 /*global $, jQuery, alert, angular*/
 'use strict';
 var app = angular.module('App');
-//var mongoose = require('mongoose');
+
 app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeout, CELLTYPES , $http) {
 	$scope.tableClassName = 'experiments-table';
 	$scope.title = 'Experiments';

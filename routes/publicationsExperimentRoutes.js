@@ -69,8 +69,8 @@ router.post('/uploadFile', upload.any(), function (req, res) {
     var format = body.format;
     var description = body.description;
 
-    EntryService.addEntry(req.files, fileName, format, description).then(function(){
-        res.sendStatus(200);
+    EntryService.addEntry(req.files, fileName, format, description).then(function(result){
+        res.send(result);
     }, function(){
         res.sendStatus(500);
     });

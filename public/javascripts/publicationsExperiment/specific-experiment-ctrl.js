@@ -3,7 +3,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES) {
+app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES, ngToast, $timeout) {
 	var experimentId = $routeParams.experimentId;
 
 	// Dummy http request for now
@@ -94,6 +94,14 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
             controller: 'AddDataModalCtrl',
             appendTo: $('body')
         });
+
+        modalInstance.result.then(function(files){
+        	$scope.showToast = true;
+	    	$timeout(function(){ ngToast.create('Success uploading ' + files.join(', ')); });
+        }, function(){
+        	$scope.showToast = true;
+	    	$timeout(function(){ ngToast.create({className: 'danger', content: 'Error uploading data'}); });
+        })
 	};
 
 	$scope.includeTabs = true;
