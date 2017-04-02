@@ -50,4 +50,28 @@ PublicationService.prototype.getPublication = function (name) {
     return deferred.promise;
 };
 
+PublicationService.prototype.editPublication = function (pubName, authors, date, status, version, experimentId) {
+    var deferred = Q.defer();
+    
+    Publication.findOne({pubName: name}, function (err, pubs) {
+        if (err) {
+            deferred.reject(err);
+        } else {
+            pubs.addVersion(version);
+            pubs.addAuthor(authors);
+            pubs.addExperimentId(experimentId);
+            
+            pubs.save(function (err, pubInstance) {
+                if (err) {
+                    deferred.reject({err: err});
+                } else {
+                    console.log(pubInstance);
+                    deferred.resolve(pubInstance);
+                }
+            });
+        }
+    });
+    return deferred.promise;
+};
+
 module.exports = new PublicationService();
