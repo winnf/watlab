@@ -153,7 +153,6 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 		$('#upload-file-input').click();
 	};
 
-
 	$scope.handleManualInputChange = function(e) {
 		$scope.files = e.target.files;
 		$scope.fileName = Array.prototype.map.call($scope.files, x => x.name).join(', ');
@@ -185,7 +184,6 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 	$scope.closeModal = function () {
         $uibModalInstance.dismiss('cancel');
     };
-
 
     $scope.primaryBtn = function () {
 		if ($scope.currentPage === 0) {

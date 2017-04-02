@@ -7,7 +7,6 @@ var Entry = require('../../db/entryModel');
 var EntryService = function(){};
 
 EntryService.prototype.addEntry = function(files){
-	console.log(files.length);
 	var promises = Q.all(files.map(file => {
 		var deferred = Q.defer();
 		var buffer = file.buffer;
@@ -23,7 +22,7 @@ EntryService.prototype.addEntry = function(files){
 		  		name: originalname, 
 		  		description: '', 
 		  		date: '',
-		  		filepath: filepath
+		  		filePath: filepath
 		  	});
 		  	entry.save()
 		  	deferred.resolve()
