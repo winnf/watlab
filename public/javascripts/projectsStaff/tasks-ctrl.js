@@ -63,8 +63,8 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
             if (row.viewableData.description != task.viewableData.description){
                 row.viewableData.description = task.viewableData.description;
             }
-            if (row.viewableData.dueDate != task.viewableData.dueDate){
-                row.viewableData.dudeDate = task.viewableData.dueDate;
+            if (row.viewableData.dueDate.date != task.viewableData.dueDate.date){
+                row.viewableData.dueDate.date = task.viewableData.dueDate.date;
             }
 
           $http({
@@ -131,6 +131,7 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
 });
 
 app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
+
 	var genericDateObj = {
 		date: new Date(),
 		isOpen: false,
@@ -139,17 +140,19 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
 		altInputFormats: ['MMM dd, yyyy'],
 		options: {},
 	};
+
+    items.viewableData.dueDate = _.clone(genericDateObj);
+
     $scope.taskName = items.viewableData.task;
-	$scope.dueDate = items.viewableData.dueDate;
+    $scope.dueDate = items.viewableData.dueDate;
     $scope.taskDescription = items.viewableData.description;
     $scope.taskAssignees = items.viewableData.assignees;
     $scope.taskId = items.viewableData.hiddenData.id;
-
     $scope.editTask = function() {
 		$uibModalInstance.close({
 			viewableData: {
 				"task": $scope.taskName,
-				"dueDate": $scope.dueDate,
+				"dueDate": $scope.dueDate.date,
                 "description": $scope.taskDescription ,
 				"assignees": $scope.taskAssignees
             }, hiddenData: {"id": $scope.taskId } });
