@@ -11,8 +11,27 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 	$scope.rowHeaders = ['Experiment', 'Start Date', 'Due Date', 'Owner', 'Assignees', 'Status'];
 	$( document ).ready(function() {
     	$http.get('/per/allExperiments').then(function successCallback(response){
-    		//console.log(response.data);
+    		
     		//$scope.rows = response.data;
+    		// console.log(response.data);
+    		var newRows = [];
+    		var newExp =[];
+    		 for(var object in response.data){
+    		// 	console.log(response.data[object].name);
+    			 newExp = [{viewableData: {
+    				"name": response.data[object].name,
+    				"start-date": response.data[object].startDate,
+    				"due-date": response.data[object].dueDate,
+    				"owner": 'Jo',
+    				"assignees": 'bob',
+    				"status": response.data[object].status
+    			}, hiddenData: {id: response.data[object]._id
+    			}}];
+    		 	newRows.push(newExp[0]);
+    		 }
+    		// console.log(newRows);
+    		 $scope.rows = newRows;  		
+    	} ,
     	} ,
     		function errorCallback(response){
 
@@ -36,15 +55,16 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 		});
 
 		modalInstance.result.then(function (experiment) {
-			//console.log(experiment.viewableData);
+			
 			var newExp = {
 				name: experiment.viewableData.name,
-				//startdate: experiment.viewableData.start-date,
-				//duedate: experiment.viewableData.due-date,
+				startDate: experiment.viewableData['start-date'],
+				dueDate: experiment.viewableData['due-date'],
 				//owner: experiment.viewableData.owner,
 				//assigneduserids: experiment.viewableData.assignees,
 				status: experiment.viewableData.status
 			}
+			console.log(newExp);
 			$http.post('/per/createExperiment', newExp).then(function successCallback(response) {
     			// this callback will be called asynchronously
     			// when the response is available
@@ -54,6 +74,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 
     			var displayableExp = {viewableData: {} , hiddenData: {}};
     			$scope.rows.push(experiment);
+    			//console.log(experiment);
 			}, function errorCallback(response) {
     			// called asynchronously if an error occurs
     			// or server returns response with an error status.
@@ -84,15 +105,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 		'Overdue': 'label-danger'
 	};
 
-	$scope.rows = [
-	{viewableData: {"name": "Correlated diffusion imaging (CDI) for cancer imaging", "start-date": "Jan 1, 1928", "due-date": "Feb 1, 1928", "owner": "John Smith", "assignees": "[Bob, William, Ray]", "status": "In Progress"}, hiddenData: {"id": 'experiment-0A'} },
-	{viewableData: {"name": "Evolutionary deep intelligence for operational deep intelligence", "start-date": "Jan 1, 1952", "due-date": "Nov 1, 1952", "owner": "John Bob", "assignees": "[John, Smith, Ray]", "status": "Complete"}, hiddenData: {"id": 'experiment-0B'} },
-	{viewableData: {"name": "Musculoskeletal kinematic analysis using video fluoroscopy", "start-date": "Jan 1, 1964", "due-date": "Apr 1, 1964", "owner": "John Smith", "assignees": "[Bob, William, Ray]", "status": "Approaching Deadline"}, hiddenData: {"id": 'experiment-3'} },
-	{viewableData: {"name": "Ocular morphological analysis", "start-date": "Jan 1, 1964", "due-date": "Jun 1, 1964", "owner": "John Bob", "assignees": "[Smith, Bob, Ray]", "status": "Overdue"}, hiddenData: {"id": 'experiment-4'} },
-	{viewableData: {"name": "Sea ice analysis using synthetic aperture radar ", "start-date": "Jul 1, 1995", "due-date": "Feb 1, 1995", "owner": "John Smith", "assignees": "[Bob, William, Ray]", "status": "In Progress"}, hiddenData: {"id": 'experiment-5'} },
-	{viewableData: {"name": "Image and video noise reduction and artifact reduction", "start-date": "Feb 1, 1974", "due-date": "Jan 1, 1974", "owner": "William Bob", "assignees": "[William, Ray, Smith]", "status": "Complete"}, hiddenData: {"id": 'experiment-6'} },
-	{viewableData: {"name": "Spectral demultiplexed imaging (SDI) for single-shot", "start-date": "Jun 1, 1974", "due-date": "Dec 1, 1974", "owner": "John Smith", "assignees": "[Bob, William, Ray]", "status": "Approaching Deadline"}, hiddenData: {"id": 'experiment-7'} }
-	];
+	$scope.rows = [];
 });
 
 app.controller('CreateExperimentModalCtrl', function ($scope, $uibModalInstance) {
