@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 //var app = express();
-var Server = require('../server/projectsStaff/server');
 var taskServer = require('../server/projectsStaff/taskService');
 var noticeServer = require('../server/projectsStaff/noticeService');
 /*
