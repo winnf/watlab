@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Server = require('../server/projectsStaff/server');
+var Server = require('../server/projectsStaff/taskService');
 /*
 	Routes for the manage lab projects and lab staff group
 	Root route is '/psr'
