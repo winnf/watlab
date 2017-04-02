@@ -57,19 +57,19 @@ var dummyEntriesData = [
 ];
 
 var dummyExperimentData = [
-	{name: "Correlated diffusion imaging (CDI) for cancer imaging", startDate: "Jan 1, 1928", dueDate: "Feb 1, 1928", owner: "", assigneeIds: [], status: "In Progress",
+	{name: "Correlated diffusion imaging (CDI) for cancer imaging", startDate: "Jan 1, 1928", dueDate: "Feb 1, 1928", ownerId: "", assigneeIds: [], status: "In Progress",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Evolutionary deep intelligence for operational deep intelligence", startDate: "Jan 1, 1952", dueDate: "Nov 1, 1952", owner: "", assigneeIds: [], status: "Complete",
+	{name: "Evolutionary deep intelligence for operational deep intelligence", startDate: "Jan 1, 1952", dueDate: "Nov 1, 1952", ownerId: "", assigneeIds: [], status: "Complete",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Musculoskeletal kinematic analysis using video fluoroscopy", startDate: "Jan 1, 1964", dueDate: "Apr 1, 1964", owner: "", assigneeIds: [], status: "Approaching Deadline",
+	{name: "Musculoskeletal kinematic analysis using video fluoroscopy", startDate: "Jan 1, 1964", dueDate: "Apr 1, 1964", ownerId: "", assigneeIds: [], status: "Approaching Deadline",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Ocular morphological analysis", startDate: "Jan 1, 1964", dueDate: "Jun 1, 1964", owner: "", assigneeIds: [], status: "Overdue",
+	{name: "Ocular morphological analysis", startDate: "Jan 1, 1964", dueDate: "Jun 1, 1964", ownerId: "", assigneeIds: [], status: "Overdue",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Sea ice analysis using synthetic aperture radar ", startDate: "Jul 1, 1995", dueDate: "Feb 1, 1995", owner: "", assigneeIds: [], status: "In Progress",
+	{name: "Sea ice analysis using synthetic aperture radar ", startDate: "Jul 1, 1995", dueDate: "Feb 1, 1995", ownerId: "", assigneeIds: [], status: "In Progress",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Image and video noise reduction and artifact reduction", startDate: "Feb 1, 1974", dueDate: "Jan 1, 1974", owner: "", assigneeIds: [], status: "Complete",
+	{name: "Image and video noise reduction and artifact reduction", startDate: "Feb 1, 1974", dueDate: "Jan 1, 1974", ownerId: "", assigneeIds: [], status: "Complete",
 		protocolIds: [], equipmentIds: [], entryIds: []} ,
-	{name: "Spectral demultiplexed imaging (SDI) for single-shot", startDate: "Jun 1, 1974", dueDate: "Dec 1, 1974", owner: "", assigneeIds: [], status: "Approaching Deadline",
+	{name: "Spectral demultiplexed imaging (SDI) for single-shot", startDate: "Jun 1, 1974", dueDate: "Dec 1, 1974", ownerId: "", assigneeIds: [], status: "Approaching Deadline",
 		protocolIds: [], equipmentIds: [], entryIds: []} 
 ];
 
@@ -118,7 +118,7 @@ var entriesArr = [];
 dummyExperimentData.forEach(experiment => {
 	experiment.startDate = new Date(experiment.startDate);
 	experiment.dueDate = new Date(experiment.dueDate);
-	experiment.owner = generateRandom(dummyUserData, 1, 1)[0]._id;
+	experiment.ownerId = generateRandom(dummyUserData, 1, 1)[0]._id;
 	experiment.assigneeIds = generateRandom(dummyUserData, 1, dummyUserData.length).map(y => y._id);
 
 	var entries = generateRandom(dummyEntriesData, 1, dummyEntriesData.length);
