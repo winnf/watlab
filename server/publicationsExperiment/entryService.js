@@ -28,7 +28,7 @@ EntryService.prototype.addEntry = function(files, fileName, format, description)
 
 		  	entry.save(function(err){
 		  		if(err) deferred.reject(err);
-		  		else deferred.resolve();
+		  		else deferred.resolve(filepath);
 		  	});
 		  }
 		});

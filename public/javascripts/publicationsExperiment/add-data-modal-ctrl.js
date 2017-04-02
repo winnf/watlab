@@ -6,7 +6,6 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 
     $window.fd.logging = false;
 
-
 	$scope.clickUploadFile = function() {
 		$('#upload-file-input').click();
 	};
@@ -37,20 +36,23 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 	    for (var i = 0, len = files.length; i < len; i++) {
 	        formData.append('file' + i, files[i]);
 	    }
-
 	    $http.post( '/per/uploadFile', formData, {
 	        headers: { 'Content-Type': undefined },
 	        transformRequest: angular.identity
 	    }).then(function (result) {
-	        console.log('YAY');
-	   	}, function () {
-	        console.log('NAY');
+	        $scope.closeModal(result.data);
+	   	}, function (err) {
+	        $scope.closeModal({err: err});
 	    });
 	}
 
-	$scope.closeModal = function () {
-        $uibModalInstance.dismiss('cancel');
+	$scope.closeModal = function (obj) {
+        $uibModalInstance.close(obj);
     };
+
+    $scope.dismissModal = function() {
+    	$uibModalInstance.dismiss();;
+    }
 
     $scope.primaryBtn = function () {
 		if ($scope.currentPage === 0) {
@@ -60,7 +62,6 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 			$('#upload-file-input').change($scope.handleManualInputChange);
 		} else {
 			$scope.upload();
-			// $scope.closeModal();
 		}
 	};
 });

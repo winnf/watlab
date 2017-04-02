@@ -1,9 +1,9 @@
-.lab-manager-app .abstract-table-box .row {
+#lab-manager-app .abstract-table-box .row {
 	margin-left: 0px;
 	margin-right: 0px;
 }
 
-.lab-manager-app .abstract-table-box .label {
+#lab-manager-app .abstract-table-box .label {
 	font-size: 14px;
 }
 
@@ -17,4 +17,8 @@
 
 #abstract-table.specific-experiment-table th.date #abstract-table.specific-experiment-table th.file-name {
   width: 100px;
+}
+
+#lab-manager-app .lab-manager-toast.ng-toast {
+	left: 0;
 }
