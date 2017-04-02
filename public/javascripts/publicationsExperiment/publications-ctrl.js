@@ -8,7 +8,7 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
 	$scope.title = 'Publications';
 	$scope.buttonText = 'Add Publication';
 	$scope.description = 'Click on publication to ...';
-	$scope.rowHeaders = ['Publication', 'Date', 'Status'];
+	$scope.rowHeaders = ['Publication', 'Authors', 'Date', 'Status'];
 
 	$scope.cellTypes = {
 		pubName: CELLTYPES.CLICKABLE,
