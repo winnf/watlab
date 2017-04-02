@@ -47,6 +47,16 @@ router.get('/getPublication/:name', function (req, res) {
     });
 });
 
+router.post('/editPublication', function (req, res) {
+    var d = req.body.viewableData;
+    PublicationService.editPublication(d.pubName, d.authors, d.date, d.status, d.version, d.experimentId).then(function (result) {
+        res.send(result);
+    }, function (error) {
+        var err = error.err;
+        res.status(500);
+    });
+});
+
 router.get('/view/:fileName', function (req, res) {
 	res.render('publicationsExperiment/templates/' + req.params.fileName);
 });
