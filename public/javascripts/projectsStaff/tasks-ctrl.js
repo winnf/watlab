@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('App');
 
-app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES){
+app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES, $http){
   $scope.tableClassName = 'tasks-table';
   $scope.title = 'Tasks';
   //$scope.description = ''
@@ -10,11 +10,11 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 
   $scope.cellTypes = {
     task: CELLTYPES.CLICKABLE,
-    'due-date': CELLTYPES.DATE,
+    dueDate: CELLTYPES.DATE,
     assignees: CELLTYPES.PLAIN,
     description: CELLTYPES.PLAIN
   };
-	
+
     var addTask = function() {
 		var modalInstance = $uibModal.open({
 			backdrop: 'static',
@@ -24,7 +24,14 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     });
 
     modalInstance.result.then(function(task){
-  		$scope.rows.push(task);
+      $http({
+        method: 'GET',
+        url: '/psr/addTask/' + task.viewableData.task + '/' + task.viewableData.dueDate + '/' + task.viewableData.assignees + '/' + task.viewableData.description
+      }).then(function successCallback(response) {
+      }, function errorCallback(response) {
+          console.log(response);
+      });
+      $scope.rows.push(task);
   		$timeout(function(){
   			var addedTask = $('#abstract-table tr').last();
   			$('#abstract-table').DataTable().row.add(addedTask[0]);
@@ -39,7 +46,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
       controller: 'EditTaskModalCtrl',
       appendTo: $('body')
     });
-    
+
     //need it to update the row itself and not add an additional row
     modalInstance.result.then(function(task){
   		$scope.rows.push(task);
@@ -62,10 +69,23 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         }
 	};
 
-  $scope.rows = [
-    {viewableData: {"task": "finish this goddamn project smh","due-date":"Apr 1, 2017","assignees":"Igor", "description": "blah"}}
-  ];
+    $scope.rows = [
+        {viewableData: {"name": "finish this goddamn project smh", "description": "Bah","assignees":"Igor"}}
+    ];
 
+  $http({
+    method: 'GET',
+    url: '/psr/allTask'
+  }).then(function successCallback(response){
+    var tasks = response.data;
+    console.log(tasks);
+    for(var i = 0; i < Object.keys(tasks).length; i++){
+      console.log(tasks[i]._id);
+      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, hiddenData: {"id": tasks[i]._id}}});
+    }
+  }, function errorCallback(response){
+    console.log(response);
+  });
 });
 
 app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
@@ -83,7 +103,7 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
 		$uibModalInstance.close({
 			viewableData: {
 				"task": $scope.taskName,
-				"due-date": $scope.dueDate.date,
+				"dueDate": $scope.dueDate.date,
                 "description": $scope.description,
 				"assignees": $scope.assignees
 			}, hiddenData: {"id": 'task-0A'} });
@@ -108,11 +128,12 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance){
 		$uibModalInstance.close({
 			viewableData: {
 				"task": $scope.taskName,
-				"due-date": $scope.dueDate.date,
+				"dueDate": $scope.dueDate.date,
                 "description": $scope.description,
 				"assignees": $scope.assignees
-			}, hiddenData: {"id": 'task-0A'} });
+			}, hiddenData: {"id": $scope._id} });
 	};
+
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
   };
