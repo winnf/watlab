@@ -5,9 +5,9 @@ var EntrySchema = mongoose.Schema({
     description: String,
     date: Date,
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    format: String,
+    labBook: {type: mongoose.Schema.Types.ObjectId, ref: 'LabBook'},
     archive: Boolean,
     filepath: [String]
 });
 
-module.exports = mongoose.module('Entry' , EntrySchema);
+module.exports = mongoose.model('Entry' , EntrySchema);

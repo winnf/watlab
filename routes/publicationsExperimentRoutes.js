@@ -2,8 +2,12 @@
 
 'use strict';
 var express = require('express');
-var Server = require('../server/publicationsExperiment/server');
-var pubService = require('../server/publicationsExperiment/publicationService');
+var multer = require('multer');
+var upload = multer();
+
+var PublicationService = require('../server/publicationsExperiment/publicationService');
+var EntryService = require('../server/publicationsExperiment/entryService');
+
 var router = express.Router();
 var experimentService = require('../server/publicationsExperiment/experimentController');
 
@@ -41,7 +45,7 @@ router.get('/allExperiments' , function(req , res){
     });
 });
 router.get('/createPublication/:pubName', function (req, res) {
-    pubService.createPublication(req.params.pubName).then(function (result) {
+    PublicationService.createPublication(req.params.pubName).then(function (result) {
         var pubInstance = result.pubInstance;
         res.send(result);
     }, function (error) {
@@ -51,7 +55,20 @@ router.get('/createPublication/:pubName', function (req, res) {
 });
 
 router.get('/allPublications', function (req, res) {
-    pubService.displayDB().then(function (result) {
+    PublicationService.displayDB().then(function (result) {
+        res.send(result);
+    }, function (error) {
+        var err = error.err;
+        res.status(500);
+    });
+});
+
+router.post('/uploadFile', upload.any(), function (req, res) {
+    EntryService.addEntry(req.files);
+});
+
+router.get('/getPublication/:name', function (req, res) {
+    PublicationService.getPublication(req.params.name).then(function (result) {
         res.send(result);
     }, function (error) {
         var err = error.err;
