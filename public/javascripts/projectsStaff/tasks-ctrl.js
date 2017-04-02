@@ -87,7 +87,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 	};
 
     $scope.rows = [
-        {viewableData: {"name": "finish this goddamn project smh", "description": "Bah","assignees":"Igor"}}
+        {viewableData: {"name": "finish this goddamn project smh", "dueDate": "April 1, 2017", "description": "Bah","assignees":"Igor"}}
     ];
 
   $http({
@@ -121,7 +121,7 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
 			viewableData: {
 				"task": $scope.taskName,
 				"dueDate": $scope.dueDate.date,
-                "description": $scope.description,
+                "description": $scope.descripnoticetion,
 				"assignees": $scope.assignees
 			}, hiddenData: {"id": 'task-0A'} });
 	};

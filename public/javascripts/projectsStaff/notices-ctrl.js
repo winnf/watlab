@@ -17,10 +17,10 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
 
 	var addNewNotice = function() {
 		var modalInstance = $uibModal.open({
-			backdrop: 'static',
-      templateUrl: '/psr/view/modal-add-new-notice.ejs',
-      controller: 'AddNewNoticeModalCtrl',
-      appendTo: $('body')
+            backdrop: 'static',
+            templateUrl: '/psr/view/modal-add-new-notice.ejs',
+            controller: 'AddNewNoticeModalCtrl',
+            appendTo: $('body')
     });
 
     modalInstance.result.then(function(notice){
@@ -39,49 +39,62 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
     });
 	};
 
-    var editNotice = function(){
+    var editNotice = function(row){
 		var modalInstance = $uibModal.open({
-			backdrop: 'static',
-      templateUrl: '/psr/view/modal-edit-notice.ejs',
-      controller: 'EditNoticeModalCtrl',
-      appendTo: $('body')
+            backdrop: 'static',
+            templateUrl: '/psr/view/modal-edit-notice.ejs',
+            controller: 'EditNoticeModalCtrl',
+            appendTo: $('body'),
+            resolve: {
+                items: function(){
+                    return row;
+                }
+            }
     });
 
-    //need it to update the row itself and not add an additional row
     modalInstance.result.then(function(notice){
-  		$scope.rows.push(notice);
-  		$timeout(function(){
-  			var addedNotice = $('#abstract-table tr').last();
-  			$('#abstract-table').DataTable().row.add(addedNotice[0]);
-  		});
+        if (row.viewableData.title != notice.viewableData.title){
+            row.viewableData.title = notice.viewableData.title;
+        }
+        if (row.viewableData.assignees != notice.viewableData.assignees){
+            row.viewableData.assignees = notice.viewableData.assignees;
+        }
+        if (row.viewableData.description != notice.viewableData.description){
+            row.viewableData.description = notice.viewableData.description;
+        }
+        if (row.viewableData.dueDate != notice.viewableData.dueDate){
+            row.viewableData.dudeDate = notice.viewableData.dueDate;
+        }
+        $http({
+            method: 'GET',
+            url: '/psr/addNotice/' + notice.viewableData.title + '/' + notice.viewableData.dueDate + '/' + notice.viewableData.assignees + '/' + notice.viewableData.description
+        }).then(function successCallback(response) {
+        }, function errorCallback(response) {
+            console.log(response);
+        });
     });
 	};
+
+      $scope.rows = [
+        {viewableData: {"title": "CRY","dueDate":"Apr 1, 2017","description":"just keep crying until you're done", "assignees":"[Bob, William, Ray]"}, hiddenData: {"id": 'notice-1'}}
+      ];
 
 	$scope.clickHandlerMap = {
 		button: function() {
 			addNewNotice();
 		},
-		name: function(row) {
-			$location.url('/psr/notice/' + row.hiddenData.id);
-		},
-        row: function(){
-            editNotice();
+        title: function(row){
+            editNotice(row);
         }
 	};
-
-
-  $scope.rows = [
-    {viewableData: {"title": "CRY","dueDate":"Apr 1, 2017","description":"just keep crying until you're done", "assignees":"[Bob, William, Ray]"}, hiddenData: {"id": 'notice-1'}}
-  ];
 
   $http({
     method: 'GET',
     url: '/psr/allNotice'
   }).then(function successCallback(response){
     var notices = response.data;
-  //  $scope.rows = [{viewableData: {"task": tasks[0].name, "dueDate":tasks[0].dueDate, "assignees":tasks[0].assignees, "description":tasks[0].description}};
     for(var i = 0; i < Object.keys(notices).length; i++){
-      $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description}});
+      $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description, hiddenData: {"id": notices[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -106,14 +119,14 @@ app.controller('AddNewNoticeModalCtrl', function($scope, $uibModalInstance){
 				"dueDate": $scope.dueDate.date,
                 "description": $scope.description,
 				"assignees": $scope.assignees
-			}, hiddenData: {"id": 'notice-0A'} });
+			}, hiddenData: {"id": "notice-0a"} });
 	};
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
   };
 });
 
-app.controller('EditNoticeModalCtrl', function($scope, $uibModalInstance){
+app.controller('EditNoticeModalCtrl', function($scope, $uibModalInstance, items){
 	var genericDateObj = {
 		date: new Date(),
 		isOpen: false,
@@ -123,15 +136,20 @@ app.controller('EditNoticeModalCtrl', function($scope, $uibModalInstance){
 		options: {},
 	};
 
-	$scope.dueDate = _.clone(genericDateObj);
+    $scope.noticeName = items.viewableData.title;
+	$scope.dueDate = items.viewableData.dueDate;
+    $scope.noticeDescription = items.viewableData.description;
+    $scope.noticeAssignees = items.viewableData.assignees;
+    $scope.noticeId = items.viewableData.hiddenData.id;
+
 	$scope.editNotice = function() {
 		$uibModalInstance.close({
 			viewableData: {
 				"title": $scope.noticeName,
-				"dueDate": $scope.dueDate.date,
-                "description": $scope.description,
-				"assignees": $scope.assignees
-			}, hiddenData: {"id": 'notice-0A'} });
+				"dueDate": $scope.dueDate,
+                "description": $scope.noticeDescription,
+				"assignees": $scope.noticeAssignees
+			}, hiddenData: {"id": $scope.noticeId } });
 	};
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
