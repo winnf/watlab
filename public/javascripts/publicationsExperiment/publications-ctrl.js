@@ -40,15 +40,28 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
                 $('#abstract-table').DataTable().row.add(addedPublication[0]);
             });
         });
-    };
+    },
     
-	$scope.clickHandlerMap = {
+	    editPublication = function () {
+            console.log("editPublication");
+            var modalInstance = $uibModal.open({
+                backdrop: 'static',
+                templateUrl: '/per/view/modal-edit-publication.ejs',
+                controller: 'EditPublicationModalCtrl',
+                appendTo: $('body') // In future, want to modify existing
+            });
+        };
+    $scope.clickHandlerMap = {
 		button: function () {
             createPublication();
 		},
 		name: function (row) {
 			$location.url('/per/publication/' + row.hiddenData.id);
-		}
+		},
+        row: function () {
+            editPublication();
+            console.log("edit Publication");
+        }
 	};
 	
 	$scope.statusMap = {
@@ -70,15 +83,6 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
 });
 
 app.controller('CreatePublicationModalCtrl', function ($scope, $uibModalInstance) {
-	var genericDateObj = {
-		date: new Date(),
-		isOpen: false,
-		placement: 'bottom-right',
-		format: 'MMM dd, yyyy',
-		altInputFormats: ['MMM dd, yyyy'],
-		options: {}
-	};
-
 	$scope.createPublication = function () {
 		$uibModalInstance.close({
 			viewableData: {
@@ -91,6 +95,21 @@ app.controller('CreatePublicationModalCtrl', function ($scope, $uibModalInstance
         });
 	};
 	$scope.closeModal = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+app.controller('EditPublicationModalCtrl', function ($scope, $uibModalInstance) {
+    $scope.editPublication = function () {
+        $uibModalInstance.close({
+            viewableData: {
+                "pubName": $scope.publicationName,
+                "authors": $scope.publicationAuthors
+            },
+            hiddenData: {"id": 'publication-id_123'}
+        });
+    };
+    $scope.closeModal = function () {
         $uibModalInstance.dismiss('cancel');
     };
 });
