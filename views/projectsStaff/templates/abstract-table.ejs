@@ -22,7 +22,7 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr id = "table-row" ng-repeat="row in rows track by $index">
+		      <tr id = "table-row" ng-click="clickHandlerMap['row']()" ng-repeat="row in rows track by $index">
 		        <td ng-repeat="(key, value) in row.viewableData" ng-include="cellTypes[key]">
 		      </tr>
 		    </tbody>
