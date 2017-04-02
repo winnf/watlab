@@ -4,7 +4,7 @@ var Server = function() {};
 
 
 
-<<<<<<< HEAD
+
 // /per/createDog/{name}
 Server.prototype.createDog = function(name) {
 	var dog = new Dog({name: name});
@@ -63,12 +63,9 @@ Server.prototype.addFood = function(name, cost, item) {
 	});
 
 	return deferred.promise;
-=======
 	var experiment = new Experiment({name: name , startdate: startDate , duedate: dueDate ,
 	assigneduserids: assignees , status: status});
 	var deferred = Q.defer();
-
->>>>>>> 13f940e7ab82d4e80c1dfefac0e57ed9a3c8daba
 };
 
 module.exports = new Server();

@@ -18,4 +18,17 @@ Server.prototype.createExperiment = function(obj) {
 
 	return deferred.promise;
 };
+Server.prototype.displayDB = function() {
+    var deferred = Q.defer();
+    
+    experiment.find({}, function (err, pubs) {
+        if (err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(pubs);
+        }
+    });
+    
+    return deferred.promise;
+};
 module.exports = new Server();
