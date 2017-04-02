@@ -17,21 +17,23 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     		var newRows = [];
     		var newExp =[];
     		 for(var object in response.data){
-    		// 	console.log(response.data[object].name);
+
+    		 	var assigneeNames = response.data[object].assigneeIds.map(x => x.name).join(', ');
+    		 	//console.log(assigneeNames);
     			 newExp = [{viewableData: {
     				"name": response.data[object].name,
     				"start-date": response.data[object].startDate,
     				"due-date": response.data[object].dueDate,
-    				"owner": 'Jo',
-    				"assignees": 'bob',
+    				"owner": response.data[object].ownerId.name,
+    				"assignees": assigneeNames,
     				"status": response.data[object].status
     			}, hiddenData: {id: response.data[object]._id
     			}}];
+
     		 	newRows.push(newExp[0]);
     		 }
     		// console.log(newRows);
     		 $scope.rows = newRows;  		
-    	} ,
     	} ,
     		function errorCallback(response){
 
