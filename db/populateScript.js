@@ -3,7 +3,6 @@ var ObjectID = require('mongodb').ObjectID;
 
 var Entries = require('./entryModel.js');
 var Experiment = require('./experimentModel.js');
-var LabBook = require('./labBookModel.js');
 var Publication = require('./publicationModel.js');
 var User = require('./userModel.js');
 var Version = require('./versionModel.js');
@@ -11,7 +10,7 @@ var Version = require('./versionModel.js');
 mongoose.connect('mongodb://localhost/database');
 
 /**
-	Populates Entries, Experiment, LabBook, Publication, User, and Version
+	Populates Entries, Experiment, Publication, User, and Version
 */
 
 // http://stackoverflow.com/questions/17891173/javascript-how-to-efficiently-randomly-select-array-item-without-repeats
@@ -43,12 +42,12 @@ var dummyUserData = [
 ];
 
 var dummyEntriesData = [
-	{name: "Cell Sample Data", description: 'Sample', date: "Jan 1, 1928", owner: '', labBook: '', archive: false, filepath: [] },
-	{name: "Microwave Data", description: 'Wave', date: "Jan 1, 1952", owner: '', labBook: '', archive: false, filepath: []},
-	{name: "Radiation Data", description: 'Gamma', date: "Jun 1, 1964", owner: '', labBook: '', archive: false, filepath: [] },
-	{name: "Bird Calls", description: 'Chicken', date: "Jul 1, 1995", owner: '', labBook: '', archive: false, filepath: [] },
-	{name: "Seisometer", description: 'Earth', date: "Feb 1, 1974", owner: '', labBook: '', archive: false, filepath: []},
-	{name: "Lochness Monster Sighting", description: 'Whale', date: "Jan 1, 1964", owner: '', labBook: '', archive: false, filepath: [] }
+	{name: "Cell Sample Data", description: 'Sample', date: "Jan 1, 1928", owner: '', archive: false, filePath: '' },
+	{name: "Microwave Data", description: 'Wave', date: "Jan 1, 1952", owner: '', archive: false, filePath: '' },
+	{name: "Radiation Data", description: 'Gamma', date: "Jun 1, 1964", owner: '', archive: false, filePath: '' },
+	{name: "Bird Calls", description: 'Chicken', date: "Jul 1, 1995", owner: '', archive: false, filePath: '' },
+	{name: "Seisometer", description: 'Earth', date: "Feb 1, 1974", owner: '', archive: false, filePath: ''},
+	{name: "Lochness Monster Sighting", description: 'Whale', date: "Jan 1, 1964", owner: '', archive: false, filePath: '' }
 ];
 
 var dummyExperimentData = [
@@ -109,8 +108,6 @@ function clearAndInsert(model, tableName, data, callback) {
 
 clearAndInsert(User, 'User', dummyUserData, function(){});
 
-var dummyLabBookData = [];
-var counter = 0;
 dummyExperimentData.forEach(experiment => {
 	experiment.startDate = new Date(experiment.startDate);
 	experiment.dueDate = new Date(experiment.dueDate);
@@ -120,17 +117,13 @@ dummyExperimentData.forEach(experiment => {
 	var entries = generateRandom(dummyEntriesData, 1, dummyEntriesData.length);
 
 	entries.forEach(entry => {
-		var newLabBook = {name: 'labbook' + (counter++), _id: new ObjectID()};
-		dummyLabBookData.push(newLabBook);
 		entry.owner = generateRandom(dummyUserData, 1, 1)[0]._id;
-		entry.labBook = newLabBook._id;
 		entry._id = new ObjectID();
 	});
 
 	experiment.entryIds = entries.map(y => y._id);
 });
 
-clearAndInsert(LabBook, 'LabBook', dummyLabBookData, function(){});
 clearAndInsert(Experiment, 'Experiment', dummyExperimentData, function(){});
 clearAndInsert(Version, 'Version', dummyVersionData, function(){});
 clearAndInsert(Publication, 'Publication', dummyPublicationData, function(){});

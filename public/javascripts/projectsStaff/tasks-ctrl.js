@@ -69,14 +69,19 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         }
 	};
 
+    $scope.rows = [
+        {viewableData: {"name": "finish this goddamn project smh", "description": "Bah","assignees":"Igor"}}
+    ];
+
   $http({
     method: 'GET',
     url: '/psr/allTask'
   }).then(function successCallback(response){
     var tasks = response.data;
-  //  $scope.rows = [{viewableData: {"task": tasks[0].name, "dueDate":tasks[0].dueDate, "assignees":tasks[0].assignees, "description":tasks[0].description}};
+    console.log(tasks);
     for(var i = 0; i < Object.keys(tasks).length; i++){
-      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description}});
+      console.log(tasks[i]._id);
+      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, hiddenData: {"id": tasks[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -126,8 +131,9 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance){
 				"dueDate": $scope.dueDate.date,
                 "description": $scope.description,
 				"assignees": $scope.assignees
-			}, hiddenData: {"id": 'task-0A'} });
+			}, hiddenData: {"id": $scope._id} });
 	};
+
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
   };

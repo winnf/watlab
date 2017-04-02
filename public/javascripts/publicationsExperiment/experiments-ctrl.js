@@ -13,7 +13,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     	$http.get('/per/allExperiments').then(function successCallback(response){
     		//console.log(response.data);
     		//$scope.rows = response.data;
-    	} , 
+    	} ,
     		function errorCallback(response){
 
     		});
@@ -59,7 +59,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     			// or server returns response with an error status.
     			//console.log(response);
 			});
-			
+
 
 			$timeout(function () {
 				var addedExperiment = $('#abstract-table tr').last();
@@ -76,7 +76,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 			$location.url('/per/experiment/' + row.hiddenData.id);
 		}
 	};
-	
+
 	$scope.statusMap = {
 		'In Progress': 'label-primary',
 		'Complete': 'label-success',

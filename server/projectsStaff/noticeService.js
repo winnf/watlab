@@ -30,7 +30,6 @@ Server.prototype.addNotice = function(name, date, assignees, description){
       deferred.reject(err);
     }
     else{
-      console.log(noticeInstance);
       deferred.resolve(noticeInstance);
     }
   });

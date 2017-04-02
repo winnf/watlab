@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('App');
 
-app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES){
+app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES, $http){
   $scope.tableClassName = 'projects-table';
   $scope.title = 'Projects';
   //$scope.description = ''
@@ -23,6 +23,13 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
     });
 
     modalInstance.result.then(function(project){
+      $http({
+        method: 'GET',
+        url: '/psr/addProject/' + project.viewableData.name + '/' + project.viewableData.assignees + '/' + project.viewableData.description
+      }).then(function successCallback(response){
+      }, function errorCallback(response){
+        console.log(response);
+      });
   		$scope.rows.push(project);
   		$timeout(function(){
   			var addedProject = $('#abstract-table tr').last();
@@ -62,6 +69,18 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
   $scope.rows = [
     {viewableData: {"name": "finish this goddamn project smh", "description": "Bah","assignees":"Igor", hiddenData: {"id": 'project-0A'}}}
   ];
+
+  $http({
+    method: 'GET',
+    url: '/psr/allProject'
+  }).then(function successCallback(response){
+    var projects = response.data;
+    for(var i = 0; i < Object.keys(projects).length; i++){
+      $scope.rows.push({viewableData: {"name": projects[i].name, "description": projects[i].description, "assignees": projects[i].assignees}});
+    }
+  }, function errorCallback(response){
+    console.log(response);
+  });
 
 });
 
