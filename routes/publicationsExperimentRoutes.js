@@ -9,7 +9,7 @@ var PublicationService = require('../server/publicationsExperiment/publicationSe
 var EntryService = require('../server/publicationsExperiment/entryService');
 
 var router = express.Router();
-var experimentService = require('../server/publicationsExperiment/experimentController');
+var experimentService = require('../server/publicationsExperiment/experimentService');
 
 /* 
 	Routes for the manage publications and experiment group
