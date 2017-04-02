@@ -6,11 +6,12 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   $scope.title = 'Compensations';
   //$scope.description = ''
   $scope.buttonText = 'Add Compensation';
-  $scope.rowHeaders = ['Assignee', 'Amount'];
+  $scope.rowHeaders = ['Assignee', 'Amount', 'Date Assigned'];
 
   $scope.cellTypes = {
     assignee: CELLTYPES.PLAIN,
-    amount: CELLTYPES.PLAIN
+    amount: CELLTYPES.PLAIN,
+    dateAssigned: CELLTYPES.DATE
   };
 
     var addCompensation = function() {
@@ -40,7 +41,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
 	};
 
   $scope.rows = [
-    {viewableData: {"assignee": "rando","amount": "4118"}}
+    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017"}}
   ];
 
 });
