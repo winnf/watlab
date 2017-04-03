@@ -2,13 +2,19 @@
 /*global $, jQuery, alert, angular*/
 'use strict';
 var app = angular.module('App');
-
+//var mongoose = require('mongoose');
 app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeout, CELLTYPES , $http) {
 	$scope.tableClassName = 'experiments-table';
 	$scope.title = 'Experiments';
 	$scope.buttonText = 'Add Experiment';
 	$scope.description = 'Click on the experiment name to edit the data, protocols and references. ';
 	$scope.rowHeaders = ['Experiment', 'Start Date', 'Due Date', 'Owner', 'Assignees', 'Status'];
+	$http.get('/per/allUsers').then(function successCallback(response){
+		$scope.items = response.data;
+	},
+	function errorCallback(response){
+
+	});
 	$( document ).ready(function() {
     	$http.get('/per/allExperiments').then(function successCallback(response){
     		
@@ -20,8 +26,20 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 
     		 	var assigneeNames = response.data[object].assigneeIds.map(x => x.name).join(', ');
     		 	//console.log(assigneeNames);
+    		 	var name;
+    		 	var startDate;
+    		 	var dueDate;
+    		 	var owner;
+    		 	var status;
+    		 	if(response.data[object].name != null){
+    		 	name = response.data[object].name;
+    		 }
+    		 else{
+
+    		 }
+    		 	
     			 newExp = [{viewableData: {
-    				"name": response.data[object].name,
+    				"name":response.data[object].name ,
     				"start-date": response.data[object].startDate,
     				"due-date": response.data[object].dueDate,
     				"owner": response.data[object].ownerId.name,
@@ -53,7 +71,15 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 			backdrop: 'static',
 			templateUrl: '/per/view/modal-create-experiment.ejs',
 			controller: 'CreateExperimentModalCtrl',
-			appendTo: $('body')
+			appendTo: $('body'),
+			resolve: {
+        	items: function () {
+          		return $scope.items;
+        		},
+        	item: function(){
+          		return 1;
+        	}
+      		}
 		});
 
 		modalInstance.result.then(function (experiment) {
@@ -71,10 +97,6 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     			// this callback will be called asynchronously
     			// when the response is available
     			//console.log(response);
-    			var myExpView = response.data.expInstance.viewableData;
-    			var myExpHid = response.data.expInstance.hiddenData;
-
-    			var displayableExp = {viewableData: {} , hiddenData: {}};
     			$scope.rows.push(experiment);
     			//console.log(experiment);
 			}, function errorCallback(response) {
@@ -119,7 +141,7 @@ app.controller('CreateExperimentModalCtrl', function ($scope, $uibModalInstance)
 		altInputFormats: ['MMM dd, yyyy'],
 		options: {}
 	};
-
+	$scope.item = item;
 	$scope.startDate = _.clone(genericDateObj);
 	$scope.dueDate = _.clone(genericDateObj);
 	$scope.createExperiment = function () {
@@ -132,7 +154,7 @@ app.controller('CreateExperimentModalCtrl', function ($scope, $uibModalInstance)
 				"start-date": $scope.startDate.date,
 				"due-date": $scope.dueDate.date,
 				"owner": "John Smith",
-				"assignees": $scope.asignees,
+				"assignees": $scope.assignees,
 				"status": "In Progress"
 			},
 			hiddenData: {"id": 'experiment-0A'}
