@@ -2,57 +2,64 @@
 /*global $, jQuery, alert, angular*/
 'use strict';
 var app = angular.module('App');
-<<<<<<< HEAD
-//var mongoose = require('mongoose');
-app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeout, CELLTYPES , $http) {
-=======
 
-app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeout, CELLTYPES, $http) {
->>>>>>> 3c3f67edadc9fe87c792eded2cf468eeb0b2a543
+
+app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal, $timeout, CELLTYPES, $http) {
+
 	$scope.tableClassName = 'experiments-table';
 	$scope.title = 'Experiments';
 	$scope.buttonText = 'Add Experiment';
 	$scope.description = 'Click on the experiment name to edit the data, protocols and references. ';
 	$scope.rowHeaders = ['Experiment', 'Start Date', 'Due Date', 'Owner', 'Assignees', 'Status'];
-<<<<<<< HEAD
-	$http.get('/per/allUsers').then(function successCallback(response){
+
+	function updateTable() {
+		$http.get('/per/allUsers').then(function successCallback(response){
+		console.log(response);
 		$scope.items = response.data;
+		console.log($scope.items);
 	},
 	function errorCallback(response){
 
 	});
-	$( document ).ready(function() {
     	$http.get('/per/allExperiments').then(function successCallback(response){
-=======
-	$(document).ready(function () {
-        $http.get('/per/allExperiments').then(function successCallback(response) {
->>>>>>> 3c3f67edadc9fe87c792eded2cf468eeb0b2a543
     		
             //$scope.rows = response.data;
-            // console.log(response.data);
+            console.log(response.data);
             var newRows = [],
                 newExp = [];
             for (var object in response.data) {
 
-                var assigneeNames = response.data[object].assigneeIds.map(x => x.name).join(', ');
-    		 	//console.log(assigneeNames);
+                var assigneeNames;
+    		 	//console.log(response.data[object].ownerId.name);
     		 	var name;
-    		 	var startDate;
-    		 	var dueDate;
+    		 	var startDate = response.data[object].startDate;
+    		 	var dueDate = response.data[object].dueDate;
     		 	var owner;
-    		 	var status;
-    		 	if(response.data[object].name != null){
+    		 	var status = response.data[object].status;
+    		 if(response.data[object].name != null){
     		 	name = response.data[object].name;
     		 }
     		 else{
-
+    		 	name = 'N/A';
+    		 }
+    		 if(response.data[object].assigneeIds != null){
+    		 	assigneeNames = response.data[object].assigneeIds.map(x => x.name).join(', ');
+    		 }
+    		 else{
+    		 	assigneeNames = 'N/A';
+    		 }
+    		 if(response.data[object].ownerId != null){
+    		 	owner = response.data[object].ownerId.name;
+    		 }
+    		 else{
+    		 	owner = 'N/A';
     		 }
     		 	
     			 newExp = [{viewableData: {
-    				"name":response.data[object].name ,
+    				"name": name ,
     				"start-date": response.data[object].startDate,
     				"due-date": response.data[object].dueDate,
-    				"owner": response.data[object].ownerId.name,
+    				"owner": owner,
     				"assignees": assigneeNames,
     				"status": response.data[object].status
     			}, hiddenData: {id: response.data[object]._id
@@ -66,7 +73,11 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     		function errorCallback(response){
 
     		});
+	}
+	$( document ).ready(function() {	
+		updateTable();
     });
+
 	$scope.cellTypes = {
 		name: CELLTYPES.CLICKABLE,
 		'start-date': CELLTYPES.DATE,
@@ -84,11 +95,9 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 			appendTo: $('body'),
 			resolve: {
         	items: function () {
+        		console.log($scope.items);
           		return $scope.items;
-        		},
-        	item: function(){
-          		return 1;
-        	}
+        		}
       		}
 		});
 
@@ -98,8 +107,8 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 				name: experiment.viewableData.name,
 				startDate: experiment.viewableData['start-date'],
 				dueDate: experiment.viewableData['due-date'],
-				//owner: experiment.viewableData.owner,
-				//assigneduserids: experiment.viewableData.assignees,
+				ownerId: experiment.viewableData.owner,
+				assigneeIds: experiment.viewableData.assignees,
 				status: experiment.viewableData.status
 			}
 			//console.log(newExp);
@@ -107,7 +116,8 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
     			// this callback will be called asynchronously
     			// when the response is available
     			//console.log(response);
-    			$scope.rows.push(experiment);
+    			updateTable();
+    			//$scope.rows.push(experiment);
     			//console.log(experiment);
 			}, function errorCallback(response) {
     			// called asynchronously if an error occurs
@@ -142,7 +152,8 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 	$scope.rows = [];
 });
 
-app.controller('CreateExperimentModalCtrl', function ($scope, $uibModalInstance) {
+app.controller('CreateExperimentModalCtrl', function ($scope, $window,$uibModalInstance) {
+	console.log($scope);
 	var genericDateObj = {
 		date: new Date(),
 		isOpen: false,
@@ -151,9 +162,11 @@ app.controller('CreateExperimentModalCtrl', function ($scope, $uibModalInstance)
 		altInputFormats: ['MMM dd, yyyy'],
 		options: {}
 	};
-	$scope.item = item;
+	//$scope.item = item;
 	$scope.startDate = _.clone(genericDateObj);
 	$scope.dueDate = _.clone(genericDateObj);
+
+	$scope.assignees = $scope.$resolve.items;
 	$scope.createExperiment = function () {
 		//var ownerId = new mongoose.Schema.Types.ObjectId;
 		//var assignees = new mongoose.Schema.Types.ObjectId;
@@ -163,8 +176,8 @@ app.controller('CreateExperimentModalCtrl', function ($scope, $uibModalInstance)
 				"name": $scope.experimentName,
 				"start-date": $scope.startDate.date,
 				"due-date": $scope.dueDate.date,
-				"owner": "John Smith",
-				"assignees": $scope.assignees,
+				"owner": $window.localStorage.getItem('userId'),
+				"assignees": $scope.assignedUsers,
 				"status": "In Progress"
 			},
 			hiddenData: {"id": 'experiment-0A'}

@@ -9,7 +9,7 @@ var upload = multer();
 var EntryService = require('../server/publicationsExperiment/entryService');
 var ExperimentService = require('../server/publicationsExperiment/experimentService');
 var PublicationService = require('../server/publicationsExperiment/publicationService');
-
+var UserService = require('../server/publicationsExperiment/userService')
 var router = express.Router();
 
 /* 
@@ -23,7 +23,7 @@ router.get(['/', '/experiments', '/publications', '/experiment/:experimentId'], 
 });
 
 router.post('/createExperiment', function (req, res) {
-	//console.log('ssssd' , req.body);
+	console.log('ssssd' , req.body);
 	ExperimentService.createExperiment(req.body).then(
 		function(result){
 		var experimentInstance = result.expInstance;
@@ -36,8 +36,9 @@ router.post('/createExperiment', function (req, res) {
 		res.sendStatus(500);
 	});
 	});
-router.get('/allUsers' , function(result){
-    experimentService.getUsers().then(function (result) {
+router.get('/allUsers' , function(req , res){
+    UserService.getUsers().then(function (result) {
+        console.log(result);
     res.send(result);
 }, function (error){
     var err = error.err;

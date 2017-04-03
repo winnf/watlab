@@ -3,7 +3,6 @@
 var Q = require('q');
 var Experiment = require('../../db/experimentModel');
 var ExperimentService = function () {};
-var Users = require('../../db/userModel');
 ExperimentService.prototype.createExperiment = function (obj) {
 	console.log(obj);
 	var experiment = new Experiment(obj),
