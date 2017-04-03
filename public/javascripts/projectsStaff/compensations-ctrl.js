@@ -6,7 +6,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   $scope.title = 'Compensations';
   //$scope.description = ''
   $scope.buttonText = 'Add Compensation';
-  $scope.rowHeaders = ['Assignee', 'Amount', 'Date Assigned', 'Delete'];
+  $scope.rowHeaders = ['Assignee', 'Amount ($)', 'Date Assigned', 'Delete'];
 
   $scope.cellTypes = {
     assignee: CELLTYPES.CLICKABLE,

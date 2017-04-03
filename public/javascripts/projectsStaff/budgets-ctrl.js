@@ -6,7 +6,7 @@ app.controller('BudgetsCtrl', function($scope, $location, $uibModal, $timeout, $
   $scope.title = 'Budgets';
   //$scope.description = ''
   $scope.buttonText = 'Add Budget';
-  $scope.rowHeaders = ['Name', 'Amount', 'Category', 'Delete'];
+  $scope.rowHeaders = ['Name', 'Amount ($)', 'Category', 'Delete'];
 
   $scope.cellTypes = {
     name: CELLTYPES.PLAIN,
