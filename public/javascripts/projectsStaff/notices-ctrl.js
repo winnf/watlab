@@ -76,10 +76,6 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
     });
 	};
 
-      $scope.rows = [
-        {viewableData: {"title": "Lab equipment needs to be cleaned!","dueDate":"Apr 1, 2017","description":"Test tubes, floor, dishes", "assignees":"Bob, William, Ray", "garbage": true}, hiddenData: {"id": 'notice-1'}}
-      ];
-
 	$scope.clickHandlerMap = {
 		button: function() {
 			addNewNotice();
@@ -103,10 +99,18 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
     method: 'GET',
     url: '/psr/allNotice'
   }).then(function successCallback(response){
-    var notices = response.data;
-    for(var i = 0; i < Object.keys(notices).length; i++){
-      $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description, "garbage": true}, hiddenData: {"id": notices[i]._id}});
-    }
+    // for(var i = 0; i < Object.keys(notices).length; i++){
+    //   $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description, "garbage": true}, hiddenData: {"id": notices[i]._id}});
+    // }
+    $scope.rows = response.data.map(x => {
+      return { viewableData: {
+        "title": x.name,
+        "dueDate": x.postDate,
+        "assignees": x.assignees,
+        "description": x.description,
+        "garbage": true
+      }, hiddenData: {id: x._id}};
+    });
   }, function errorCallback(response){
     console.log(response);
   });
