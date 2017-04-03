@@ -6,12 +6,13 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
   $scope.title = 'Projects';
   //$scope.description = ''
   $scope.buttonText = 'Add Project';
-  $scope.rowHeaders = ['Project Name','Description','Assignees'];
+  $scope.rowHeaders = ['Project Name','Description','Assignees','Delete'];
 
   $scope.cellTypes = {
     name: CELLTYPES.CLICKABLE,
     description: CELLTYPES.PLAIN,
-    assignees: CELLTYPES.PLAIN
+    assignees: CELLTYPES.PLAIN,
+    garbage: CELLTYPES.DELETE
   };
 
     var addProject = function() {
@@ -78,21 +79,37 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
 		},
         name: function(row){
             editProject(row);
+        },
+        garbage: function(row, i, event){
+          console.log(row);
+          $http({
+            method: 'GET',
+            url: '/psr/deleteProject/' + row.hiddenData.id
+          }).then(function successCallback(response){
+          }, function errorCallback(response){
+            console.log(response);
+          });
+          var tr = $(event.target).closest('tr').remove();
         }
 	};
 
-  $scope.rows = [
-    {viewableData: {"name": "finish this goddamn project smh", "description": "Bah","assignees":"Igor", hiddenData: {"id": 'project-0A'}}}
-  ];
 
   $http({
     method: 'GET',
     url: '/psr/allProject'
   }).then(function successCallback(response){
-    var projects = response.data;
-    for(var i = 0; i < Object.keys(projects).length; i++){
-      $scope.rows.push({viewableData: {"name": projects[i].name, "description": projects[i].description, "assignees": projects[i].assignees, hiddenData: {"id": projects[i]._id}}});
-    }
+    // var projects = response.data;
+    // for(var i = 0; i < Object.keys(projects).length; i++){
+    //   $scope.rows.push({viewableData: {"name": projects[i].name, "description": projects[i].description, "assignees": projects[i].assignees, "garbage": true}, hiddenData: {"id": projects[i]._id}});
+    // }
+    $scope.rows = response.data.map(x => {
+      return{viewableData:{
+        "name": x.name,
+        "description": x.description,
+        "assignees": x.assignees,
+        "garbage": true
+      }, hiddenData:{id: x._id}};
+    });
   }, function errorCallback(response){
     console.log(response);
   });
@@ -104,9 +121,10 @@ app.controller('AddProjectModalCtrl', function($scope, $uibModalInstance){
 		$uibModalInstance.close({
 			viewableData: {
 				"name": $scope.projectName,
-                "description": $scope.description,
-				"assignees": $scope.assignees
-			}, hiddenData: {"id": 'project-0A'} });
+        "description": $scope.description,
+				"assignees": $scope.assignees,
+        "garbage": true
+			}, hiddenData: {"id": $scope._id} });
 	};
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
@@ -116,7 +134,7 @@ app.controller('EditProjectModalCtrl', function($scope, $uibModalInstance, items
     $scope.projectName = items.viewableData.name;
     $scope.projectDescription = items.viewableData.description;
     $scope.projectAssignees = items.viewableData.assignees;
-    $scope.projectId = items.viewableData.hiddenData.id;
+    $scope.projectId = items.hiddenData.id;
 
 	$scope.editProject = function() {
 		$uibModalInstance.close({

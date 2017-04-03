@@ -6,7 +6,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   $scope.title = 'Compensations';
   //$scope.description = ''
   $scope.buttonText = 'Add Compensation';
-  $scope.rowHeaders = ['Assignee', 'Amount', 'Date Assigned', 'Delete'];
+  $scope.rowHeaders = ['Assignee', 'Amount ($)', 'Date Assigned', 'Delete'];
 
   $scope.cellTypes = {
     assignee: CELLTYPES.CLICKABLE,
@@ -92,18 +92,22 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
         }
 	};
 
-  $scope.rows = [
-    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017", "garbage": true}, hiddenData: { "id": 'blah'}}
-  ];
-
   $http({
     method: 'GET',
     url: '/psr/allCompensation'
   }).then(function successCallback(response){
-    var compensations = response.data;
-    for(var i = 0; i < Object.keys(compensations).length; i++){
-      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date, "garbage": true}, hiddenData: {"id": compensations[i]._id}});
-    }
+    // var compensations = response.data;
+    // for(var i = 0; i < Object.keys(compensations).length; i++){
+    //   $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date, "garbage": true}, hiddenData: {"id": compensations[i]._id}});
+    // }
+    $scope.rows = response.data.map(x => {
+      return{viewableData:{
+        "assignee":x.assignee,
+        "amount":x.amount,
+        "dateAssigned": x.date,
+        "garbage": true
+      }, hiddenData: {id: x._id}};
+    });
   }, function errorCallback(response){
     console.log(response);
   });
@@ -146,7 +150,7 @@ app.controller('EditCompensationModalCtrl', function($scope, $uibModalInstance, 
     $scope.dateAssigned = items.viewableData.dateAssigned;
     $scope.dateAssigned = _.clone(genericDateObj);
 
-    $scope.compensationId = items.viewableData.hiddenData.id;
+    $scope.compensationId = items.hiddenData.id;
 
 	$scope.editCompensation = function() {
 		$uibModalInstance.close({

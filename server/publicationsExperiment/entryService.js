@@ -6,7 +6,7 @@ var Entry = require('../../db/entryModel');
 
 var EntryService = function(){};
 
-EntryService.prototype.addEntry = function(files, fileName, format, description, owner){
+EntryService.prototype.addEntry = function(files, fileName, format, description, owner, isProtocol){
 	console.log(files);
 	var promises = Q.all(files.map(file => {
 		var deferred = Q.defer();
@@ -29,7 +29,8 @@ EntryService.prototype.addEntry = function(files, fileName, format, description,
 		  		description: description, 
 		  		filePath: filepath,
 		  		owner: owner,
-		  		mimetype: mimetype
+		  		mimetype: mimetype,
+		  		isProtocol: isProtocol
 		  	});
 
 		  	entry.save(function(err, entry1){

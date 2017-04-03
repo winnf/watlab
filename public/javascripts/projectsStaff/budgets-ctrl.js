@@ -6,7 +6,7 @@ app.controller('BudgetsCtrl', function($scope, $location, $uibModal, $timeout, $
   $scope.title = 'Budgets';
   //$scope.description = ''
   $scope.buttonText = 'Add Budget';
-  $scope.rowHeaders = ['Name', 'Amount', 'Category', 'Delete'];
+  $scope.rowHeaders = ['Name', 'Amount ($)', 'Category', 'Delete'];
 
   $scope.cellTypes = {
     name: CELLTYPES.PLAIN,
@@ -57,18 +57,23 @@ app.controller('BudgetsCtrl', function($scope, $location, $uibModal, $timeout, $
 
 	};
 
-  $scope.rows = [
-    {viewableData: {"name": "rando","amount": "4118", "category": "idk", "garbage": true}}
-  ];
       $http({
         method: 'GET',
         url: '/psr/allBudget'
       }).then(function successCallback(response){
-        var budgets = response.data;
-        for(var i = 0; i < Object.keys(budgets).length; i++){
-          console.log(budgets[i]);
-          $scope.rows.push({viewableData: {"name": budgets[i].name, "amount": budgets[i].amount, "category": budgets[i].category, "garbage": true}, hiddenData: {"id": budgets[i]._id}});
-        }
+        // var budgets = response.data;
+        // for(var i = 0; i < Object.keys(budgets).length; i++){
+        //   console.log(budgets[i]);
+        //   $scope.rows.push({viewableData: {"name": budgets[i].name, "amount": budgets[i].amount, "category": budgets[i].category, "garbage": true}, hiddenData: {"id": budgets[i]._id}});
+        // }
+        $scope.rows = response.data.map(x => {
+            return {viewableData:{
+              "name": x.name,
+              "amount": x.amount,
+              "category": x.category,
+              "garbage": true
+            }, hiddenData: {id: x._id}};
+        });
       }, function errorCallback(response){
         console.log(response);
       });

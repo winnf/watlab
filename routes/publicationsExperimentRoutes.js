@@ -83,8 +83,9 @@ router.post('/uploadFile', upload.any(), function (req, res) {
     var description = body.description;
     var experimentId = body.experimentId;
     var owner = body.owner;
+    var isProtocol = body.isProtocol;
     console.log(req.files);
-    EntryService.addEntry(req.files, fileName, format, description, owner).then(function(entries){
+    EntryService.addEntry(req.files, fileName, format, description, owner, isProtocol).then(function(entries){
         Q.all(entries.map(entry => ExperimentService.addEntryToExperiment(experimentId, entry._id))).then(function(){
             res.send(entries);
         }, function(err){

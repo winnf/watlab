@@ -22,12 +22,18 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 		var data = result.data;
 		$scope.title = data.name;
 
-		var entryRows = data.entryIds.map(entry => {
-			return $scope.processEntry(entry); 
+		var entryRows = [];
+		var protocolRows = [];
+
+		data.entryIds.forEach(entry => {
+			var row = $scope.processEntry(entry);
+			if(entry.isProtocol) protocolRows.push(row);
+			else entryRows.push(row);
 		});
 
-		// Add items to the rows
+		// Add entry items to the rows
 		Array.prototype.splice.apply($scope.table[0].rows, [$scope.table[0].rows.length, 0].concat(entryRows)); 
+		Array.prototype.splice.apply($scope.table[1].rows, [$scope.table[1].rows.length, 0].concat(protocolRows)); 
 	}, function() {
 
 	});
@@ -47,18 +53,16 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 			rows: []
 		},
 		{
-			rowHeaders: ['Protocols'],
+			rowHeaders: ['Protocols', 'Description', 'Date', 'Owner', 'Download', 'Archive'],
 			cellTypes: {
-				protocols: CELLTYPES.PLAIN
+				fileName: CELLTYPES.PLAIN,
+				description: CELLTYPES.PLAIN,
+				date: CELLTYPES.DATE,
+				owner: CELLTYPES.PLAIN,
+				download: CELLTYPES.DOWNLOAD,
+				archive: CELLTYPES.DELETE
 			},
-			rows: [
-				{viewableData: {"protocols": "Protocol1"}, hiddenData: {} },
-				{viewableData: {"protocols": "Protocol2"}, hiddenData: {} },
-				{viewableData: {"protocols": "Protocol3"}, hiddenData: {} },
-				{viewableData: {"protocols": "Protocol4"}, hiddenData: {} },
-				{viewableData: {"protocols": "Protocol5"}, hiddenData: {} },
-				{viewableData: {"protocols": "Protocol6"}, hiddenData: {} }
-			]
+			rows: []
 		},
 		{
 			rowHeaders: ['Literature and References'],
@@ -81,7 +85,10 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 			backdrop: 'static',
             templateUrl: '/per/view/modal-add-data.ejs',
             controller: 'AddDataModalCtrl',
-            appendTo: $('body')
+            appendTo: $('body'),
+            resolve: {
+            	currentTabIndex: function(){ return $scope.currentTabIndex; }
+            }
         });
 
         modalInstance.result.then(function(result){
@@ -90,7 +97,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 	    		if(typeof result.err === 'undefined') {
 		    		ngToast.create('Success uploading ' + result.map(x=>x.name).join(', '));
 		    		var rows = result.map(x => $scope.processEntry(x));
-					Array.prototype.splice.apply($scope.table[0].rows, [$scope.table[0].rows.length, 0].concat(rows)); 
+					Array.prototype.splice.apply($scope.table[$scope.currentTabIndex].rows, [$scope.table[$scope.currentTabIndex].rows.length, 0].concat(rows)); 
 		    		$scope.addRow();
 	    		} else {
 	    			ngToast.create({className: 'danger', content: 'Error uploading data'}); 
@@ -109,7 +116,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 	$scope.includeTabs = true;
 	$scope.clickHandlerMap = {
 		button: function () {
-			if ($scope.currentTabIndex === 0) {
+			if ($scope.currentTabIndex === 0 || $scope.currentTabIndex === 1) {
 				uploadData();
 			} else {
 				alert('Add ' + $scope.tabs[$scope.currentTabIndex]);
