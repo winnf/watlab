@@ -115,7 +115,8 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
 				"task": $scope.taskName,
 				"dueDate": $scope.dueDate.date,
                 "description": $scope.description,
-				"assignees": $scope.assignees
+				"assignees": $scope.assignees,
+                "garbage": true
 			}, hiddenData: {"id": 'task-0A'} });
 	};
 	$scope.closeModal = function () {
@@ -147,7 +148,7 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
 			viewableData: {
 				"task": $scope.taskName,
 				"dueDate": $scope.dueDate.date,
-                "description": $scope.taskDescription ,
+                "description": $scope.taskDescription,
 				"assignees": $scope.taskAssignees
             }, hiddenData: {"id": $scope.taskId } });
 	};
