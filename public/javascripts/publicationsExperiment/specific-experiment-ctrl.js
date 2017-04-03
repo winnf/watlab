@@ -96,14 +96,6 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 		}
 	];
 
-	function downloadURL(url, fileName) {
-        var link = document.createElement("a");
-        link.download = fileName;
-        link.href = url;
-        link.click();
-        window.URL.revokeObjectURL(url);
-	}
-
 	var uploadData = function () {
 		var modalInstance = $uibModal.open({
 			backdrop: 'static',
@@ -139,17 +131,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 		},
 		download: function (row) {
 			var entryId = row.hiddenData.id;
-			var mimetype = row.hiddenData.mimetype;
-			var filePath = row.hiddenData.filePath;
-			var fileName = filePath.slice(filePath.indexOf('$') + 1);
 			$window.open('/per/downloadFile/' + entryId);
-			// var fileName = row.viewableData.fileName + row.viewableData.format;
-			// $http.get('/per/downloadFile/' + entryId).then(function(result){
-				// var blob = new Blob([result.data], {type: "octet/stream"});
-				// var url = window.URL.createObjectURL(blob);
-				// downloadURL(url, fileName);
-			// });
-			// downloadURI('', row.viewableData['file-name'].split(' ').join('-').toLowerCase() + row.viewableData.format);
 		},
 		tabChange: function (index) {
 			var table = $scope.table[index];
