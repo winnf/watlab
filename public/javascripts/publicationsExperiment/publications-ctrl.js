@@ -8,37 +8,23 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
 	$scope.title = 'Publications';
 	$scope.buttonText = 'Add Publication';
 	$scope.description = 'Click on publication to ...';
-	$scope.rowHeaders = ['Publication', 'Authors', 'Date', 'Status'];
-    $(document).ready(function () {
-        $http.get('/per/allPublications').then(function successCallback(response) {
-            console.log(response.data);
-            var newRows = [],
-                newPub = [];
-            for (var object in response.data) {
-                var authorNames = response.data[object].authors.map(x => x.name).join(', ');
-                var versions = response.data[object].versions;
-                var modifiedDate = versions[versions.length - 1].submittedDate;
-                newPub = [{viewableData: {
-                    "pubName": response.data[object].pubName,
-                    "authors": authorNames,
-                    "date": modifiedDate,
-                    "status": response.data[object].status
-                }, hiddenData: {id: response.data[object]._id
-                }}];
-                
-                newRows.push(newPub[0]);
-            }
-            $scope.rows = newRows;
-        },
-                                               function errorCallback(response) {
-            
+	$scope.rowHeaders = ['Publication', 'Authors', 'Date'];
+    $http.get('/per/allPublications').then(function(response) {
+        $scope.rows = response.data.map(x => {
+            return {viewableData: {
+                "pubName": x.pubName,
+                "authors": x.authors.map(y => y.name).join(', '),
+                "date": x.versions.slice(-1)[0].submittedDate,
+                "status": x.status
+            }, hiddenData: {id: x._id } };
         });
-    });
+    },
+    function (err) {});
+
 	$scope.cellTypes = {
 		pubName: CELLTYPES.CLICKABLE,
         authors: CELLTYPES.CLICKABLE,
-		date: CELLTYPES.DATE,
-		status: CELLTYPES.STATUS
+		date: CELLTYPES.DATE
 	};
     
     var createPublication = function () {
@@ -50,31 +36,27 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
         });
         
         modalInstance.result.then(function (publication) {
-            console.log(publication);
-            $http({
-                method: 'GET',
-                url: '/per/createPublication/' + publication.viewableData.pubName
-            }).then(function successCallback(response) {
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-            $scope.rows.push(publication);
-            $timeout(function () {
-                var addedPublication = $('#absract-table tr').last();
-                $('#abstract-table').DataTable().row.add(addedPublication[0]);
+            $http.get('/per/createPublication/' + publication.viewableData.pubName).then(function (response) {
+                $scope.rows.push(publication);
+                $timeout(function () {
+                    var addedPublication = $('#absract-table tr').last();
+                    $('#abstract-table').DataTable().row.add(addedPublication[0]);
+                });
+            }, function (err) {
             });
         });
-    },
+    };
     
-	    editPublication = function () {
-            console.log("editPublication");
-            var modalInstance = $uibModal.open({
-                backdrop: 'static',
-                templateUrl: '/per/view/modal-edit-publication.ejs',
-                controller: 'EditPublicationModalCtrl',
-                appendTo: $('body') // In future, want to modify existing
-            });
-        };
+    var editPublication = function () {
+        console.log("editPublication");
+        var modalInstance = $uibModal.open({
+            backdrop: 'static',
+            templateUrl: '/per/view/modal-edit-publication.ejs',
+            controller: 'EditPublicationModalCtrl',
+            appendTo: $('body') // In future, want to modify existing
+        });
+    };
+
     $scope.clickHandlerMap = {
 		button: function () {
             createPublication();
@@ -87,23 +69,6 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
             console.log("edit Publication");
         }
 	};
-	
-	$scope.statusMap = {
-		'In Progress': 'label-primary',
-		'Complete': 'label-success',
-		'Approaching Deadline': 'label-warning',
-		'Overdue': 'label-danger'
-	};
-	// {"publication-0A": "Deep De-Noising Autoencoders","publication-0B": "Convolutional Nets and Radon Transform","publication-3": "Evolutionary Projection Selection","publication-4": "ROI Estimation in Ultrasound Images","publication-5": "Image Segmentation with Self-Configuration","publication-6": "Learning Opposites with Evolving Rules","publication-7": "Validation of Atlas-Based Segmentation"}
-	$scope.rows = [
-		{viewableData: {"pubName": "Deep De-Noising Autoencoders", "authors": "A.Z.", "date": "Jan 1, 1928", "status": "In Progress"}, hiddenData: {"id": 'publication-0A'}  },
-		{viewableData: {"pubName": "Convolutional Nets and Radon Transform", "authors": "A.Z.", "date": "Jan 1, 1952", "status": "Complete"}, hiddenData: {"id": 'publication-0B'} },
-		{viewableData: {"pubName": "Evolutionary Projection Selection", "authors": "A.Z.", "date": "Jan 1, 1964", "status": "Approaching Deadline"}, hiddenData: {"id": 'publication-3'} },
-		{viewableData: {"pubName": "ROI Estimation in Ultrasound Images", "authors": "A.Z.", "date": "Jan 1, 1964", "status": "Overdue"}, hiddenData: {"id": 'publication-4'} },
-		{viewableData: {"pubName": "Image Segmentation with Self-Configuration", "authors": "A.Z.", "date": "Jan 1, 1995", "status": "In Progress"}, hiddenData: {"id": 'publication-5'} },
-		{viewableData: {"pubName": "Learning Opposites with Evolving Rules", "authors": "A.Z.", "date": "Jan 1, 1974", "status": "Complete"}, hiddenData: {"id": 'publication-6'} },
-		{viewableData: {"pubName": "Validation of Atlas-Based Segmentation", "authors": "A.Z.", "date": "Jan 1, 1974", "status": "Approaching Deadline"}, hiddenData: {"id": 'publication-7'} }
-	];
 });
 
 app.controller('CreatePublicationModalCtrl', function ($scope, $uibModalInstance) {

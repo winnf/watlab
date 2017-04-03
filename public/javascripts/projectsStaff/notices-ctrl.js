@@ -64,11 +64,11 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
             row.viewableData.description = notice.viewableData.description;
         }
         if (row.viewableData.dueDate != notice.viewableData.dueDate){
-            row.viewableData.dudeDate = notice.viewableData.dueDate;
+            row.viewableData.dueDate = notice.viewableData.dueDate;
         }
         $http({
             method: 'GET',
-            url: '/psr/addNotice/' + notice.viewableData.title + '/' + notice.viewableData.dueDate + '/' + notice.viewableData.assignees + '/' + notice.viewableData.description
+            url: '/psr/updateNotice/' + notice.viewableData.title + '/' + notice.viewableData.dueDate + '/' + notice.viewableData.assignees + '/' + notice.viewableData.description + '/' + notice.hiddenData.id
         }).then(function successCallback(response) {
         }, function errorCallback(response) {
             console.log(response);
@@ -87,8 +87,15 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
         title: function(row){
             editNotice(row);
         },
-        garbage: function(i, row, event){
-            var tr = $(event.target).closest('tr').remove();
+        garbage: function(row, i, event){
+          $http({
+            method: 'GET',
+            url: '/psr/deleteNotice/' + row.hiddenData.id
+          }).then(function successCallback(response){
+          }, function errorCallback(response){
+            console.log(response);
+          });
+          var tr = $(event.target).closest('tr').remove();
         }
 	};
 

@@ -75,6 +75,24 @@ router.get('/addNotice/:name/:date/:assignees/:description', function(req, res){
   });
 });
 
+router.get('/updateNotice/:title/:date/:assignees/:description/:id', function(req, res){
+  var params = req.params;
+  noticeServer.updateNotice(params.title, params.date, params.assignees, params.description, params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+router.get('/deleteNotice/:id', function(req, res){
+  var params = req.params;
+  noticeServer.deleteNotice(params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allProject', function(req, res){
   projectServer.displayProjectDB().then(function(result){
     res.send(result);
@@ -87,6 +105,15 @@ router.get('/allProject', function(req, res){
 router.get('/addProject/:name/:assignees/:description', function(req, res){
   var params = req.params;
   projectServer.addProject(params.name, params.assignees, params.description).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+router.get('/updateProject/:name/:assignees/:description/:id', function(req, res){
+  var params = req.params;
+  projectServer.updateProject(params.name, params.assignees, params.description, params.id).then(function(result){
     res.send(result);
   }, function(err){
     res.sendStatus(500);
@@ -111,6 +138,24 @@ router.get('/addCompensation/:assignee/:amount/:date', function(req, res){
   });
 });
 
+router.get('/updateCompensation/:assignee/:amount/:date/:id', function(req, res){
+  var params = req.params;
+  compensationServer.updateCompensation(params.assignee, params.amount, params.date, params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+router.get('/deleteCompensation/:id', function(req, res){
+  var params = req.params;
+  compensationServer.deleteCompensation(params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allBudget', function(req, res){
   budgetServer.displayBudgetDB().then(function(result){
     res.send(result);
@@ -123,6 +168,16 @@ router.get('/allBudget', function(req, res){
 router.get('/addBudget/:name/:amount/:category', function(req, res){
   var params = req.params;
   budgetServer.addBudget(params.name, params.amount, params.category).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+
+router.get('/deleteBudget/:id', function(req, res){
+  var params = req.params;
+  budgetServer.deleteBudget(params.id).then(function(result){
     res.send(result);
   }, function(err){
     res.sendStatus(500);

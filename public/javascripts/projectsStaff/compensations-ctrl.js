@@ -64,7 +64,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
         }
       $http({
         method: 'GET',
-        url: '/psr/addCompensation/' + compensation.viewableData.assignee + '/' + compensation.viewableData.amount + '/' + compensation.viewableData.dateAssigned
+        url: '/psr/updateCompensation/' + compensation.viewableData.assignee + '/' + compensation.viewableData.amount + '/' + compensation.viewableData.dateAssigned + '/' + compensation.hiddenData.id
       }).then(function successCallback(response){
       }, function errorCallback(response){
         console.log(response);
@@ -80,12 +80,20 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
             editCompensation(row);
         },
         garbage: function(row, i, event){
+          console.log(row);
+            $http({
+              method: 'GET',
+              url: '/psr/deleteCompensation/' + row.hiddenData.id
+            }).then(function successCallback(response){
+            }, function errorCallback(response){
+              console.log(response);
+            });
             var tr = $(event.target).closest('tr').remove();
         }
 	};
 
   $scope.rows = [
-    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017", "garbage": true, hiddenData: { "id": 'blah'}}}
+    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017", "garbage": true}, hiddenData: { "id": 'blah'}}
   ];
 
   $http({
@@ -94,7 +102,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   }).then(function successCallback(response){
     var compensations = response.data;
     for(var i = 0; i < Object.keys(compensations).length; i++){
-      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date, "garbage": true, hiddenData: {"id": compensations[i]._id}}});
+      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date, "garbage": true}, hiddenData: {"id": compensations[i]._id}});
     }
   }, function errorCallback(response){
     console.log(response);

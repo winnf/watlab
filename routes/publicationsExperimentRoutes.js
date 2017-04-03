@@ -85,7 +85,7 @@ router.post('/uploadFile', upload.any(), function (req, res) {
     var description = body.description;
     var experimentId = body.experimentId;
     var owner = body.owner;
-
+    console.log(req.files);
     EntryService.addEntry(req.files, fileName, format, description, owner).then(function(entries){
         Q.all(entries.map(entry => ExperimentService.addEntryToExperiment(experimentId, entry._id))).then(function(){
             res.send(entries);
@@ -95,6 +95,16 @@ router.post('/uploadFile', upload.any(), function (req, res) {
         
     }, function(err){
         res.status(500).send(err);
+    });
+});
+
+router.get('/downloadFile/:entryId', function(req, res){
+    var entryId = req.params.entryId;
+    EntryService.getFile(entryId).then(function (entry) {
+        var filePath = entry.filePath;
+        res.download(filePath);
+    }, function (error) {
+        res.status(500).send(error.err);
     });
 });
 

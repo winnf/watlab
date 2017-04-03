@@ -3,8 +3,8 @@
 'use strict';
 var app = angular.module('App');
 
-
 app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal, $timeout, CELLTYPES, $http) {
+
 
 	$scope.tableClassName = 'experiments-table';
 	$scope.title = 'Experiments';
@@ -12,72 +12,49 @@ app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal
 	$scope.description = 'Click on the experiment name to edit the data, protocols and references. ';
 	$scope.rowHeaders = ['Experiment', 'Start Date', 'Due Date', 'Owner', 'Assignees', 'Status'];
 
+	$scope.getStatus = function(startDate, endDate) {
+		var duration = moment.duration(moment(startDate).diff(moment(endDate)));
+	    var days = duration.asDays();
+	    var status;
+	    
+	    if(days < 0){
+	        status = "Overdue";
+	    } else if(days === 0) {
+	        status = "Complete";
+	    } else if(days < 2) {
+	        status = 'Approaching Deadline';
+	    } else if(days >= 5) {
+	        status = 'In Progress';
+	    }
+	    return status;
+	};
+
 	function updateTable() {
 		$http.get('/per/allUsers').then(function successCallback(response){
-		console.log(response);
-		$scope.items = response.data;
-		console.log($scope.items);
-	},
-	function errorCallback(response){
+			console.log(response);
+			$scope.items = response.data;
+			console.log($scope.items);
+		}, function errorCallback(response){
+		});
+	
+
+	$http.get('/per/allExperiments').then(function(response){
+		 $scope.rows = response.data.map(x => {
+		 	return {viewableData: {
+				"name":x.name || 'N/A',
+				"start-date": x.startDate,
+				"due-date": x.dueDate,
+				"owner": (x.ownerId || {name: 'N/A'}).name,
+				"assignees": (x.assigneeIds || [{name: 'N/A'}]).map(y => y.name).join(', '),
+				"status": $scope.getStatus(x.startDate, x.endDate)
+			}, hiddenData: {id: x._id } };
+		 });  		
+	}, function(response){
 
 	});
-    	$http.get('/per/allExperiments').then(function successCallback(response){
-    		
-            //$scope.rows = response.data;
-            console.log(response.data);
-            var newRows = [],
-                newExp = [];
-            for (var object in response.data) {
-
-                var assigneeNames;
-    		 	//console.log(response.data[object].ownerId.name);
-    		 	var name;
-    		 	var startDate = response.data[object].startDate;
-    		 	var dueDate = response.data[object].dueDate;
-    		 	var owner;
-    		 	var status = response.data[object].status;
-    		 if(response.data[object].name != null){
-    		 	name = response.data[object].name;
-    		 }
-    		 else{
-    		 	name = 'N/A';
-    		 }
-    		 if(response.data[object].assigneeIds != null){
-    		 	assigneeNames = response.data[object].assigneeIds.map(x => x.name).join(', ');
-    		 }
-    		 else{
-    		 	assigneeNames = 'N/A';
-    		 }
-    		 if(response.data[object].ownerId != null){
-    		 	owner = response.data[object].ownerId.name;
-    		 }
-    		 else{
-    		 	owner = 'N/A';
-    		 }
-    		 	
-    			 newExp = [{viewableData: {
-    				"name": name ,
-    				"start-date": response.data[object].startDate,
-    				"due-date": response.data[object].dueDate,
-    				"owner": owner,
-    				"assignees": assigneeNames,
-    				"status": response.data[object].status
-    			}, hiddenData: {id: response.data[object]._id
-    			}}];
-
-    		 	newRows.push(newExp[0]);
-    		 }
-    		// console.log(newRows);
-    		 $scope.rows = newRows;  		
-    	} ,
-    		function errorCallback(response){
-
-    		});
-	}
-	$( document ).ready(function() {	
-		updateTable();
-    });
-
+}
+	updateTable();
+	
 	$scope.cellTypes = {
 		name: CELLTYPES.CLICKABLE,
 		'start-date': CELLTYPES.DATE,
@@ -94,10 +71,9 @@ app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal
 			controller: 'CreateExperimentModalCtrl',
 			appendTo: $('body'),
 			resolve: {
-        	items: function () {
-        		console.log($scope.items);
-          		return $scope.items;
-        		}
+	        	items: function () {
+	          		return $scope.items;
+	    		}
       		}
 		});
 

@@ -44,7 +44,14 @@ app.controller('BudgetsCtrl', function($scope, $location, $uibModal, $timeout, $
 		button: function() {
 			addBudget();
 		},
-        garbage: function(i, row, event){
+        garbage: function(row, i, event){
+          $http({
+            method: 'GET',
+            url: '/psr/deleteBudget/' + row.hiddenData.id
+          }).then(function successCallback(response){
+          }, function errorCallback(response){
+            console.log(response);
+          });
             var tr = $(event.target).closest('tr').remove();
         }
 

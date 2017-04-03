@@ -23,7 +23,7 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 	};
 
 	$scope.handleUpload = function(e) {
-		$scope.files = $scope.zone.eventFiles(e);
+		$scope.files = Array.prototype.map.call($scope.zone.eventFiles(e), x => x.nativeFile);
 		$scope.processFileName();
 	};
 

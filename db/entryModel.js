@@ -7,6 +7,7 @@ var EntrySchema = mongoose.Schema({
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     archive: {type: Boolean, default: false},
     format: String,
+    mimetype: String,
     filePath: String
 });
 
