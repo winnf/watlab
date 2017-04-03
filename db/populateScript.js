@@ -131,10 +131,10 @@ dummyExperimentData.forEach(experiment => {
 	var entries = generateRandom(dummyEntriesData, 1, dummyEntriesData.length);
 
 	entries.forEach(entry => {
-		entry.owner = generateRandom(dummyUserData, 1, 1)[0]._id;
+		entry.ownerId = generateRandom(dummyUserData, 1, 1)[0]._id;
 		entry._id = new ObjectID();
 		entriesArr.push({name: entry.name, description: entry.description, 
-			date: entry.date, owner: entry.owner, archive: false, filePath: '', _id: entry._id});
+			date: entry.date, format: entry.format, ownerId: entry.ownerId, archive: false, filePath: '', _id: entry._id});
 	});
 
 	experiment.entryIds = entries.map(y => y._id);

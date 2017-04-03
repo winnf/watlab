@@ -38,4 +38,24 @@ ExperimentService.prototype.displayDB = function () {
     return deferred.promise;
 };
 
+ExperimentService.prototype.getExperimentById = function(id) {
+	var deferred = Q.defer();
+    
+    Experiment.findOne({_id: id}).populate({
+        path: 'ownerId entryIds assigneeIds ',
+        populate: {
+            path: 'ownerId',
+            model: 'User',
+        }
+    }).exec( function (err, experiment) {
+        if (err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(experiment);
+        }
+    });
+    
+    return deferred.promise;
+}
+
 module.exports = new ExperimentService();

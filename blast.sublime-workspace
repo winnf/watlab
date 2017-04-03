@@ -4,6 +4,94 @@
 		"selected_items":
 		[
 			[
+				"fil",
+				"fileName"
+			],
+			[
+				"ex",
+				"experimentId"
+			],
+			[
+				"Ex",
+				"ExperimentService"
+			],
+			[
+				"mdo",
+				"modalInstance"
+			],
+			[
+				"for",
+				"format"
+			],
+			[
+				"uploa",
+				"upload-file-input"
+			],
+			[
+				"hand",
+				"handleUploadManual"
+			],
+			[
+				"ha",
+				"handleUpload"
+			],
+			[
+				"En",
+				"EntryService"
+			],
+			[
+				"dum",
+				"dummyVersionData"
+			],
+			[
+				"ver",
+				"versionFilePath"
+			],
+			[
+				"exper",
+				"experiment"
+			],
+			[
+				"new",
+				"newLabBook"
+			],
+			[
+				"inser",
+				"insertedData"
+			],
+			[
+				"ins",
+				"insertedData"
+			],
+			[
+				"prom",
+				"promises"
+			],
+			[
+				"ent",
+				"entries"
+			],
+			[
+				"exp",
+				"experiment"
+			],
+			[
+				"ret",
+				"retEntries"
+			],
+			[
+				"du",
+				"dummyExperimentData"
+			],
+			[
+				"ge",
+				"generateRandomIds"
+			],
+			[
+				"ran",
+				"randomNoRepeats"
+			],
+			[
 				"padd",
 				"padding-top"
 			],
@@ -28,10 +116,6 @@
 				"align-items"
 			],
 			[
-				"new",
-				"newHistory"
-			],
-			[
 				"appe",
 				"appendHelper"
 			],
@@ -42,10 +126,6 @@
 			[
 				"close",
 				"closeModal"
-			],
-			[
-				"du",
-				"dueDate"
 			],
 			[
 				"start",
@@ -74,10 +154,6 @@
 			[
 				"tab",
 				"tabChange"
-			],
-			[
-				"exper",
-				"experimentId"
 			],
 			[
 				"experim",
@@ -156,14 +232,6 @@
 				"urlObj"
 			],
 			[
-				"fil",
-				"fileType"
-			],
-			[
-				"ex",
-				"extName"
-			],
-			[
 				"log",
 				"log_text"
 			],
@@ -210,10 +278,6 @@
 			[
 				"mid",
 				"midComplement"
-			],
-			[
-				"ret",
-				"retVec"
 			],
 			[
 				"I",
@@ -450,70 +514,6 @@
 			[
 				"merge",
 				"mergeSort"
-			],
-			[
-				"proto",
-				"prototype"
-			],
-			[
-				"mer",
-				"mergeSort"
-			],
-			[
-				"rotArr",
-				"rotArrRow"
-			],
-			[
-				"quickSor",
-				"quickSortHelper"
-			],
-			[
-				"par",
-				"parseValue"
-			],
-			[
-				"value",
-				"valuesLen"
-			],
-			[
-				"Ut",
-				"utilHelper"
-			],
-			[
-				"transit",
-				"transition-duration"
-			],
-			[
-				"inline",
-				"inline-block"
-			],
-			[
-				"font",
-				"font-size"
-			],
-			[
-				"get",
-				"getPageId"
-			],
-			[
-				"_arrow",
-				"_arrowHelper"
-			],
-			[
-				"Arr",
-				"ArrowHelper"
-			],
-			[
-				"navi",
-				"navigateCallback"
-			],
-			[
-				"tile",
-				"tileModel"
-			],
-			[
-				"boot",
-				"bootstrapModal"
 			]
 		]
 	},
@@ -529,13 +529,22 @@
 			}
 		},
 		{
-			"contents": "var mongoose = require('mongoose');\nvar User = require('./userModel.js');\n\nmongoose.connect('mongodb://localhost/database');\n\nvar dummyUserData = [\n\t{name: 'Andrew'},\n\t{name: 'Jason'},\n\t{name: 'Sam'}\n];\n\nvar dummyPublicationData = [\n\t{pubName: \"Correlated diffusion imaging (CDI) for cancer imaging\", experimentIds: [], authors: [], versions: [], status: \"In Progress\"}\n\t{pubName: \"Deep De-Noising Autoencoders\", experimentIds: [], authors: [], versions: [], status: \"In Progress\"}  ,\n\t{pubName: \"Convolutional Nets and Radon Transform\", experimentIds: [], authors: [], versions: [], status: \"Complete\"} ,\n\t{pubName: \"Evolutionary Projection Selection\", experimentIds: [], authors: [], versions: [], status: \"Approaching Deadline\"} ,\n\t{pubName: \"ROI Estimation in Ultrasound Images\", experimentIds: [], authors: [], versions: [], status: \"Overdue\"} ,\n\t{pubName: \"Image Segmentation with Self-Configuration\", experimentIds: [], authors: [], versions: [], status: \"In Progress\"} ,\n\t{pubName: \"Learning Opposites with Evolving Rules\", experimentIds: [], authors: [], versions: [], status: \"Complete\"} ,\n\t{pubName: \"Validation of Atlas-Based Segmentation\", experimentIds: [], authors: [], versions: [], status: \"Approaching Deadline\"} \n];\n\n\nfunction clearAndInsert(model, tableName, data, callback) {\n\tmodel.remove({}, function(err, removed){\n\t\tconsole.log('Cleared table ' + tableName);\n\t\tconsole.log(removed.result);\n\n\t\tmodel.collection.insert(data, function(err, insertedData){\n\t\t\tconsole.log('Insertion completed ' + tableName);\n\t\t\tcallback(insertedData);\n\t\t});\n\t})\n}\n\nfunction populateUserTable() {\n\tclearAndInsert(User, 'User', dummyUserData, function(users){\n\t\t\n\t});\n}\n\n",
-			"file": "db/populateScript.js",
-			"file_size": 1706,
-			"file_write_time": 131355591287192074,
+			"contents": "/*jslint node: true */\n/*global $, jQuery, alert, angular*/\n'use strict';\nvar app = angular.module('App');\n\napp.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES, ngToast, $timeout, $http) {\n\tvar experimentId = $routeParams.experimentId;\n\n\t// Dummy http request for now\n\tvar getNameFromId = function (id) { return {\"experiment-0A\": \"Correlated diffusion imaging (CDI) for cancer imaging\", \"experiment-0B\": \"Evolutionary deep intelligence for operational deep intelligence\", \"experiment-3\": \"Musculoskeletal kinematic analysis using video fluoroscopy\", \"experiment-4\": \"Ocular morphological analysis\", \"experiment-5\": \"Sea ice analysis using synthetic aperture radar \", \"experiment-6\": \"Image and video noise reduction and artifact reduction\", \"experiment-7\": \"Spectral demultiplexed imaging (SDI) for single-shot multispectral tissue\"}[id]; };\n\n\t$scope.tableClassName = 'specific-experiment-table';\n\t$scope.tabs = ['Data', 'Labbook', 'Protocols', 'Literature & Papers Reference'];\n\n\t$scope.title = getNameFromId(experimentId);\n\t$http.get('/per/getExperimentData/' + experimentId).then(function(result){\n\t\tvar data = result.data;\n\t\t$scope.title = data.name;\n\n\t\tvar entries = data.entryIds;\n\t\tvar entryRows = entries.map(x => {\n\t\t\t{viewableData: {fileName: x.name, description: x.description, date: x.date, format: }}\n\t\t});\n\t\t$scope.table[0].rows = \n\t\t$scope.entries = \n\t}, function() {\n\n\t});\n\n\t$scope.table = [\n\t\t{\n\t\t\trowHeaders: ['File Name', 'Description', 'Date', 'Owner', 'Format', 'Download', 'Archive'],\n\t\t\tcellTypes: {\n\t\t\t\tfileName: CELLTYPES.PLAIN,\n\t\t\t\tdescription: CELLTYPES.PLAIN,\n\t\t\t\tdate: CELLTYPES.DATE,\n\t\t\t\towner: CELLTYPES.PLAIN,\n\t\t\t\tformat: CELLTYPES.PLAIN,\n\t\t\t\tdownload: CELLTYPES.DOWNLOAD,\n\t\t\t\tarchive: CELLTYPES.DELETE\n\t\t\t},\n\t\t\t// rows: [\n\t\t\t// \t{viewableData: {\"file-name\": \"Cell Sample Data\", \"description\": \"Collection of blood, saliva, and buccal cell samples in a pilot study on the Danish nurse cohort: comparison of the response rate and quality of genomic DNA.\", \"date\": \"Jan 1, 1928\", \"owner\": \"William Smith\", \"format\": \".csv\", \"download\": true, \"archive\": true}, hiddenData: {\"url\": \"experiment-0A\"} },\n\t\t\t// \t{viewableData: {\"file-name\": \"Microwave Data\", \"description\": \"We present a full-sky 100 μm map that is a reprocessed composite of the COBE/DIRBE and IRAS/ISSA maps, with the zodiacal foreground and confirmed point sources removed. Before using the ISSA maps, we remove the remaining artifacts\", \"date\": \"Jan 1, 1952\", \"owner\": \"John Smith\", \"format\": \".py\", \"download\": true, \"archive\": true}, hiddenData: {\"url\": \"experiment-0B\"} },\n\t\t\t// \t{viewableData: {\"file-name\": \"Radiation Data\", \"description\": \"The phenomenon of growth, decline and death—aging—has been the source of considerable speculation. This cycle seems to be a more or less direct function of the metabolic rate and this in turn depends on the species (animal or plant)\", \"date\": \"Jan 1, 1964\", \"owner\": \"John Bob\", \"format\": \".mat\", \"download\": true, \"archive\": true}, hiddenData: {\"url\": \"experiment-3\"} },\n\t\t\t// \t{viewableData: {\"file-name\": \"Bird Calls\", \"description\": \"Automatic identification of bird calls without manual intervention has been a challenging task for meaningful research on the taxonomy and monitoring of bird migrations in ornithology\", \"date\": \"Jan 1, 1964\", \"owner\": \"Bob John\", \"format\": \".mp3\", \"download\": true, \"archive\": true}, hiddenData: {\"url\": \"experiment-4\"} },\n\t\t\t// \t{viewableData: {\"file-name\": \"Seisometer\", \"description\": \"A tomographic image of the upper mantle beneath central Tibet from INDEPTH data has revealed a subvertical high-velocity zone from∼ 100-to∼ 400-kilometers depth, located approximately south of the Bangong-Nujiang Suture\", \"date\": \"Jan 1, 1995\", \"owner\": \"Smith William\", \"format\": \".jpeg\", \"download\": true, \"archive\": true}, hiddenData: {\"url\": \"experiment-5\"} },\n\t\t\t// \t{viewableData: {\"file-name\": \"Lochness Monster Sighting\", \"description\": \"Recent publicity concerning new claims for the existence of the Loch Ness monster has focused on the evidence offered by Sir Peter Scott and Robert Rines.\", \"date\": \"Jan 1, 1974\", \"owner\": \"Bob Smith\", \"format\": \".mp4\", \"download\": true, \"archive\": true}, hiddenData: {\"url\": \"experiment-6\"} }\n\t\t\t// ]\n\t\t},\n\t\t{\n\t\t\trowHeaders: ['File Name', 'Status'],\n\t\t\tcellTypes: {\n\t\t\t\t'file-name': CELLTYPES.CLICKABLE,\n\t\t\t\tstatus: CELLTYPES.STATUS\n\t\t\t},\n\t\t\trows: [\n\t\t\t\t{viewableData: {\"file-name\": \"Cell Sample Data\", \"status\": \"In Progress\"}, hiddenData: {\"url\": \"experiment-0A\"} },\n\t\t\t\t{viewableData: {\"file-name\": \"Microwave Data\", \"status\": \"Complete\"}, hiddenData: {\"url\": \"experiment-0B\"} },\n\t\t\t\t{viewableData: {\"file-name\": \"Radiation Data\", \"status\": \"Approaching Deadline\"}, hiddenData: {\"url\": \"experiment-3\"} },\n\t\t\t\t{viewableData: {\"file-name\": \"Bird Calls\", \"status\": \"Overdue\" }, hiddenData: {\"url\": \"experiment-4\"} },\n\t\t\t\t{viewableData: {\"file-name\": \"Seisometer\", \"status\": \"Complete\"}, hiddenData: {\"url\": \"experiment-5\"} },\n\t\t\t\t{viewableData: {\"file-name\": \"Lochness Monster Sighting\", \"status\": \"Approaching Deadline\"}, hiddenData: {\"url\": \"experiment-6\"} }\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\trowHeaders: ['Protocols'],\n\t\t\tcellTypes: {\n\t\t\t\tprotocols: CELLTYPES.PLAIN\n\t\t\t},\n\t\t\trows: [\n\t\t\t\t{viewableData: {\"protocols\": \"Protocol1\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"protocols\": \"Protocol2\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"protocols\": \"Protocol3\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"protocols\": \"Protocol4\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"protocols\": \"Protocol5\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"protocols\": \"Protocol6\"}, hiddenData: {} }\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\trowHeaders: ['Literature and References'],\n\t\t\tcellTypes: {\n\t\t\t\tliterature: CELLTYPES.PLAIN\n\t\t\t},\n\t\t\trows: [\n\t\t\t\t{viewableData: {\"literature\": \"Paper1\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"literature\": \"Paper2\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"literature\": \"Paper3\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"literature\": \"Paper4\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"literature\": \"Paper5\"}, hiddenData: {} },\n\t\t\t\t{viewableData: {\"literature\": \"Paper6\"}, hiddenData: {} }\n\t\t\t]\n\t\t}\n\t];\n\n\tfunction downloadURI(uri, name) {\n        var link = document.createElement(\"a\");\n        link.download = name;\n        link.href = uri;\n        link.click();\n\t}\n\n\tvar uploadData = function () {\n\t\tvar modalInstance = $uibModal.open({\n\t\t\tbackdrop: 'static',\n            templateUrl: '/per/view/modal-add-data.ejs',\n            controller: 'AddDataModalCtrl',\n            appendTo: $('body')\n        });\n\n        modalInstance.result.then(function(result){\n        \t$scope.showToast = true;\n\t    \t$timeout(function(){ \n\t    \t\tif(typeof result.err === 'undefined') {\n\t\t    \t\tngToast.create('Success uploading ' + files.join(', ')); \n\t    \t\t} else {\n\t    \t\t\tngToast.create({className: 'danger', content: 'Error uploading data'}); \n\t    \t\t}\n\t    \t});\n        })\n\t};\n\n\t$scope.includeTabs = true;\n\t$scope.clickHandlerMap = {\n\t\tbutton: function () {\n\t\t\tif ($scope.currentTabIndex === 0) {\n\t\t\t\tuploadData();\n\t\t\t} else {\n\t\t\t\talert('Add ' + $scope.tabs[$scope.currentTabIndex]);\n\t\t\t}\n\t\t},\n\t\tarchive: function (row, i, event) {\n\t\t\tvar tr = $(event.target).closest('tr');\n\t\t\t$('#abstract-table').DataTable().row(tr).remove().draw();\n\t\t},\n\t\tdownload: function (row) {\n\t\t\tdownloadURI('', row.viewableData['file-name'].split(' ').join('-').toLowerCase() + row.viewableData.format);\n\t\t},\n\t\ttabChange: function (index) {\n\t\t\tvar table = $scope.table[index];\n\t\t\t$scope.buttonText = 'Add ' + $scope.tabs[index];\n\t\t\t$scope.description = 'Here is your ' + $scope.tabs[index];\n\t\t\t$scope.rowHeaders = table.rowHeaders;\n\t\t\t$scope.cellTypes = table.cellTypes;\n\t\t\t$scope.rows = table.rows;\n\t\t\t$scope.currentTabIndex = index;\n\t\t}\n\t};\n\n\t$scope.clickHandlerMap.tabChange(0);\n\t\n\t$scope.statusMap = {\n\t\t'In Progress': 'label-primary',\n\t\t'Complete': 'label-success',\n\t\t'Approaching Deadline': 'label-warning',\n\t\t'Overdue': 'label-danger'\n\t};\n});",
+			"file": "public/javascripts/publicationsExperiment/specific-experiment-ctrl.js",
+			"file_size": 7871,
+			"file_write_time": 131356398237264123,
 			"settings":
 			{
-				"buffer_size": 1673,
+				"buffer_size": 7944,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/publicationsExperiment/experimentService.js",
+			"settings":
+			{
+				"buffer_size": 1333,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -544,39 +553,60 @@
 			"file": "routes/publicationsExperimentRoutes.js",
 			"settings":
 			{
-				"buffer_size": 587,
+				"buffer_size": 3052,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "server/publicationsExperiment/server.js",
+			"file": "db/experimentModel.js",
 			"settings":
 			{
-				"buffer_size": 403,
+				"buffer_size": 714,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "server/legacy/dogServer.js",
+			"file": "public/javascripts/publicationsExperiment/index.js",
 			"settings":
 			{
-				"buffer_size": 1354,
+				"buffer_size": 1000,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/javascripts/publicationsExperiment/publications-ctrl.js",
+			"file": "public/javascripts/publicationsExperiment/add-data-modal-ctrl.js",
 			"settings":
 			{
-				"buffer_size": 2380,
+				"buffer_size": 1785,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "db/publicationModel.js",
+			"file": "views/publicationsExperiment/templates/modal-add-data.ejs",
 			"settings":
 			{
-				"buffer_size": 523,
+				"buffer_size": 1854,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/publicationsExperiment/entryService.js",
+			"settings":
+			{
+				"buffer_size": 1011,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "db/populateScript.js",
+			"settings":
+			{
+				"buffer_size": 8466,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -686,23 +716,63 @@
 	"expanded_folders":
 	[
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment"
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/libraries",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/publicationsExperiment",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment"
 	],
 	"file_history":
 	[
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/legacy/dogRoutes.js",
+		"/C/Users/simon/Downloads/bahareh_MICD (1).m",
+		"/C/Users/simon/Downloads/BuildMICD.m",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/entryModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/publicationModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/specific-experiment.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/index.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/publicationsExperiment/style.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/style.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/budgets-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/angular-angularbootstrap.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populateScript.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/experimentModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment/experimentService.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/experiments-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/projectsStaffRoutes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/publicationsExperimentRoutes.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/userModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/ngToast.html",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/libraries/ngToast.min.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/libraries/ngToast.min.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/libraries/ngToast-animations.min.css",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/specific-experiment-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/DB-setup.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/app.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment/entryService.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/modal-add-data.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/milk2.cpp",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/transform.cpp",
+		"/C/Users/simon/Documents/GitHub/usaco/1.1/friday.cpp",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/filedrop.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/libraries/filedrop-min.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment/publicationService.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/file-drop.ejs",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment/ExperimentService.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populateScript2.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/versionModel.js",
+		"/C/Users/simon/Downloads/k_means.m",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/publications-ctrl.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/legacy/dogRoutes.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/legacy/dogServer.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/labBookModel.js",
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/labbookModel.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/publicationsExperiment/server.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/legacy/populateScript.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/legacy/dogModel.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populateScript.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/package.json",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/publicationsExperimentRoutes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/legacy/dogServer.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/experiments-ctrl.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/app.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populate-script2.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/dogModel.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/index.ejs",
@@ -710,44 +780,32 @@
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/index.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/equipmentSafety/index.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/index.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/versionModel.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/publicationModel.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/labbookModel.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/experimentModel.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/navbar-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/common-data-service.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/index.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/index.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/entryModel.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/index.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/dashboard.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/celltypes-constants.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/index.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates/compensations.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/compensations-ctrl.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/modal-add-data.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/projectsStaff/notices-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/common/dashboard-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/README.md",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/db/populate-script.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/animate.ejs",
 		"/C/Users/simon/Desktop/GitHubLog.txt",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/angular-angularbootstrap.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates/abstract-table.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/abstract-table.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/abstract-table-directive.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publicationsExperiment/templates/publications.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/_libraries/bootstrap-fontawesome-jquery-underscore.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/publications-ctrl.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publicationsExperiment/specific-experiment-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/projectsStaff/server.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/equipmentSafety/server.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/common/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/server/common/server.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/commonRoutes.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/projectsStaff/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/equipmentSafety/style.css",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/projectsStaffRoutes.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/projectsStaff/templates/test.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/equipmentSafety/templates/test.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/templates/login-box.ejs",
@@ -761,7 +819,6 @@
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/libraries/datatables.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/libraries/bootstrap-fontawesome-jquery-underscore.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/common/libraries/angular-angularbootstrap.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/publicationsExperiment/style.css",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/abstract-table-directive.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/abstract-table.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/labEquipmentSafetyRoutes.js",
@@ -797,33 +854,11 @@
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/publications-ctrl.js",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-formatted-date.ejs",
 		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/stylesheets/style.css",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/modal-simple-text.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-clickable.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-download.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-delete.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/navbar.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/experiments.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/specific-experiment.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/publications.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/routes.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/cell-status.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/clickable-cell.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/experiments2.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/status-cell.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/plain-cell.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/public/javascripts/status-ctrl.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/error.ejs",
-		"/C/Users/simon/Documents/GitHub/leetcode/60-69/67AddBinary.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/1-9/7ReverseInteger.cpp",
-		"/C/Users/simon/Documents/GitHub/leetcode/20-29/27RemoveElement.cpp",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/blue.ejs",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/routes/index.js",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/layout.jade",
-		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/index.jade"
+		"/C/Users/simon/Dropbox/WATERLOO/SYDE322/mock/views/modal-simple-text.ejs"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -845,6 +880,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"experimentService.",
+			"experimentService",
+			"experiments",
+			".lab-manager-app",
+			".",
+			"lab-manager-app",
+			".lab-manager-app",
+			"ng-show",
+			"modalInstance",
+			"status",
+			".status",
+			"owner",
+			"mongoose",
+			"experimentModel",
+			".owner",
+			"user",
+			"usermode",
+			"mongoose.model",
+			"owner",
+			"dummyentriesdata",
+			"ng-model",
+			"filepath",
+			": []",
+			"labBook: '', ",
+			"labboo",
+			"AddDataModalCtrl",
+			"primaryBtn",
+			"primaryButton",
+			"primaryButtun",
+			"pubService",
+			"pub",
+			"Q.",
+			"Q",
+			"order",
+			"pubName",
+			"x",
+			"console.log",
+			"'':",
+			"status",
+			"\"file-name\"",
+			", hiddenData",
+			"viewableData",
+			"equipmentIds",
+			"status",
+			"assignees",
+			"owner",
+			"due-date",
+			"start-date",
+			"name",
+			"hiddenData",
+			"viewableData",
 			"status",
 			"date",
 			"status",
@@ -921,58 +1007,7 @@
 			"assignees",
 			"\"date\"",
 			": '",
-			"url",
-			"hiddenData",
-			"experiment",
-			"hiddenData",
-			"Ex",
-			"\"a\"",
-			"\"name\"",
-			"Experiment",
-			"Experiment1",
-			"Experiment",
-			"name",
-			"et al. experimentCrick",
-			"Brenner et al. experimentCri",
-			"experimentN",
-			"\"name\"",
-			"name",
-			"hiddenData: {\"url\": \"a\"} }",
-			"{\"url\": \"a\"}",
-			"},",
-			"{",
-			"\"url\":\"a\",",
-			":",
-			"experiments",
-			"experiment",
-			"<span class=\"label ",
-			"h2",
-			",",
-			":",
-			",",
-			"\"",
-			"MAP",
-			"static",
-			"max",
-			"mit",
-			"console.log",
-			"new",
-			"> nul",
-			"learnyounode",
-			"jsonObj, ",
-			"date.",
-			"Date",
-			"date",
-			"B",
-			"A",
-			"B",
-			"A",
-			"\\n",
-			"4",
-			"TRON",
-			"CS",
-			"1 - 2 hours",
-			"Less than 1 hour"
+			"url"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1004,7 +1039,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1032,80 +1067,54 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "db/populateScript.js",
+					"file": "public/javascripts/publicationsExperiment/specific-experiment-ctrl.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1673,
+						"buffer_size": 7944,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								282,
-								282
+								1279,
+								1279
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "routes/publicationsExperimentRoutes.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 587,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 245.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "server/publicationsExperiment/server.js",
+					"buffer": 2,
+					"file": "server/publicationsExperiment/experimentService.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 403,
+						"buffer_size": 1333,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								403,
-								403
+								886,
+								886
 							]
 						],
 						"settings":
@@ -1113,7 +1122,37 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 411.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "routes/publicationsExperimentRoutes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3052,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1526,
+								1526
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1060.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -1121,82 +1160,26 @@
 				},
 				{
 					"buffer": 4,
-					"file": "server/legacy/dogServer.js",
+					"file": "db/experimentModel.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1354,
+						"buffer_size": 714,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								670,
-								681
+								86,
+								82
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 252.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "public/javascripts/publicationsExperiment/publications-ctrl.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2380,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1376,
-								1389
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 247.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "db/publicationModel.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 523,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								50,
-								50
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1204,13 +1187,159 @@
 					},
 					"stack_index": 4,
 					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/javascripts/publicationsExperiment/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1000,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								143,
+								143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/javascripts/publicationsExperiment/add-data-modal-ctrl.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1785,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1243,
+								1246
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 659.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "views/publicationsExperiment/templates/modal-add-data.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1854,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								991,
+								991
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 266.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "server/publicationsExperiment/entryService.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1011,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								613,
+								617
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "db/populateScript.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8466,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3265,
+								3271
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 583.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 21.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -1251,7 +1380,7 @@
 	"project": "blast.sublime-project",
 	"replace":
 	{
-		"height": 38.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1261,8 +1390,196 @@
 		"selected_items":
 		[
 			[
+				"entr",
+				"db\\entryModel.js"
+			],
+			[
+				"po",
+				"db\\populateScript.js"
+			],
+			[
+				"exp",
+				"server\\publicationsExperiment\\experimentService.js"
+			],
+			[
+				"public",
+				"db\\publicationModel.js"
+			],
+			[
+				"",
+				"server\\publicationsExperiment\\experimentService.js"
+			],
+			[
+				"ex",
+				"db\\experimentModel.js"
+			],
+			[
+				"exper",
+				"server\\publicationsExperiment\\experimentService.js"
+			],
+			[
+				"specif",
+				"public\\javascripts\\publicationsExperiment\\specific-experiment-ctrl.js"
+			],
+			[
+				"spe",
+				"views\\publicationsExperiment\\templates\\specific-experiment.ejs"
+			],
+			[
+				"entry",
+				"server\\publicationsExperiment\\entryService.js"
+			],
+			[
+				"route",
+				"routes\\publicationsExperimentRoutes.js"
+			],
+			[
+				"inde",
+				"views\\publicationsExperiment\\index.ejs"
+			],
+			[
+				"style.cs",
+				"public\\stylesheets\\common\\style.css"
+			],
+			[
+				"popu",
+				"db\\populateScript.js"
+			],
+			[
+				"spec",
+				"views\\publicationsExperiment\\templates\\specific-experiment.ejs"
+			],
+			[
+				"index.js",
+				"public\\javascripts\\publicationsExperiment\\index.js"
+			],
+			[
+				"experimet-ctrl",
+				"public\\javascripts\\publicationsExperiment\\experiments-ctrl.js"
+			],
+			[
+				"ent",
+				"db\\entryModel.js"
+			],
+			[
+				"modal-add-data",
+				"views\\publicationsExperiment\\templates\\modal-add-data.ejs"
+			],
+			[
+				"add",
+				"public\\javascripts\\publicationsExperiment\\add-data-modal-ctrl.js"
+			],
+			[
+				"exxp",
+				"server\\publicationsExperiment\\experimentService.js"
+			],
+			[
+				"index",
+				"views\\publicationsExperiment\\index.ejs"
+			],
+			[
+				"sp",
+				"public\\javascripts\\publicationsExperiment\\specific-experiment-ctrl.js"
+			],
+			[
+				"publicat",
+				"routes\\publicationsExperimentRoutes.js"
+			],
+			[
+				"entryserv",
+				"server\\publicationsExperiment\\entryService.js"
+			],
+			[
+				"entrymo",
+				"db\\entryModel.js"
+			],
+			[
+				"app",
+				"app.js"
+			],
+			[
+				"pop",
+				"db\\populateScript.js"
+			],
+			[
+				"user",
+				"db\\userModel.js"
+			],
+			[
+				"experimen",
+				"db\\experimentModel.js"
+			],
+			[
+				"rou",
+				"routes\\publicationsExperimentRoutes.js"
+			],
+			[
+				"experim",
+				"server\\publicationsExperiment\\experimentService.js"
+			],
+			[
+				"add-",
+				"views\\publicationsExperiment\\templates\\modal-add-data.ejs"
+			],
+			[
+				"milk",
+				"milk2.cpp"
+			],
+			[
+				"tr",
+				"transform.cpp"
+			],
+			[
+				"transfo",
+				"transform.cpp"
+			],
+			[
+				"app.js",
+				"app.js"
+			],
+			[
+				"file",
+				"views\\_libraries\\filedrop.ejs"
+			],
+			[
+				"index.ejs",
+				"views\\publicationsExperiment\\index.ejs"
+			],
+			[
+				"file-d",
+				"public\\javascripts\\libraries\\filedrop-min.js"
+			],
+			[
 				"routes",
 				"routes\\publicationsExperimentRoutes.js"
+			],
+			[
+				"modal-add-dat",
+				"views\\publicationsExperiment\\templates\\modal-add-data.ejs"
+			],
+			[
+				"version",
+				"db\\versionModel.js"
+			],
+			[
+				"publ",
+				"db\\publicationModel.js"
+			],
+			[
+				"dogs",
+				"server\\legacy\\dogServer.js"
+			],
+			[
+				"dog",
+				"routes\\legacy\\dogRoutes.js"
+			],
+			[
+				"lab",
+				"db\\labBookModel.js"
+			],
+			[
+				"e",
+				"public\\javascripts\\publicationsExperiment\\experiments-ctrl.js"
 			],
 			[
 				"pubmod",
@@ -1285,10 +1602,6 @@
 				"public\\javascripts\\publicationsExperiment\\publications-ctrl.js"
 			],
 			[
-				"publ",
-				"db\\publicationModel.js"
-			],
-			[
 				"publicationct",
 				"public\\javascripts\\publicationsExperiment\\publications-ctrl.js"
 			],
@@ -1301,24 +1614,12 @@
 				"db\\populateScript.js"
 			],
 			[
-				"app.js",
-				"app.js"
-			],
-			[
 				"packag",
 				"package.json"
 			],
 			[
 				"serv",
 				"server\\publicationsExperiment\\server.js"
-			],
-			[
-				"index.js",
-				"public\\javascripts\\publicationsExperiment\\index.js"
-			],
-			[
-				"inde",
-				"views\\publicationsExperiment\\index.ejs"
 			],
 			[
 				"commondate",
@@ -1331,10 +1632,6 @@
 			[
 				"dash",
 				"public\\stylesheets\\common\\dashboard.css"
-			],
-			[
-				"",
-				"views\\common\\templates\\dashboard.ejs"
 			],
 			[
 				"celltye",
@@ -1361,10 +1658,6 @@
 				"db\\dogModel.js"
 			],
 			[
-				"exper",
-				"public\\javascripts\\publicationsExperiment\\experiments-ctrl.js"
-			],
-			[
 				"modal",
 				"views\\publicationsExperiment\\templates\\modal-add-data.ejs"
 			],
@@ -1379,10 +1672,6 @@
 			[
 				"das",
 				"public\\javascripts\\common\\dashboard-ctrl.js"
-			],
-			[
-				"po",
-				"db\\populate-script.js"
 			],
 			[
 				"ser",
@@ -1425,10 +1714,6 @@
 				"public\\javascripts\\common\\common-data-service.js"
 			],
 			[
-				"public",
-				"public\\javascripts\\publicationsExperiment\\publications-ctrl.js"
-			],
-			[
 				"comm",
 				"public\\javascripts\\common\\common-data-service.js"
 			],
@@ -1465,10 +1750,6 @@
 				"public\\javascripts\\common\\login-ctrl.js"
 			],
 			[
-				"index",
-				"views\\publicationsExperiment\\index.ejs"
-			],
-			[
 				"sty",
 				"public\\stylesheets\\common\\style.css"
 			],
@@ -1481,36 +1762,16 @@
 				"views\\navbar.ejs"
 			],
 			[
-				"exp",
-				"public\\javascripts\\experiments-ctrl.js"
-			],
-			[
-				"sp",
-				"public\\javascripts\\specific-experiment-ctrl.js"
-			],
-			[
 				"av",
 				"public\\javascripts\\abstract-table-directive.js"
-			],
-			[
-				"spec",
-				"public\\javascripts\\specific-experiment-ctrl.js"
 			],
 			[
 				"pub",
 				"public\\javascripts\\publications-ctrl.js"
 			],
 			[
-				"ex",
-				"views\\experiments.ejs"
-			],
-			[
 				"cli",
 				"views\\clickable-cell.ejs"
-			],
-			[
-				"e",
-				"views\\experiments.ejs"
 			],
 			[
 				"bin",
@@ -1639,138 +1900,6 @@
 			[
 				"insertion",
 				"Sorting\\insertionSort.js"
-			],
-			[
-				"sele",
-				"Sorting\\selectionSort.js"
-			],
-			[
-				"large",
-				"SampleProblem\\findLargestLexicographicalString.js"
-			],
-			[
-				"per",
-				"Algorithm\\permutation.js"
-			],
-			[
-				"mer",
-				"Sorting\\mergeSort.js"
-			],
-			[
-				"quic",
-				"Sorting\\quickSort.js"
-			],
-			[
-				"merge",
-				"Sorting\\mergeSort.js"
-			],
-			[
-				"test.js",
-				"test.js"
-			],
-			[
-				"matchi",
-				"frontend\\css\\matchingGame.css"
-			],
-			[
-				"flip",
-				"frontend\\css\\flippableSentence.css"
-			],
-			[
-				"flipp",
-				"frontend\\js\\components\\FlippableSentence.jsx"
-			],
-			[
-				"flippa",
-				"frontend\\js\\components\\FlippableSentence.jsx"
-			],
-			[
-				"flippab",
-				"frontend\\css\\flippableSentence.css"
-			],
-			[
-				"game",
-				"frontend\\css\\gameScreen.css"
-			],
-			[
-				"matching",
-				"frontend\\css\\matchingGame.css"
-			],
-			[
-				"navi",
-				"frontend\\js\\components\\NavigationBar.jsx"
-			],
-			[
-				"scree",
-				"frontend\\css\\screenplayGame.css"
-			],
-			[
-				"episode",
-				"frontend\\css\\episodeTileGallery.css"
-			],
-			[
-				"episod",
-				"frontend\\js\\components\\EpisodeTile.jsx"
-			],
-			[
-				"app.",
-				"frontend\\js\\components\\App.jsx"
-			],
-			[
-				"long",
-				"Algorithm\\longestUniqSubstring.js"
-			],
-			[
-				"var",
-				"JSConcepts\\identying-variable-type.js"
-			],
-			[
-				"qu",
-				"Sorting\\quickSort.js"
-			],
-			[
-				"bina",
-				"Algorithm\\binarySearch.js"
-			],
-			[
-				"sel",
-				"Sorting\\selectionSort.js"
-			],
-			[
-				"b",
-				"Sorting\\bubbleSort.js"
-			],
-			[
-				"ins",
-				"Sorting\\insertionSort.js"
-			],
-			[
-				"selec",
-				"Sorting\\selectionSort.js"
-			],
-			[
-				"merg",
-				"Sorting\\mergeSort.js"
-			],
-			[
-				"al",
-				"Algorithm\\allSubstring.js"
-			],
-			[
-				"binar",
-				"Algorithm\\binarySearch.js"
-			],
-			[
-				"inser",
-				"Sorting\\insertionSort.js"
-			],
-			[
-				"bi",
-				"Algorithm\\binarySearch.js"
-			],
-			[
-				"root",
-				"Algorithm\\squareRoot.js"
 			]
 		],
 		"width": 0.0
@@ -1778,9 +1907,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "nem",
+		"last_filter": "us",
 		"selected_items":
 		[
+			[
+				"us",
+				"C:\\Users\\simon\\Documents\\GitHub\\usaco\\usaco.sublime-project"
+			],
 			[
 				"nem",
 				"C:\\Users\\simon\\Documents\\Web Dev\\nemoo\\nemoo.sublime-project"
@@ -1833,7 +1966,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 278.0,
+	"side_bar_width": 248.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
