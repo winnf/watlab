@@ -90,16 +90,8 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     url: '/psr/allTask'
   }).then(function successCallback(response){
     var tasks = response.data;
-<<<<<<< HEAD
     for(var i = 0; i < Object.keys(tasks).length; i++){
-      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true, hiddenData: {"id": tasks[i]._id}}});
-=======
-    console.log(tasks[0]._id);
-    debugger;
-    for(var i = 0; i < Object.keys(tasks).length; i++){
-      console.log(tasks[i]._id);
       $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true}, hiddenData: {"id": tasks[i]._id}});
->>>>>>> f3305483e4d5365e9ed1c202fce05547a5b30944
     }
   }, function errorCallback(response){
     console.log(response);
