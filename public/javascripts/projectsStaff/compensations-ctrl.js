@@ -40,7 +40,6 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
 	};
 
     var editCompensation = function(row) {
-        console.log('the row name is:' + row.viewableData.assignee);
 		var modalInstance = $uibModal.open({
             backdrop: 'static',
             templateUrl: '/psr/view/modal-edit-compensation.ejs',
@@ -54,7 +53,6 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
     });
 
     modalInstance.result.then(function(compensation){
-        console.log(compensation.viewableData);
         if (row.viewableData.assignee != compensation.viewableData.assignee){
             row.viewableData.assignee = compensation.viewableData.assignee;
         }
@@ -139,6 +137,7 @@ app.controller('EditCompensationModalCtrl', function($scope, $uibModalInstance, 
     $scope.compensationAmount = items.viewableData.amount;
     $scope.compensationAssignee = items.viewableData.assignee;
     $scope.dateAssigned = items.viewableData.dateAssigned;
+    $scope.dateAssigned = _.clone(genericDateObj);
 
     $scope.compensationId = items.viewableData.hiddenData.id;
 
@@ -147,7 +146,7 @@ app.controller('EditCompensationModalCtrl', function($scope, $uibModalInstance, 
 			viewableData: {
 				"assignee": $scope.compensationAssignee,
                 "amount": $scope.compensationAmount,
-                "dateAssigned": $scope.dateAssigned
+                "dateAssigned": $scope.dateAssigned.date
 			}, hiddenData: {"id": $scope.compensationId} });
 	};
 	$scope.closeModal = function () {

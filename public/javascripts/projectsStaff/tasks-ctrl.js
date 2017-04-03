@@ -4,7 +4,6 @@ var app = angular.module('App');
 app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES, $http){
   $scope.tableClassName = 'tasks-table';
   $scope.title = 'Tasks';
-  //$scope.description = ''
   $scope.buttonText = 'Add Task';
   $scope.rowHeaders = ['Task','Due','Assignees','Description', 'Delete'];
 
@@ -41,7 +40,6 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 	};
 
     var editTask = function(row){
-        console.log('the row name is:' + row.viewableData.task);
 		var modalInstance = $uibModal.open({
             backdrop: 'static',
             templateUrl: '/psr/view/modal-edit-task.ejs',
@@ -59,11 +57,11 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         row.viewableData.task = task.viewableData.task;
         row.viewableData.assignees = task.viewableData.assignees;
         row.viewableData.description = task.viewableData.description;
-        row.viewableData.dueDate.date = task.viewableData.dueDate.date;
+        row.viewableData.dueDate = task.viewableData.dueDate;
 
           $http({
             method: 'GET',
-            url: '/psr/addTask/' + task.viewableData.task + '/' + task.viewableData.dueDate + '/' + task.viewableData.assignees + '/' + task.viewableData.description
+            url: '/psr/updateTask/' + task.viewableData.task + '/' + task.viewableData.dueDate + '/' + task.viewableData.assignees + '/' + task.viewableData.description + '/' + task.hiddenData.id
           }).then(function successCallback(response) {
           }, function errorCallback(response) {
               console.log(response);
@@ -79,7 +77,6 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
             editTask(row);
         },
         garbage: function(row, i, event){
-            console.log('the row: ' + row + 'blah'+ i)
 			var tr = $(event.target).closest('tr').remove();
         }
 	};
@@ -93,10 +90,8 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     url: '/psr/allTask'
   }).then(function successCallback(response){
     var tasks = response.data;
-    console.log(tasks);
     for(var i = 0; i < Object.keys(tasks).length; i++){
-      console.log(tasks[i]._id);
-      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true, hiddenData: {"id": tasks[i]._id}}});
+      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true}, hiddenData: {"id": tasks[i]._id}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -146,7 +141,7 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
     $scope.dueDate = _.clone(genericDateObj);
     $scope.taskDescription = items.viewableData.description;
     $scope.taskAssignees = items.viewableData.assignees;
-    $scope.taskId = items.viewableData.hiddenData.id;
+    $scope.taskId = items.hiddenData.id;
     $scope.editTask = function() {
 		$uibModalInstance.close({
 			viewableData: {

@@ -38,6 +38,15 @@ router.get('/addTask/:name/:date/:assignees/:description',function(req, res){
   });
 });
 
+router.get('/updateTask/:name/:date/:assignees/:description/:id', function(req, res){
+  var params = req.params;
+  taskServer.updateTask(params.name, params.date, params.assignees, params.description, params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allNotice', function(req, res){
   noticeServer.displayNoticeDB().then(function(result){
     res.send(result);
