@@ -7,7 +7,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 	var experimentId = $routeParams.experimentId;
 
 	$scope.tableClassName = 'specific-experiment-table';
-	$scope.tabs = ['Data', 'Labbook', 'Protocols', 'Literature & Papers Reference'];
+	$scope.tabs = ['Data', 'Protocols', 'Literature & Papers Reference'];
 
 	// Converts entry to row
 	$scope.processEntry = function(entry) {
@@ -45,21 +45,6 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 				archive: CELLTYPES.DELETE
 			},
 			rows: []
-		},
-		{
-			rowHeaders: ['File Name', 'Status'],
-			cellTypes: {
-				'file-name': CELLTYPES.CLICKABLE,
-				status: CELLTYPES.STATUS
-			},
-			rows: [
-				{viewableData: {"file-name": "Cell Sample Data", "status": "In Progress"}, hiddenData: {"url": "experiment-0A"} },
-				{viewableData: {"file-name": "Microwave Data", "status": "Complete"}, hiddenData: {"url": "experiment-0B"} },
-				{viewableData: {"file-name": "Radiation Data", "status": "Approaching Deadline"}, hiddenData: {"url": "experiment-3"} },
-				{viewableData: {"file-name": "Bird Calls", "status": "Overdue" }, hiddenData: {"url": "experiment-4"} },
-				{viewableData: {"file-name": "Seisometer", "status": "Complete"}, hiddenData: {"url": "experiment-5"} },
-				{viewableData: {"file-name": "Lochness Monster Sighting", "status": "Approaching Deadline"}, hiddenData: {"url": "experiment-6"} }
-			]
 		},
 		{
 			rowHeaders: ['Protocols'],
