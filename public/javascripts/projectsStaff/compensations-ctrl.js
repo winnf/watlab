@@ -6,12 +6,13 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   $scope.title = 'Compensations';
   //$scope.description = ''
   $scope.buttonText = 'Add Compensation';
-  $scope.rowHeaders = ['Assignee', 'Amount', 'Date Assigned'];
+  $scope.rowHeaders = ['Assignee', 'Amount', 'Date Assigned', 'Delete'];
 
   $scope.cellTypes = {
     assignee: CELLTYPES.CLICKABLE,
     amount: CELLTYPES.PLAIN,
-    dateAssigned: CELLTYPES.DATE
+    dateAssigned: CELLTYPES.DATE,
+    garbage: CELLTYPES.DELETE
   };
 
     var addCompensation = function() {
@@ -79,11 +80,14 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
 		},
         assignee: function(row){
             editCompensation(row);
+        },
+        garbage: function(row, i, event){
+            var tr = $(event.target).closest('tr').remove();
         }
 	};
 
   $scope.rows = [
-    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017", hiddenData: { "id": 'blah'}}}
+    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017", "garbage": true, hiddenData: { "id": 'blah'}}}
   ];
 
   $http({
@@ -92,7 +96,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   }).then(function successCallback(response){
     var compensations = response.data;
     for(var i = 0; i < Object.keys(compensations).length; i++){
-      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date, hiddenData: {"id": compensations[i]._id}}});
+      $scope.rows.push({viewableData: {"assignee": compensations[i].assignee, "amount": compensations[i].amount, "dateAssigned": compensations[i].date, "garbage": true, hiddenData: {"id": compensations[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
