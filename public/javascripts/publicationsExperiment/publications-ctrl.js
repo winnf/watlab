@@ -9,7 +9,29 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
 	$scope.buttonText = 'Add Publication';
 	$scope.description = 'Click on publication to ...';
 	$scope.rowHeaders = ['Publication', 'Authors', 'Date', 'Status'];
-
+    $(document).ready(function () {
+        $http.get('/per/allPublications').then(function successCallback(response) {
+            console.log(response.data);
+            var newRows = [],
+                newPub = [];
+            for (var object in response.data) {
+                var authorNames = response.data[object].authors.map(x => x.name).join(', ');
+                newPub = [{viewableData: {
+                    "pubName": response.data[object].pubName,
+                    "authors": authorNames,
+                    "date": "April 3, 2017",
+                    "status": response.data[object].status
+                }, hiddenData: {id: response.data[object]._id
+                }}];
+                
+                newRows.push(newPub[0]);
+            }
+            $scope.rows = newRows;
+        },
+                                               function errorCallback(response) {
+            
+        });
+    });
 	$scope.cellTypes = {
 		pubName: CELLTYPES.CLICKABLE,
         authors: CELLTYPES.CLICKABLE,

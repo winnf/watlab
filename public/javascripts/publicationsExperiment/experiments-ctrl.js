@@ -3,22 +3,22 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeout, CELLTYPES , $http) {
+app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeout, CELLTYPES, $http) {
 	$scope.tableClassName = 'experiments-table';
 	$scope.title = 'Experiments';
 	$scope.buttonText = 'Add Experiment';
 	$scope.description = 'Click on the experiment name to edit the data, protocols and references. ';
 	$scope.rowHeaders = ['Experiment', 'Start Date', 'Due Date', 'Owner', 'Assignees', 'Status'];
-	$( document ).ready(function() {
-    	$http.get('/per/allExperiments').then(function successCallback(response){
+	$(document).ready(function () {
+        $http.get('/per/allExperiments').then(function successCallback(response) {
     		
-    		//$scope.rows = response.data;
-    		// console.log(response.data);
-    		var newRows = [];
-    		var newExp =[];
-    		 for(var object in response.data){
+            //$scope.rows = response.data;
+            // console.log(response.data);
+            var newRows = [],
+                newExp = [];
+            for (var object in response.data) {
 
-    		 	var assigneeNames = response.data[object].assigneeIds.map(x => x.name).join(', ');
+                var assigneeNames = response.data[object].assigneeIds.map(x => x.name).join(', ');
     		 	//console.log(assigneeNames);
     			 newExp = [{viewableData: {
     				"name": response.data[object].name,
