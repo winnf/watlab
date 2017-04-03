@@ -173,6 +173,16 @@ router.get('/addBudget/:name/:amount/:category', function(req, res){
     res.sendStatus(500);
   });
 });
+
+
+router.get('/deleteBudget/:id', function(req, res){
+  var params = req.params;
+  budgetServer.deleteBudget(params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
 //app.use(router);
 //app.listen(5000);
 module.exports = router;
