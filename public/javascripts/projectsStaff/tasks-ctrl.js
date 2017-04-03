@@ -88,18 +88,21 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         }
 	};
 
-    $scope.rows = [
-        {viewableData: {"name": "finish this goddamn project smh", "dueDate": "April 1, 2017", "description": "Bah","assignees":"Igor", "garbage": true}}
-    ];
+
 
   $http({
     method: 'GET',
     url: '/psr/allTask'
   }).then(function successCallback(response){
-    var tasks = response.data;
-    for(var i = 0; i < Object.keys(tasks).length; i++){
-      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true}, hiddenData: {"id": tasks[i]._id}});
-    }
+    $scope.rows = response.data.map(x => {
+      return { viewableData: {
+        "task": x.name,
+        "dueDate": x.dueDate,
+        "assignees": x.assignees,
+        "description": x.description,
+        "garbage": true
+      }, hiddenData: {id: x._id}};
+    });
   }, function errorCallback(response){
     console.log(response);
   });
