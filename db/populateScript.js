@@ -9,6 +9,8 @@ var Publication = require('./publicationModel.js');
 var User = require('./userModel.js');
 var Version = require('./versionModel.js');
 
+var Q = require('q');
+
 mongoose.connect('mongodb://localhost/database');
 
 /**
@@ -83,7 +85,7 @@ var dummyVersionData = [
 	{_id: new ObjectID(), order: 0, verName: "ROI Estimation - v1", submittedDate: "Feb 1, 1974", versionFilePath: ''},
 	{_id: new ObjectID(), order: 0, verName: "Image Segmentation - v1", submittedDate: "Jun 1, 1964", versionFilePath: ''},
 	{_id: new ObjectID(), order: 0, verName: "Learning Opposites with Evolving - v1", submittedDate: "Dec 1, 1974", versionFilePath: ''},
-	{_id: new ObjectID(), order: 0, verName: "Validation of Atlas-Based - v1", submittedDate: "Apr 1, 2017", versionFilePath: ''}
+	{_id: new ObjectID(), order: 0, verName: "Validation of Atlas-Based - v1", submittedDate: "Apr 5, 2017", versionFilePath: ''}
 ];
 
 var dummyPublicationData = [
@@ -97,7 +99,8 @@ var dummyPublicationData = [
 	{pubName: "Validation of Atlas-Based Segmentation", experimentIds: [], authors: [], versions: [], status: "Approaching Deadline"}
 ];
 
-function clearAndInsert(model, tableName, data, callback) {
+function clearAndInsert(model, tableName, data) {
+	var deferred = Q.defer();
 	model.remove({}, function (err, removed) {
 		console.log('Cleared table ' + tableName);
 		console.log(removed.result);
@@ -107,25 +110,15 @@ function clearAndInsert(model, tableName, data, callback) {
 			if (typeof insertedData.ops === 'undefined') {
                 console.log(insertedData);
             }
-			callback(insertedData.ops);
+			deferred.resolve(insertedData.ops);
 		});
 	});
+	return deferred.promise;
 }
-
-clearAndInsert(User, 'User', dummyUserData, function () {});
-
-dummyPublicationData.forEach((publication, i) => {
-    publication.versions.push(dummyVersionData[i]._id);
-    });
-
-dummyPublicationData.forEach(publication => {
-    publication.authors = (generateRandom(dummyUserData, 1, dummyUserData.length).map(y => y._id));
-    
-    var entries = generateRandom(dummyEntriesData, 1, dummyEntriesData.length);
-});
 
 var entriesArr = [];
 dummyExperimentData.forEach(experiment => {
+	experiment._id = new ObjectID();
 	experiment.startDate = new Date(experiment.startDate);
 	experiment.dueDate = new Date(experiment.dueDate);
 	experiment.ownerId = generateRandom(dummyUserData, 1, 1)[0]._id;
@@ -143,10 +136,22 @@ dummyExperimentData.forEach(experiment => {
 	experiment.entryIds = entries.map(y => y._id);
 });
 
-clearAndInsert(Experiment, 'Experiment', dummyExperimentData, function(){});
-clearAndInsert(Version, 'Version', dummyVersionData, function(){});
-clearAndInsert(Publication, 'Publication', dummyPublicationData, function(){});
-clearAndInsert(Entries, 'Entries', entriesArr, function(){});
+dummyPublicationData.forEach((publication, i) => {
+	publication.versions.push(dummyVersionData[i]._id);
+	publication.experimentIds = generateRandom(dummyExperimentData, 1, dummyExperimentData.length).map(y => y._id);
+});
+dummyPublicationData.forEach(publication => {
+    publication.authors = (generateRandom(dummyUserData, 1, dummyUserData.length).map(y => y._id));
+    var entries = generateRandom(dummyEntriesData, 1, dummyEntriesData.length);
+});
 
 
-
+Q.all([
+	clearAndInsert(User, 'User', dummyUserData),
+	clearAndInsert(Experiment, 'Experiment', dummyExperimentData),
+	clearAndInsert(Version, 'Version', dummyVersionData),
+	clearAndInsert(Publication, 'Publication', dummyPublicationData),
+	clearAndInsert(Entries, 'Entries', entriesArr)
+	]).then(function(result){
+		mongoose.connection.close();
+	});
