@@ -36,5 +36,26 @@ Server.prototype.addNotice = function(name, date, assignees, description){
   return deferred.promise;
 };
 
+Server.prototype.updateNotice = function(title, date, assignees, description, id){
+  var deferred = Q.defer();
+  var query = {'_id': id};
+  var update = {
+    name: title,
+    postDate: date,
+    assignees: assignees,
+    description: description
+  };
+
+  Notice.findOneAndUpdate(query, update, function(err, instance){
+    if(err){
+      deferred.reject(err);
+    }
+    else{
+      deferred.resolve(instance);
+    }
+  });
+  return deferred.promise;
+};
+
 
 module.exports = new Server();
