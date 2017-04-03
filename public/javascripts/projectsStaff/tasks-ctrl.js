@@ -87,7 +87,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
           var tr = $(event.target).closest('tr').remove();
         }
 	};
-
+  //var t0 = performance.now(); //performance start
   $http({
     method: 'GET',
     url: '/psr/allTask'
@@ -104,6 +104,8 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
   }, function errorCallback(response){
     console.log(response);
   });
+  //var t1 = performance.now(); //performance end
+  //window.alert("performance time: " + (t1-t0) + " ms");
 });
 
 app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
