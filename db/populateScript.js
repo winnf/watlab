@@ -114,8 +114,11 @@ function clearAndInsert(model, tableName, data, callback) {
 
 clearAndInsert(User, 'User', dummyUserData, function () {});
 
+dummyPublicationData.forEach((publication, i) => {
+    publication.versions.push(dummyVersionData[i]._id);
+    });
+
 dummyPublicationData.forEach(publication => {
-	//publication.versions = (dummyVersionData[i]._id);
     publication.authors = (generateRandom(dummyUserData, 1, dummyUserData.length).map(y => y._id));
     
     var entries = generateRandom(dummyEntriesData, 1, dummyEntriesData.length);
