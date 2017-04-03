@@ -147,6 +147,15 @@ router.get('/updateCompensation/:assignee/:amount/:date/:id', function(req, res)
   });
 });
 
+router.get('/deleteCompensation/:id', function(req, res){
+  var params = req.params;
+  compensationServer.deleteCompensation(params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allBudget', function(req, res){
   budgetServer.displayBudgetDB().then(function(result){
     res.send(result);
@@ -159,6 +168,16 @@ router.get('/allBudget', function(req, res){
 router.get('/addBudget/:name/:amount/:category', function(req, res){
   var params = req.params;
   budgetServer.addBudget(params.name, params.amount, params.category).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+
+router.get('/deleteBudget/:id', function(req, res){
+  var params = req.params;
+  budgetServer.deleteBudget(params.id).then(function(result){
     res.send(result);
   }, function(err){
     res.sendStatus(500);

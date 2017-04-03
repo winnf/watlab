@@ -88,8 +88,6 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
             editNotice(row);
         },
         garbage: function(row, i, event){
-          console.log(row);
-          debugger;
           $http({
             method: 'GET',
             url: '/psr/deleteNotice/' + row.hiddenData.id

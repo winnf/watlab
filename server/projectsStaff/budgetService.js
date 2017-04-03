@@ -34,5 +34,18 @@ Server.prototype.addBudget = function(name, amount, category){
   return deferred.promise;
 };
 
+Server.prototype.deleteBudget = function(id){
+  var deferred = Q.defer();
+  Budget.find({_id: id}).remove(function(err, instance){
+    if(err){
+      deferred.reject(err);
+    }
+    else {
+      deferred.resolve(instance);
+    }
+  });
+};
+
+
 
 module.exports = new Server();
