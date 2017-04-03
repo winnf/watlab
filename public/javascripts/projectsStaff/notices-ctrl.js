@@ -98,7 +98,7 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
   }).then(function successCallback(response){
     var notices = response.data;
     for(var i = 0; i < Object.keys(notices).length; i++){
-      $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description, "garbage": true, hiddenData: {"id": notices[i]._id}}});
+      $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description, "garbage": true}, hiddenData: {"id": notices[i]._id}});
     }
   }, function errorCallback(response){
     console.log(response);
