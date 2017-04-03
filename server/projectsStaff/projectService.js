@@ -36,4 +36,24 @@ Server.prototype.addProject = function(name, assignees, description){
   return deferred.promise;
 };
 
+Server.prototype.updateProject = function(name, assignees, description, id){
+  var deferred = Q.defer();
+  var query = {'_id': id};
+  var update = {
+    name: name,
+    assignees: assignees,
+    description: description
+  };
+
+  Project.findOneAndUpdate(query, update, function(err, instance){
+    if(err){
+      deferred.reject(err);
+    }
+    else{
+      deferred.resolve(instance);
+    }
+  });
+  return deferred.promise;
+};
+
 module.exports = new Server();

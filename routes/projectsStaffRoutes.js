@@ -111,6 +111,15 @@ router.get('/addProject/:name/:assignees/:description', function(req, res){
   });
 });
 
+router.get('/updateProject/:name/:assignees/:description/:id', function(req, res){
+  var params = req.params;
+  projectServer.updateProject(params.name, params.assignees, params.description, params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allCompensation', function(req, res){
   compensationServer.displayCompensationDB().then(function(result){
     res.send(result);

@@ -64,7 +64,7 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
         }
       $http({
         method: 'GET',
-        url: '/psr/addProject/' + project.viewableData.name + '/' + project.viewableData.assignees + '/' + project.viewableData.description
+        url: '/psr/updateProject/' + project.viewableData.name + '/' + project.viewableData.assignees + '/' + project.viewableData.description + '/' + project.hiddenData.id
       }).then(function successCallback(response){
       }, function errorCallback(response){
         console.log(response);
