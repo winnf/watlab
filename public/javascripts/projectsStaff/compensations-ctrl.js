@@ -64,7 +64,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
         }
       $http({
         method: 'GET',
-        url: '/psr/addCompensation/' + compensation.viewableData.assignee + '/' + compensation.viewableData.amount + '/' + compensation.viewableData.dateAssigned
+        url: '/psr/updateCompensation/' + compensation.viewableData.assignee + '/' + compensation.viewableData.amount + '/' + compensation.viewableData.dateAssigned + '/' + compensation.hiddenData.id
       }).then(function successCallback(response){
       }, function errorCallback(response){
         console.log(response);

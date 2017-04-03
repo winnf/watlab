@@ -138,6 +138,15 @@ router.get('/addCompensation/:assignee/:amount/:date', function(req, res){
   });
 });
 
+router.get('/updateCompensation/:assignee/:amount/:date/:id', function(req, res){
+  var params = req.params;
+  compensationServer.updateCompensation(params.assignee, params.amount, params.date, params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allBudget', function(req, res){
   budgetServer.displayBudgetDB().then(function(result){
     res.send(result);
