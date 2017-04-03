@@ -55,18 +55,11 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         });
 
         modalInstance.result.then(function(task){
-            if (row.viewableData.task != task.viewableData.task){
-                row.viewableData.task = task.viewableData.task;
-            }
-            if (row.viewableData.assignees != task.viewableData.assignees){
-                row.viewableData.assignees = task.viewableData.assignees;
-            }
-            if (row.viewableData.description != task.viewableData.description){
-                row.viewableData.description = task.viewableData.description;
-            }
-            if (row.viewableData.dueDate.date != task.viewableData.dueDate.date){
-                row.viewableData.dueDate.date = task.viewableData.dueDate.date;
-            }
+
+        row.viewableData.task = task.viewableData.task;
+        row.viewableData.assignees = task.viewableData.assignees;
+        row.viewableData.description = task.viewableData.description;
+        row.viewableData.dueDate.date = task.viewableData.dueDate.date;
 
           $http({
             method: 'GET',
@@ -146,10 +139,11 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
 		options: {},
 	};
 
-    items.viewableData.dueDate = _.clone(genericDateObj);
+    // items.viewableData.dueDate = _.clone(genericDateObj);
 
     $scope.taskName = items.viewableData.task;
     $scope.dueDate = items.viewableData.dueDate;
+    $scope.dueDate = _.clone(genericDateObj);
     $scope.taskDescription = items.viewableData.description;
     $scope.taskAssignees = items.viewableData.assignees;
     $scope.taskId = items.viewableData.hiddenData.id;
