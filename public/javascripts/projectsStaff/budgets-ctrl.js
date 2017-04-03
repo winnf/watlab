@@ -26,7 +26,7 @@ app.controller('BudgetsCtrl', function($scope, $location, $uibModal, $timeout, $
     modalInstance.result.then(function(budget){
       $http({
         method: 'GET',
-        url: '/psr/addBudget/' + budget.viewableData.assignee + '/' + budget.viewableData.amount + '/' + budget.viewableData.category
+        url: '/psr/addBudget/' + budget.viewableData.name + '/' + budget.viewableData.amount + '/' + budget.viewableData.category
       }).then(function successCallback(response){
       }, function errorCallback(response){
         console.log(response);
@@ -58,9 +58,9 @@ app.controller('BudgetsCtrl', function($scope, $location, $uibModal, $timeout, $
         url: '/psr/allBudget'
       }).then(function successCallback(response){
         var budgets = response.data;
-        console.log('budgets' + budgets);
         for(var i = 0; i < Object.keys(budgets).length; i++){
-          $scope.rows.push({viewableData: {"assignee": budgets[i].assignee, "amount": budgets[i].amount, "category": budgets[i].category, "garbage": true}, hiddenData: {"id": budgets[i]._id}});
+          console.log(budgets[i]);
+          $scope.rows.push({viewableData: {"name": budgets[i].name, "amount": budgets[i].amount, "category": budgets[i].category, "garbage": true}, hiddenData: {"id": budgets[i]._id}});
         }
       }, function errorCallback(response){
         console.log(response);
@@ -72,11 +72,11 @@ app.controller('AddBudgetModalCtrl', function($scope, $uibModalInstance){
 	$scope.addBudget = function() {
 		$uibModalInstance.close({
 			viewableData: {
-				"assignee": $scope.assignee,
+				"name": $scope.name,
                 "amount": $scope.amount,
                 "category": $scope.category,
                 "garbage": true
-			}, hiddenData: {"id": 'budget-0A'} });
+			}, hiddenData: {"id": "budget-01"} });
 	};
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
