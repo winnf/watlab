@@ -14,7 +14,7 @@ PublicationService.prototype.createPublication = function (pubName) {
         if (err) {
             deferred.reject({err: err});
         } else {
-            console.log(pubInstance);
+            //console.log(pubInstance);
             deferred.resolve(pubInstance);
         }
     });
@@ -25,7 +25,7 @@ PublicationService.prototype.createPublication = function (pubName) {
 PublicationService.prototype.displayDB = function () {
     var deferred = Q.defer();
     
-    Publication.find({}).populate('versions').exec(function (err, pubs) {
+    Publication.find().populate('authors versions').exec( function (err, pubs) {
         if (err) {
             deferred.reject(err);
         } else {
@@ -65,7 +65,7 @@ PublicationService.prototype.editPublication = function (pubName, authors, date,
                 if (err) {
                     deferred.reject({err: err});
                 } else {
-                    console.log(pubInstance);
+                    //console.log(pubInstance);
                     deferred.resolve(pubInstance);
                 }
             });
