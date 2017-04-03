@@ -27,13 +27,40 @@ app.config(function($routeProvider, $locationProvider) {
   });
 });
 
-app.controller('TestCtrl', function(CommonDataService) {
+app.controller('TestCtrl', function(CommonDataService, $location) {
+  var noticeActive = false;
+  var taskActive = false;
+  var projectActive = false;
+  var compenActive = false;
+  var budgetActive = false;
+
+  switch($location.path()){
+    case '/psr/notices':
+      noticeActive = true;
+      break;
+    case '/psr/tasks':
+      taskActive = true;
+      break;
+    case '/psr/projects':
+      projectActive = true;
+      break;
+    case '/psr/compensation':
+      compenActive = true;
+      break;
+    case '/psr/budget':
+      budgetActive = true;
+      break;
+    default:
+      noticeActive = true;
+      break;
+  }
+
 	CommonDataService.setNavBarOptions([
-    {text:"Notices",url:"/psr/notices",isActive: true},
-    {text:"Tasks",url:"/psr/tasks",isActive: false},
-    {text:"Projects",url:"/psr/projects",isActive: false},
-    {text:"Compensation",url:"/psr/compensation",isActive: false},
-    {text:"Budget",url:"/psr/budget",isActive: false}
+    {text:"Notices",url:"/psr/notices",isActive: noticeActive},
+    {text:"Tasks",url:"/psr/tasks",isActive: taskActive},
+    {text:"Projects",url:"/psr/projects",isActive: projectActive},
+    {text:"Compensation",url:"/psr/compensation",isActive: compenActive},
+    {text:"Budget",url:"/psr/budget",isActive: budgetActive}
   ]);
 	CommonDataService.setLoggedIn(true);
 });
