@@ -120,9 +120,9 @@ router.get('/allBudget', function(req, res){
   });
 });
 
-router.get('/addBudget/:assignee/:amount/:category', function(req, res){
+router.get('/addBudget/:name/:amount/:category', function(req, res){
   var params = req.params;
-  budgetServer.addBudget(params.assignee, params.amount, params.category).then(function(result){
+  budgetServer.addBudget(params.name, params.amount, params.category).then(function(result){
     res.send(result);
   }, function(err){
     res.sendStatus(500);

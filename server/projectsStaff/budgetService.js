@@ -15,10 +15,10 @@ Server.prototype.displayBudgetDB = function() {
   return deferred.promise;
 };
 
-Server.prototype.addBudget = function(assignee, amount, category){
+Server.prototype.addBudget = function(name, amount, category){
   var deferred = Q.defer();
   var budget = new Budget({
-    assignee: assignee,
+    name: name,
     amount: amount,
     category: category
   });
