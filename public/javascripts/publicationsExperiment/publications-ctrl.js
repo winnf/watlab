@@ -16,10 +16,12 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
                 newPub = [];
             for (var object in response.data) {
                 var authorNames = response.data[object].authors.map(x => x.name).join(', ');
+                var versions = response.data[object].versions;
+                var modifiedDate = versions[versions.length - 1].submittedDate;
                 newPub = [{viewableData: {
                     "pubName": response.data[object].pubName,
                     "authors": authorNames,
-                    "date": "April 3, 2017",
+                    "date": modifiedDate,
                     "status": response.data[object].status
                 }, hiddenData: {id: response.data[object]._id
                 }}];

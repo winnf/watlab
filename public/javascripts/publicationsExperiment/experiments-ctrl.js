@@ -66,7 +66,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 				//assigneduserids: experiment.viewableData.assignees,
 				status: experiment.viewableData.status
 			}
-			console.log(newExp);
+			//console.log(newExp);
 			$http.post('/per/createExperiment', newExp).then(function successCallback(response) {
     			// this callback will be called asynchronously
     			// when the response is available

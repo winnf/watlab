@@ -83,7 +83,7 @@ var dummyVersionData = [
 	{_id: new ObjectID(), order: 0, verName: "ROI Estimation - v1", submittedDate: "Feb 1, 1974", versionFilePath: ''},
 	{_id: new ObjectID(), order: 0, verName: "Image Segmentation - v1", submittedDate: "Jun 1, 1964", versionFilePath: ''},
 	{_id: new ObjectID(), order: 0, verName: "Learning Opposites with Evolving - v1", submittedDate: "Dec 1, 1974", versionFilePath: ''},
-	{_id: new ObjectID(), order: 0, verName: "Validation of Atlas-Based - v1", submittedDate: "Feb 1, 1995", versionFilePath: ''}
+	{_id: new ObjectID(), order: 0, verName: "Validation of Atlas-Based - v1", submittedDate: "Apr 1, 2017", versionFilePath: ''}
 ];
 
 var dummyPublicationData = [
