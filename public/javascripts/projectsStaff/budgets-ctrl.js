@@ -58,7 +58,7 @@ app.controller('BudgetsCtrl', function($scope, $location, $uibModal, $timeout, $
 	};
 
   $scope.rows = [
-    {viewableData: {"name": "rando","amount": "4118", "category": "idk", "garbage": true}}
+    {viewableData: {"name": "Lab Equipment","amount": "$2100", "category": "Equipment", "garbage": true}}
   ];
       $http({
         method: 'GET',

@@ -93,7 +93,7 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
 	};
 
   $scope.rows = [
-    {viewableData: {"assignee": "rando","amount": "4118", "dateAssigned": "Apr 01, 2017", "garbage": true}, hiddenData: { "id": 'blah'}}
+    {viewableData: {"assignee": "Julie Mongo","amount": "$3000", "dateAssigned": "Apr 01, 2017", "garbage": true}, hiddenData: { "id": 'blah'}}
   ];
 
   $http({

@@ -77,7 +77,7 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
 	};
 
       $scope.rows = [
-        {viewableData: {"title": "CRY","dueDate":"Apr 1, 2017","description":"just keep crying until you're done", "assignees":"[Bob, William, Ray]", "garbage": true}, hiddenData: {"id": 'notice-1'}}
+        {viewableData: {"title": "Lab equipment needs to be cleaned!","dueDate":"Apr 1, 2017","description":"Test tubes, floor, dishes", "assignees":"Bob, William, Ray", "garbage": true}, hiddenData: {"id": 'notice-1'}}
       ];
 
 	$scope.clickHandlerMap = {
