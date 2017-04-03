@@ -3,7 +3,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES, ngToast, $timeout, $http) {
+app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams, $uibModal, CELLTYPES, ngToast, $timeout, $http) {
 	var experimentId = $routeParams.experimentId;
 
 	// Dummy http request for now
@@ -19,7 +19,11 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 
 		var entries = data.entryIds;
 		var entryRows = entries.map(x => {
-			return {viewableData: {fileName: x.name, description: x.description, date: x.date, owner: x.owner.name, format: x.format, archive: true, download: true}} 
+			return {viewableData: {
+				fileName: x.name, description: x.description, 
+				date: x.date, owner: x.owner.name, format: x.format, archive: true, download: true
+				},
+				hiddenData: {id: x._id, mimetype: x.mimetype, filePath: x.filePath} }; 
 		});
 		$scope.table[0].rows = entryRows;
 	}, function() {
@@ -92,11 +96,12 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 		}
 	];
 
-	function downloadURI(uri, name) {
+	function downloadURL(url, fileName) {
         var link = document.createElement("a");
-        link.download = name;
-        link.href = uri;
+        link.download = fileName;
+        link.href = url;
         link.click();
+        window.URL.revokeObjectURL(url);
 	}
 
 	var uploadData = function () {
@@ -133,7 +138,18 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 			$('#abstract-table').DataTable().row(tr).remove().draw();
 		},
 		download: function (row) {
-			downloadURI('', row.viewableData['file-name'].split(' ').join('-').toLowerCase() + row.viewableData.format);
+			var entryId = row.hiddenData.id;
+			var mimetype = row.hiddenData.mimetype;
+			var filePath = row.hiddenData.filePath;
+			var fileName = filePath.slice(filePath.indexOf('$') + 1);
+			$window.open('/per/downloadFile/' + entryId);
+			// var fileName = row.viewableData.fileName + row.viewableData.format;
+			// $http.get('/per/downloadFile/' + entryId).then(function(result){
+				// var blob = new Blob([result.data], {type: "octet/stream"});
+				// var url = window.URL.createObjectURL(blob);
+				// downloadURL(url, fileName);
+			// });
+			// downloadURI('', row.viewableData['file-name'].split(' ').join('-').toLowerCase() + row.viewableData.format);
 		},
 		tabChange: function (index) {
 			var table = $scope.table[index];
