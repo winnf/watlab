@@ -6,12 +6,13 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
   $scope.title = 'Projects';
   //$scope.description = ''
   $scope.buttonText = 'Add Project';
-  $scope.rowHeaders = ['Project Name','Description','Assignees'];
+  $scope.rowHeaders = ['Project Name','Description','Assignees','Delete'];
 
   $scope.cellTypes = {
     name: CELLTYPES.CLICKABLE,
     description: CELLTYPES.PLAIN,
-    assignees: CELLTYPES.PLAIN
+    assignees: CELLTYPES.PLAIN,
+    garbage: CELLTYPES.DELETE
   };
 
     var addProject = function() {
@@ -78,11 +79,14 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
 		},
         name: function(row){
             editProject(row);
+        },
+        garbage: function(i, row, event){
+          var tr = $(event.target).closest('tr').remove();
         }
 	};
 
   $scope.rows = [
-    {viewableData: {"name": "finish this goddamn project smh", "description": "Bah","assignees":"Igor", hiddenData: {"id": 'project-0A'}}}
+    {viewableData: {"name": "Finish this project", "description": "#TeamNoSleep","assignees":"Joe Smith", "garbage": true, hiddenData: {"id": 'project-0A'}}}
   ];
 
   $http({
@@ -91,7 +95,7 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
   }).then(function successCallback(response){
     var projects = response.data;
     for(var i = 0; i < Object.keys(projects).length; i++){
-      $scope.rows.push({viewableData: {"name": projects[i].name, "description": projects[i].description, "assignees": projects[i].assignees, hiddenData: {"id": projects[i]._id}}});
+      $scope.rows.push({viewableData: {"name": projects[i].name, "description": projects[i].description, "assignees": projects[i].assignees, "garbage": true, hiddenData: {"id": projects[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -106,7 +110,7 @@ app.controller('AddProjectModalCtrl', function($scope, $uibModalInstance){
 				"name": $scope.projectName,
                 "description": $scope.description,
 				"assignees": $scope.assignees
-			}, hiddenData: {"id": 'project-0A'} });
+			}, hiddenData: {"id": $scope._id} });
 	};
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
