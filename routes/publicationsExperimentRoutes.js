@@ -23,11 +23,9 @@ router.get(['/', '/experiments', '/publications', '/experiment/:experimentId'], 
 });
 
 router.post('/createExperiment', function (req, res) {
-	console.log('ssssd' , req.body);
 	ExperimentService.createExperiment(req.body).then(
 		function(result){
 		var experimentInstance = result.expInstance;
-		//console.log(result);
 		res.send(result);
 	}
 	, function(err){
