@@ -5,6 +5,7 @@ var taskServer = require('../server/projectsStaff/taskService');
 var noticeServer = require('../server/projectsStaff/noticeService');
 var projectServer = require('../server/projectsStaff/projectService');
 var compensationServer = require('../server/projectsStaff/compensationService');
+var budgetServer = require('../server/projectsStaff/budgetService');
 
 /*
 	Routes for the manage lab projects and lab staff group
@@ -41,6 +42,15 @@ router.get('/addTask/:name/:date/:assignees/:description',function(req, res){
 router.get('/updateTask/:name/:date/:assignees/:description/:id', function(req, res){
   var params = req.params;
   taskServer.updateTask(params.name, params.date, params.assignees, params.description, params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+router.get('/deleteTask/:id', function(req, res){
+  var params = req.params;
+  taskServer.deleteTask(params.id).then(function(result){
     res.send(result);
   }, function(err){
     res.sendStatus(500);
@@ -95,6 +105,24 @@ router.get('/allCompensation', function(req, res){
 router.get('/addCompensation/:assignee/:amount/:date', function(req, res){
   var params = req.params;
   compensationServer.addCompensation(params.assignee, params.amount, params.date).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+router.get('/allBudget', function(req, res){
+  budgetServer.displayBudgetDB().then(function(result){
+    res.send(result);
+  }, function(err){
+    var err= error.err;
+    res.sendStatus(500);
+  });
+});
+
+router.get('/addBudget/:assignee/:amount/:category', function(req, res){
+  var params = req.params;
+  budgetServer.addBudget(params.assignee, params.amount, params.category).then(function(result){
     res.send(result);
   }, function(err){
     res.sendStatus(500);
