@@ -19,7 +19,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 
 		var entries = data.entryIds;
 		var entryRows = entries.map(x => {
-			return {viewableData: {fileName: x.name, description: x.description, date: x.date, owner: x.ownerId.name, format: x.format, archive: true, download: true}} 
+			return {viewableData: {fileName: x.name, description: x.description, date: x.date, owner: x.owner.name, format: x.format, archive: true, download: true}} 
 		});
 		$scope.table[0].rows = entryRows;
 	}, function() {
@@ -111,7 +111,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
         	$scope.showToast = true;
 	    	$timeout(function(){ 
 	    		if(typeof result.err === 'undefined') {
-		    		ngToast.create('Success uploading ' + files.join(', ')); 
+		    		ngToast.create('Success uploading ' + result.map(x=>x.name).join(', ')); 
 	    		} else {
 	    			ngToast.create({className: 'danger', content: 'Error uploading data'}); 
 	    		}

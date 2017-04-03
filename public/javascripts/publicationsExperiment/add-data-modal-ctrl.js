@@ -1,7 +1,9 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window, $http) {
+app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window, $http, $routeParams) {
+	var experimentId = $routeParams.experimentId;
+
 	$scope.currentPage = 0;
 
     $window.fd.logging = false;
@@ -29,6 +31,8 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 		var files = $scope.files;
 		var formData = new FormData();
 
+		formData.append('owner', $window.localStorage.getItem('userId'));
+		formData.append('experimentId', experimentId);
 		formData.append('fileName', $scope.fileName);
 		formData.append('format', $scope.format);
 		formData.append('description', $scope.description);
