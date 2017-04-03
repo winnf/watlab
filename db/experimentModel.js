@@ -18,4 +18,8 @@ ExperimentSchema.methods.editExperiment = function(obj){
     }
 };
 
+ExperimentSchema.methods.addEntry = function(entryId){
+    this.entryIds.push(entryId);
+};
+
 module.exports = mongoose.model('Experiment', ExperimentSchema);

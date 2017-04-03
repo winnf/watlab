@@ -9,7 +9,31 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
 	$scope.buttonText = 'Add Publication';
 	$scope.description = 'Click on publication to ...';
 	$scope.rowHeaders = ['Publication', 'Authors', 'Date', 'Status'];
-
+    $(document).ready(function () {
+        $http.get('/per/allPublications').then(function successCallback(response) {
+            console.log(response.data);
+            var newRows = [],
+                newPub = [];
+            for (var object in response.data) {
+                var authorNames = response.data[object].authors.map(x => x.name).join(', ');
+                var versions = response.data[object].versions;
+                var modifiedDate = versions[versions.length - 1].submittedDate;
+                newPub = [{viewableData: {
+                    "pubName": response.data[object].pubName,
+                    "authors": authorNames,
+                    "date": modifiedDate,
+                    "status": response.data[object].status
+                }, hiddenData: {id: response.data[object]._id
+                }}];
+                
+                newRows.push(newPub[0]);
+            }
+            $scope.rows = newRows;
+        },
+                                               function errorCallback(response) {
+            
+        });
+    });
 	$scope.cellTypes = {
 		pubName: CELLTYPES.CLICKABLE,
         authors: CELLTYPES.CLICKABLE,
@@ -40,15 +64,28 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
                 $('#abstract-table').DataTable().row.add(addedPublication[0]);
             });
         });
-    };
+    },
     
-	$scope.clickHandlerMap = {
+	    editPublication = function () {
+            console.log("editPublication");
+            var modalInstance = $uibModal.open({
+                backdrop: 'static',
+                templateUrl: '/per/view/modal-edit-publication.ejs',
+                controller: 'EditPublicationModalCtrl',
+                appendTo: $('body') // In future, want to modify existing
+            });
+        };
+    $scope.clickHandlerMap = {
 		button: function () {
             createPublication();
 		},
 		name: function (row) {
 			$location.url('/per/publication/' + row.hiddenData.id);
-		}
+		},
+        row: function () {
+            editPublication();
+            console.log("edit Publication");
+        }
 	};
 	
 	$scope.statusMap = {
@@ -70,15 +107,6 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
 });
 
 app.controller('CreatePublicationModalCtrl', function ($scope, $uibModalInstance) {
-	var genericDateObj = {
-		date: new Date(),
-		isOpen: false,
-		placement: 'bottom-right',
-		format: 'MMM dd, yyyy',
-		altInputFormats: ['MMM dd, yyyy'],
-		options: {}
-	};
-
 	$scope.createPublication = function () {
 		$uibModalInstance.close({
 			viewableData: {
@@ -91,6 +119,21 @@ app.controller('CreatePublicationModalCtrl', function ($scope, $uibModalInstance
         });
 	};
 	$scope.closeModal = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+app.controller('EditPublicationModalCtrl', function ($scope, $uibModalInstance) {
+    $scope.editPublication = function () {
+        $uibModalInstance.close({
+            viewableData: {
+                "pubName": $scope.publicationName,
+                "authors": $scope.publicationAuthors
+            },
+            hiddenData: {"id": 'publication-id_123'}
+        });
+    };
+    $scope.closeModal = function () {
         $uibModalInstance.dismiss('cancel');
     };
 });

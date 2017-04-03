@@ -38,4 +38,38 @@ Server.prototype.addTask = function(name, date, assignees, description){
   return deferred.promise;
 };
 
+Server.prototype.updateTask = function(name, date, assignees, description, id){
+  var deferred = Q.defer();
+  var query = {'_id': id};
+  var update = {
+    name: name,
+    dueDate: date,
+    assignees: assignees,
+    description: description
+  };
+
+  Task.findOneAndUpdate(query, update, function(err, taskInstance){
+    if(err){
+      deferred.reject(err);
+    }
+    else{
+      console.log(taskInstance);
+      deferred.resolve(taskInstance);
+    }
+  });
+  return deferred.promise;
+};
+
+Server.prototype.deleteTask = function(id){
+  var deferred = Q.defer();
+  Task.find({_id: id}).remove(function(err, task){
+    if(err){
+      deferred.reject(err);
+    }
+    else{
+      deferred.resolve(task);
+    }
+  });
+}
+
 module.exports = new Server();

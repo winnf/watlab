@@ -3,7 +3,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES, ngToast, $timeout) {
+app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibModal, CELLTYPES, ngToast, $timeout, $http) {
 	var experimentId = $routeParams.experimentId;
 
 	// Dummy http request for now
@@ -13,12 +13,24 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 	$scope.tabs = ['Data', 'Labbook', 'Protocols', 'Literature & Papers Reference'];
 
 	$scope.title = getNameFromId(experimentId);
-	
+	$http.get('/per/getExperimentData/' + experimentId).then(function(result){
+		var data = result.data;
+		$scope.title = data.name;
+
+		var entries = data.entryIds;
+		var entryRows = entries.map(x => {
+			return {viewableData: {fileName: x.name, description: x.description, date: x.date, owner: x.owner.name, format: x.format, archive: true, download: true}} 
+		});
+		$scope.table[0].rows = entryRows;
+	}, function() {
+
+	});
+
 	$scope.table = [
 		{
 			rowHeaders: ['File Name', 'Description', 'Date', 'Owner', 'Format', 'Download', 'Archive'],
 			cellTypes: {
-				'file-name': CELLTYPES.PLAIN,
+				fileName: CELLTYPES.PLAIN,
 				description: CELLTYPES.PLAIN,
 				date: CELLTYPES.DATE,
 				owner: CELLTYPES.PLAIN,
@@ -26,14 +38,14 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
 				download: CELLTYPES.DOWNLOAD,
 				archive: CELLTYPES.DELETE
 			},
-			rows: [
-				{viewableData: {"file-name": "Cell Sample Data", "description": "Collection of blood, saliva, and buccal cell samples in a pilot study on the Danish nurse cohort: comparison of the response rate and quality of genomic DNA.", "date": "Jan 1, 1928", "owner": "William Smith", "format": ".csv", "download": true, "archive": true}, hiddenData: {"url": "experiment-0A"} },
-				{viewableData: {"file-name": "Microwave Data", "description": "We present a full-sky 100 μm map that is a reprocessed composite of the COBE/DIRBE and IRAS/ISSA maps, with the zodiacal foreground and confirmed point sources removed. Before using the ISSA maps, we remove the remaining artifacts", "date": "Jan 1, 1952", "owner": "John Smith", "format": ".py", "download": true, "archive": true}, hiddenData: {"url": "experiment-0B"} },
-				{viewableData: {"file-name": "Radiation Data", "description": "The phenomenon of growth, decline and death—aging—has been the source of considerable speculation. This cycle seems to be a more or less direct function of the metabolic rate and this in turn depends on the species (animal or plant)", "date": "Jan 1, 1964", "owner": "John Bob", "format": ".mat", "download": true, "archive": true}, hiddenData: {"url": "experiment-3"} },
-				{viewableData: {"file-name": "Bird Calls", "description": "Automatic identification of bird calls without manual intervention has been a challenging task for meaningful research on the taxonomy and monitoring of bird migrations in ornithology", "date": "Jan 1, 1964", "owner": "Bob John", "format": ".mp3", "download": true, "archive": true}, hiddenData: {"url": "experiment-4"} },
-				{viewableData: {"file-name": "Seisometer", "description": "A tomographic image of the upper mantle beneath central Tibet from INDEPTH data has revealed a subvertical high-velocity zone from∼ 100-to∼ 400-kilometers depth, located approximately south of the Bangong-Nujiang Suture", "date": "Jan 1, 1995", "owner": "Smith William", "format": ".jpeg", "download": true, "archive": true}, hiddenData: {"url": "experiment-5"} },
-				{viewableData: {"file-name": "Lochness Monster Sighting", "description": "Recent publicity concerning new claims for the existence of the Loch Ness monster has focused on the evidence offered by Sir Peter Scott and Robert Rines.", "date": "Jan 1, 1974", "owner": "Bob Smith", "format": ".mp4", "download": true, "archive": true}, hiddenData: {"url": "experiment-6"} }
-			]
+			// rows: [
+			// 	{viewableData: {"file-name": "Cell Sample Data", "description": "Collection of blood, saliva, and buccal cell samples in a pilot study on the Danish nurse cohort: comparison of the response rate and quality of genomic DNA.", "date": "Jan 1, 1928", "owner": "William Smith", "format": ".csv", "download": true, "archive": true}, hiddenData: {"url": "experiment-0A"} },
+			// 	{viewableData: {"file-name": "Microwave Data", "description": "We present a full-sky 100 μm map that is a reprocessed composite of the COBE/DIRBE and IRAS/ISSA maps, with the zodiacal foreground and confirmed point sources removed. Before using the ISSA maps, we remove the remaining artifacts", "date": "Jan 1, 1952", "owner": "John Smith", "format": ".py", "download": true, "archive": true}, hiddenData: {"url": "experiment-0B"} },
+			// 	{viewableData: {"file-name": "Radiation Data", "description": "The phenomenon of growth, decline and death—aging—has been the source of considerable speculation. This cycle seems to be a more or less direct function of the metabolic rate and this in turn depends on the species (animal or plant)", "date": "Jan 1, 1964", "owner": "John Bob", "format": ".mat", "download": true, "archive": true}, hiddenData: {"url": "experiment-3"} },
+			// 	{viewableData: {"file-name": "Bird Calls", "description": "Automatic identification of bird calls without manual intervention has been a challenging task for meaningful research on the taxonomy and monitoring of bird migrations in ornithology", "date": "Jan 1, 1964", "owner": "Bob John", "format": ".mp3", "download": true, "archive": true}, hiddenData: {"url": "experiment-4"} },
+			// 	{viewableData: {"file-name": "Seisometer", "description": "A tomographic image of the upper mantle beneath central Tibet from INDEPTH data has revealed a subvertical high-velocity zone from∼ 100-to∼ 400-kilometers depth, located approximately south of the Bangong-Nujiang Suture", "date": "Jan 1, 1995", "owner": "Smith William", "format": ".jpeg", "download": true, "archive": true}, hiddenData: {"url": "experiment-5"} },
+			// 	{viewableData: {"file-name": "Lochness Monster Sighting", "description": "Recent publicity concerning new claims for the existence of the Loch Ness monster has focused on the evidence offered by Sir Peter Scott and Robert Rines.", "date": "Jan 1, 1974", "owner": "Bob Smith", "format": ".mp4", "download": true, "archive": true}, hiddenData: {"url": "experiment-6"} }
+			// ]
 		},
 		{
 			rowHeaders: ['File Name', 'Status'],
@@ -99,7 +111,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $routeParams, $uibMod
         	$scope.showToast = true;
 	    	$timeout(function(){ 
 	    		if(typeof result.err === 'undefined') {
-		    		ngToast.create('Success uploading ' + files.join(', ')); 
+		    		ngToast.create('Success uploading ' + result.map(x=>x.name).join(', ')); 
 	    		} else {
 	    			ngToast.create({className: 'danger', content: 'Error uploading data'}); 
 	    		}

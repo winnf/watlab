@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Edit Compensation</h4>
+  <h4 class="modal-title">Add Compensation</h4>
   <button type="button" class="close" aria-label="Close" ng-click="closeModal()" style="margin-top: -25px;">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -18,7 +18,7 @@
 	 	<div class="input-group" style="width: 45%;">
 			<input type="text" class="form-control"
 					popup-placement="{{dateAssigned.placement}}" is-open="dueDate.isOpen" datepicker-options="dueDate.options"
-					uib-datepicker-popup="{{dateAsssigned.format}}" ng-model="dateAssigned" show-button-bar="false"
+					uib-datepicker-popup="{{dateAsssigned.format}}" ng-model="dateAssigned.date" show-button-bar="false"
 					alt-input-formats="dueDate.format" />
 			<span class="input-group-btn">
 	      <button type="button" class="btn btn-default" ng-click="dueDate.isOpen = !dueDate.isOpen"><i class="glyphicon glyphicon-calendar"></i></button>
