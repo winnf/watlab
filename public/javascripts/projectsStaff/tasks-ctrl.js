@@ -88,8 +88,6 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         }
 	};
 
-
-
   $http({
     method: 'GET',
     url: '/psr/allTask'
