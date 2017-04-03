@@ -14,7 +14,6 @@ PublicationService.prototype.createPublication = function (pubName) {
         if (err) {
             deferred.reject({err: err});
         } else {
-            //console.log(pubInstance);
             deferred.resolve(pubInstance);
         }
     });

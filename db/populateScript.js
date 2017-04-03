@@ -61,19 +61,19 @@ var dummyEntriesData = [
 ];
 
 var dummyExperimentData = [
-	{name: "Correlated diffusion imaging (CDI) for cancer imaging", startDate: "Jan 1, 1928", dueDate: "Feb 1, 1928", ownerId: "", assigneeIds: [], status: "In Progress",
+	{name: "Correlated diffusion imaging (CDI) for cancer imaging", startDate: "Jan 1, 1928", dueDate: "Feb 1, 1928", ownerId: "", assigneeIds: [],
 		protocolIds: [], equipmentIds: [], entryIds: []},
-	{name: "Evolutionary deep intelligence for operational deep intelligence", startDate: "Jan 1, 1952", dueDate: "Nov 1, 1952", ownerId: "", assigneeIds: [], status: "Complete",
+	{name: "Evolutionary deep intelligence for operational deep intelligence", startDate: "Jan 1, 1952", dueDate: "Nov 1, 1952", ownerId: "", assigneeIds: [],
 		protocolIds: [], equipmentIds: [], entryIds: []},
-	{name: "Musculoskeletal kinematic analysis using video fluoroscopy", startDate: "Jan 1, 1964", dueDate: "Apr 1, 1964", ownerId: "", assigneeIds: [], status: "Approaching Deadline",
+	{name: "Musculoskeletal kinematic analysis using video fluoroscopy", startDate: "Jan 1, 1964", dueDate: "Apr 1, 1964", ownerId: "", assigneeIds: [],
 		protocolIds: [], equipmentIds: [], entryIds: []},
-	{name: "Ocular morphological analysis", startDate: "Jan 1, 1964", dueDate: "Jun 1, 1964", ownerId: "", assigneeIds: [], status: "Overdue",
+	{name: "Ocular morphological analysis", startDate: "Jan 1, 1964", dueDate: "Jun 1, 1964", ownerId: "", assigneeIds: [],
 		protocolIds: [], equipmentIds: [], entryIds: []},
-	{name: "Sea ice analysis using synthetic aperture radar ", startDate: "Jul 1, 1995", dueDate: "Feb 1, 1995", ownerId: "", assigneeIds: [], status: "In Progress",
+	{name: "Sea ice analysis using synthetic aperture radar ", startDate: "Jul 1, 1995", dueDate: "Feb 1, 1995", ownerId: "", assigneeIds: [],
 		protocolIds: [], equipmentIds: [], entryIds: []},
-	{name: "Image and video noise reduction and artifact reduction", startDate: "Feb 1, 1974", dueDate: "Jan 1, 1974", ownerId: "", assigneeIds: [], status: "Complete",
+	{name: "Image and video noise reduction and artifact reduction", startDate: "Feb 1, 1974", dueDate: "Jan 1, 1974", ownerId: "", assigneeIds: [],
 		protocolIds: [], equipmentIds: [], entryIds: []},
-	{name: "Spectral demultiplexed imaging (SDI) for single-shot", startDate: "Jun 1, 1974", dueDate: "Dec 1, 1974", ownerId: "", assigneeIds: [], status: "Approaching Deadline",
+	{name: "Spectral demultiplexed imaging (SDI) for single-shot", startDate: "Jun 1, 1974", dueDate: "Dec 1, 1974", ownerId: "", assigneeIds: [],
 		protocolIds: [], equipmentIds: [], entryIds: []}
 ];
 
@@ -89,14 +89,14 @@ var dummyVersionData = [
 ];
 
 var dummyPublicationData = [
-	{pubName: "Correlated diffusion imaging (CDI) for cancer imaging", experimentIds: [], authors: [], versions: [], status: "In Progress"},
-	{pubName: "Deep De-Noising Autoencoders", experimentIds: [], authors: [], versions: [], status: "In Progress"},
-	{pubName: "Convolutional Nets and Radon Transform", experimentIds: [], authors: [], versions: [], status: "Complete"},
-	{pubName: "Evolutionary Projection Selection", experimentIds: [], authors: [], versions: [], status: "Approaching Deadline"},
-	{pubName: "ROI Estimation in Ultrasound Images", experimentIds: [], authors: [], versions: [], status: "Overdue"},
-	{pubName: "Image Segmentation with Self-Configuration", experimentIds: [], authors: [], versions: [], status: "In Progress"},
-	{pubName: "Learning Opposites with Evolving Rules", experimentIds: [], authors: [], versions: [], status: "Complete"},
-	{pubName: "Validation of Atlas-Based Segmentation", experimentIds: [], authors: [], versions: [], status: "Approaching Deadline"}
+	{pubName: "Correlated diffusion imaging (CDI) for cancer imaging", experimentIds: [], authors: [], versions: []},
+	{pubName: "Deep De-Noising Autoencoders", experimentIds: [], authors: [], versions: []},
+	{pubName: "Convolutional Nets and Radon Transform", experimentIds: [], authors: [], versions: []},
+	{pubName: "Evolutionary Projection Selection", experimentIds: [], authors: [], versions: []},
+	{pubName: "ROI Estimation in Ultrasound Images", experimentIds: [], authors: [], versions: []},
+	{pubName: "Image Segmentation with Self-Configuration", experimentIds: [], authors: [], versions: []},
+	{pubName: "Learning Opposites with Evolving Rules", experimentIds: [], authors: [], versions: []},
+	{pubName: "Validation of Atlas-Based Segmentation", experimentIds: [], authors: [], versions: []}
 ];
 
 function clearAndInsert(model, tableName, data) {

@@ -6,7 +6,6 @@ var ExperimentSchema = mongoose.Schema({
     dueDate: Date,
     ownerId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     assigneeIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    status: String,
     protocolIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Protocol'}],
     equipmentIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Equipment'}],
     entryIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Entry'}]
@@ -17,6 +16,10 @@ ExperimentSchema.methods.editExperiment = function(obj){
         this[field] = obj[field];
     }
 };
+
+ExperimentSchema.virtual('fullName').get(function () {
+  return this.name.first + ' ' + this.name.last;
+});
 
 ExperimentSchema.methods.addEntry = function(entryId){
     this.entryIds.push(entryId);
