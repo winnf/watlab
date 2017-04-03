@@ -47,12 +47,9 @@ app.controller('ExperimentsCtrl', function ($scope, $location, $uibModal, $timeo
 			controller: 'CreateExperimentModalCtrl',
 			appendTo: $('body'),
 			resolve: {
-        	items: function () {
-          		return $scope.items;
-        		},
-        	item: function(){
-          		return 1;
-        	}
+	        	items: function () {
+	          		return $scope.items;
+	    		}
       		}
 		});
 

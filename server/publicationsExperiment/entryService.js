@@ -32,7 +32,7 @@ EntryService.prototype.addEntry = function(files, fileName, format, description,
 		  		mimetype: mimetype
 		  	});
 
-		  	entry.save(function(err){
+		  	Entry.populate(entry, {path: 'owner'}, function(err){
 		  		if(err) deferred.reject(err);
 		  		else deferred.resolve(entry);
 		  	});
