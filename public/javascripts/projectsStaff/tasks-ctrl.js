@@ -135,7 +135,6 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
 		options: {},
 	};
 
-    // items.viewableData.dueDate = _.clone(genericDateObj);
 
     $scope.taskName = items.viewableData.task;
     $scope.dueDate = items.viewableData.dueDate;

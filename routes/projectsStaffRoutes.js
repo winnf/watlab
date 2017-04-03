@@ -48,6 +48,15 @@ router.get('/updateTask/:name/:date/:assignees/:description/:id', function(req, 
   });
 });
 
+router.get('/deleteTask/:id', function(req, res){
+  var params = req.params;
+  taskServer.deleteTask(params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allNotice', function(req, res){
   noticeServer.displayNoticeDB().then(function(result){
     res.send(result);
