@@ -74,7 +74,8 @@ app.controller('AddBudgetModalCtrl', function($scope, $uibModalInstance){
 			viewableData: {
 				"assignee": $scope.assignee,
                 "amount": $scope.amount,
-                "category": $scope.category
+                "category": $scope.category,
+                "garbage": true
 			}, hiddenData: {"id": 'budget-0A'} });
 	};
 	$scope.closeModal = function () {

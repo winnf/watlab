@@ -122,7 +122,8 @@ app.controller('AddNewNoticeModalCtrl', function($scope, $uibModalInstance){
 				"title": $scope.noticeName,
 				"dueDate": $scope.dueDate.date,
                 "description": $scope.description,
-				"assignees": $scope.assignees
+				"assignees": $scope.assignees,
+                "garbage": true
 			}, hiddenData: {"id": "notice-0a"} });
 	};
 	$scope.closeModal = function () {
@@ -145,7 +146,7 @@ app.controller('EditNoticeModalCtrl', function($scope, $uibModalInstance, items)
 	$scope.dueDate = _.clone(genericDateObj);
     $scope.noticeDescription = items.viewableData.description;
     $scope.noticeAssignees = items.viewableData.assignees;
-    $scope.noticeId = items.viewableData.hiddenData.id;
+    $scope.noticeId = items.hiddenData.id;
 
 	$scope.editNotice = function() {
 		$uibModalInstance.close({
