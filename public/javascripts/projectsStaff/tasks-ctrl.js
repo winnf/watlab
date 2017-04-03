@@ -4,7 +4,6 @@ var app = angular.module('App');
 app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CELLTYPES, $http){
   $scope.tableClassName = 'tasks-table';
   $scope.title = 'Tasks';
-  //$scope.description = ''
   $scope.buttonText = 'Add Task';
   $scope.rowHeaders = ['Task','Due','Assignees','Description', 'Delete'];
 
@@ -41,7 +40,6 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 	};
 
     var editTask = function(row){
-        console.log('the row name is:' + row.viewableData.task);
 		var modalInstance = $uibModal.open({
             backdrop: 'static',
             templateUrl: '/psr/view/modal-edit-task.ejs',
@@ -79,7 +77,6 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
             editTask(row);
         },
         garbage: function(row, i, event){
-            console.log('the row: ' + row + 'blah'+ i)
 			var tr = $(event.target).closest('tr').remove();
         }
 	};
@@ -93,9 +90,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     url: '/psr/allTask'
   }).then(function successCallback(response){
     var tasks = response.data;
-    console.log(tasks);
     for(var i = 0; i < Object.keys(tasks).length; i++){
-      console.log(tasks[i]._id);
       $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true, hiddenData: {"id": tasks[i]._id}}});
     }
   }, function errorCallback(response){
