@@ -99,8 +99,6 @@ app.controller('CompensationsCtrl', function($scope, $location, $uibModal, $time
   }, function errorCallback(response){
     console.log(response);
   });
-
-
 });
 
 app.controller('AddCompensationModalCtrl', function($scope, $uibModalInstance){
@@ -118,7 +116,8 @@ app.controller('AddCompensationModalCtrl', function($scope, $uibModalInstance){
 			viewableData: {
 				"assignee": $scope.assignee,
                 "amount": $scope.amount,
-                "dateAssigned": $scope.dateAssigned.date
+                "dateAssigned": $scope.dateAssigned.date,
+                "garbage": true
 			}, hiddenData: {"id": 'compensation-0A'} });
 	};
 	$scope.closeModal = function () {

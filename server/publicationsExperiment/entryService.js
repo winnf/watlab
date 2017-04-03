@@ -6,7 +6,7 @@ var Entry = require('../../db/entryModel');
 
 var EntryService = function(){};
 
-EntryService.prototype.addEntry = function(files, fileName, format, description){
+EntryService.prototype.addEntry = function(files, fileName, format, description, owner){
 	var promises = Q.all(files.map(file => {
 		var deferred = Q.defer();
 		var buffer = file.buffer;
@@ -23,12 +23,13 @@ EntryService.prototype.addEntry = function(files, fileName, format, description)
 		  		name: fileName, 
 		  		format: format,
 		  		description: description, 
-		  		filePath: filepath
+		  		filePath: filepath,
+		  		owner: owner
 		  	});
 
 		  	entry.save(function(err){
 		  		if(err) deferred.reject(err);
-		  		else deferred.resolve(filepath);
+		  		else deferred.resolve(entry);
 		  	});
 		  }
 		});

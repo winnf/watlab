@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('DashboardCtrl', function($scope, $window, $location) {
+app.controller('DashboardCtrl', function($scope, $window, $location, $http) {
 	$scope.dTiles = [
 		{name: 'Lab Equipment and Safety Compliance', url: '/esr', imgSrc: '/images/flask-outline.png'},
 		{name: 'Lab Projects and Staff', url: '/psr', imgSrc: '/images/id-card.png'},

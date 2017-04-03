@@ -98,7 +98,7 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
   }).then(function successCallback(response){
     var notices = response.data;
     for(var i = 0; i < Object.keys(notices).length; i++){
-      $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description, "garbage": true, hiddenData: {"id": notices[i]._id}}});
+      $scope.rows.push({viewableData: {"title": notices[i].name, "dueDate":notices[i].postDate, "assignees":notices[i].assignees, "description":notices[i].description, "garbage": true}, hiddenData: {"id": notices[i]._id}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -122,7 +122,8 @@ app.controller('AddNewNoticeModalCtrl', function($scope, $uibModalInstance){
 				"title": $scope.noticeName,
 				"dueDate": $scope.dueDate.date,
                 "description": $scope.description,
-				"assignees": $scope.assignees
+				"assignees": $scope.assignees,
+                "garbage": true
 			}, hiddenData: {"id": "notice-0a"} });
 	};
 	$scope.closeModal = function () {
@@ -145,7 +146,7 @@ app.controller('EditNoticeModalCtrl', function($scope, $uibModalInstance, items)
 	$scope.dueDate = _.clone(genericDateObj);
     $scope.noticeDescription = items.viewableData.description;
     $scope.noticeAssignees = items.viewableData.assignees;
-    $scope.noticeId = items.viewableData.hiddenData.id;
+    $scope.noticeId = items.hiddenData.id;
 
 	$scope.editNotice = function() {
 		$uibModalInstance.close({

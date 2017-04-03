@@ -3,6 +3,7 @@
 'use strict';
 var express = require('express');
 var multer = require('multer');
+var Q = require('Q');
 var upload = multer();
 
 var EntryService = require('../server/publicationsExperiment/entryService');
@@ -74,9 +75,16 @@ router.post('/uploadFile', upload.any(), function (req, res) {
     var fileName = body.fileName;
     var format = body.format;
     var description = body.description;
+    var experimentId = body.experimentId;
+    var owner = body.owner;
 
-    EntryService.addEntry(req.files, fileName, format, description).then(function(result){
-        res.send(result);
+    EntryService.addEntry(req.files, fileName, format, description, owner).then(function(entries){
+        Q.all(entries.map(entry => ExperimentService.addEntryToExperiment(experimentId, entry._id))).then(function(){
+            res.send(entries);
+        }, function(err){
+            res.status(500).send(err);
+        });
+        
     }, function(err){
         res.status(500).send(err);
     });
