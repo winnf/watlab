@@ -75,6 +75,24 @@ router.get('/addNotice/:name/:date/:assignees/:description', function(req, res){
   });
 });
 
+router.get('/updateNotice/:title/:date/:assignees/:description/:id', function(req, res){
+  var params = req.params;
+  noticeServer.updateNotice(params.title, params.date, params.assignees, params.description, params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
+router.get('/deleteNotice/:id', function(req, res){
+  var params = req.params;
+  noticeServer.deleteNotice(params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allProject', function(req, res){
   projectServer.displayProjectDB().then(function(result){
     res.send(result);
