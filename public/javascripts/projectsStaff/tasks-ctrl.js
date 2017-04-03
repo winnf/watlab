@@ -57,11 +57,11 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         row.viewableData.task = task.viewableData.task;
         row.viewableData.assignees = task.viewableData.assignees;
         row.viewableData.description = task.viewableData.description;
-        row.viewableData.dueDate.date = task.viewableData.dueDate.date;
+        row.viewableData.dueDate = task.viewableData.dueDate;
 
           $http({
             method: 'GET',
-            url: '/psr/addTask/' + task.viewableData.task + '/' + task.viewableData.dueDate + '/' + task.viewableData.assignees + '/' + task.viewableData.description
+            url: '/psr/updateTask/' + task.viewableData.task + '/' + task.viewableData.dueDate + '/' + task.viewableData.assignees + '/' + task.viewableData.description + '/' + task.hiddenData.id
           }).then(function successCallback(response) {
           }, function errorCallback(response) {
               console.log(response);
@@ -90,8 +90,16 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     url: '/psr/allTask'
   }).then(function successCallback(response){
     var tasks = response.data;
+<<<<<<< HEAD
     for(var i = 0; i < Object.keys(tasks).length; i++){
       $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true, hiddenData: {"id": tasks[i]._id}}});
+=======
+    console.log(tasks[0]._id);
+    debugger;
+    for(var i = 0; i < Object.keys(tasks).length; i++){
+      console.log(tasks[i]._id);
+      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true}, hiddenData: {"id": tasks[i]._id}});
+>>>>>>> f3305483e4d5365e9ed1c202fce05547a5b30944
     }
   }, function errorCallback(response){
     console.log(response);
@@ -141,7 +149,7 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
     $scope.dueDate = _.clone(genericDateObj);
     $scope.taskDescription = items.viewableData.description;
     $scope.taskAssignees = items.viewableData.assignees;
-    $scope.taskId = items.viewableData.hiddenData.id;
+    $scope.taskId = items.hiddenData.id;
     $scope.editTask = function() {
 		$uibModalInstance.close({
 			viewableData: {
