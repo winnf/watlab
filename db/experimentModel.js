@@ -17,10 +17,6 @@ ExperimentSchema.methods.editExperiment = function(obj){
     }
 };
 
-ExperimentSchema.virtual('fullName').get(function () {
-  return this.name.first + ' ' + this.name.last;
-});
-
 ExperimentSchema.methods.addEntry = function(entryId){
     this.entryIds.push(entryId);
 };
