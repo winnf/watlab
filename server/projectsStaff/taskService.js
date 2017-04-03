@@ -60,7 +60,7 @@ Server.prototype.updateTask = function(name, date, assignees, description, id){
   return deferred.promise;
 };
 
-Server.deleteTask = function(id){
+Server.prototype.deleteTask = function(id){
   var deferred = Q.defer();
   Task.find({_id: id}).remove(function(err, task){
     if(err){

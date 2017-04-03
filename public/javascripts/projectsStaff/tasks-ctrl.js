@@ -77,7 +77,14 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
             editTask(row);
         },
         garbage: function(row, i, event){
-			var tr = $(event.target).closest('tr').remove();
+          $http({
+            method: 'GET',
+            url: '/psr/deleteTask/' + row.hiddenData.id
+          }).then(function successCallback(response){
+          }, function errorCallback(response){
+            console.log(response);
+          });
+          var tr = $(event.target).closest('tr').remove();
         }
 	};
 

@@ -36,7 +36,14 @@ router.post('/createExperiment', function (req, res) {
 		res.sendStatus(500);
 	});
 	});
-
+router.get('/allUsers' , function(result){
+    experimentService.getUsers().then(function (result) {
+    res.send(result);
+}, function (error){
+    var err = error.err;
+    res.sendStatus(500);
+});
+});
 router.get('/allExperiments' , function(req , res){
 	ExperimentService.displayDB().then(function (result) {
         res.send(result);
