@@ -38,4 +38,26 @@ Server.prototype.addTask = function(name, date, assignees, description){
   return deferred.promise;
 };
 
+Server.prototype.updateTask = function(name, date, assignees, description, id){
+  var deferred = Q.defer();
+  var query = {'_id': id};
+  var update = {
+    name: name,
+    dueDate: date,
+    assignees: assignees,
+    description: description
+  };
+
+  Task.findOneAndUpdate(query, update, function(err, taskInstance){
+    if(err){
+      deferred.reject(err);
+    }
+    else{
+      console.log(taskInstance);
+      deferred.resolve(taskInstance);
+    }
+  });
+  return deferred.promise;
+};
+
 module.exports = new Server();
