@@ -57,5 +57,17 @@ Server.prototype.updateNotice = function(title, date, assignees, description, id
   return deferred.promise;
 };
 
+Server.prototype.deleteNotice = function(id){
+  var deferred = Q.defer();
+  Notice.find({_id: id}).remove(function(err, instance){
+    if(err){
+      deferred.reject(err);
+    }
+    else {
+      deferred.resolve(instance);
+    }
+  });
+}
+
 
 module.exports = new Server();

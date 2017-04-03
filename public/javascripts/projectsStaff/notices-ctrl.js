@@ -87,8 +87,17 @@ app.controller('NoticesCtrl', function($scope, $location, $uibModal, $timeout, C
         title: function(row){
             editNotice(row);
         },
-        garbage: function(i, row, event){
-            var tr = $(event.target).closest('tr').remove();
+        garbage: function(row, i, event){
+          console.log(row);
+          debugger;
+          $http({
+            method: 'GET',
+            url: '/psr/deleteNotice/' + row.hiddenData.id
+          }).then(function successCallback(response){
+          }, function errorCallback(response){
+            console.log(response);
+          });
+          var tr = $(event.target).closest('tr').remove();
         }
 	};
 
