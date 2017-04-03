@@ -6,13 +6,14 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
   $scope.title = 'Tasks';
   //$scope.description = ''
   $scope.buttonText = 'Add Task';
-  $scope.rowHeaders = ['Task','Due','Assignees','Description'];
+  $scope.rowHeaders = ['Task','Due','Assignees','Description', 'Delete'];
 
   $scope.cellTypes = {
     task: CELLTYPES.CLICKABLE,
     dueDate: CELLTYPES.DATE,
     assignees: CELLTYPES.PLAIN,
-    description: CELLTYPES.PLAIN
+    description: CELLTYPES.PLAIN,
+    garbage: CELLTYPES.DELETE
   };
 
     var addTask = function() {
@@ -83,11 +84,15 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 		},
         task: function(row){
             editTask(row);
+        },
+        garbage: function(row, i, event){
+            console.log('the row: ' + row + 'blah'+ i)
+			var tr = $(event.target).closest('tr').remove();
         }
 	};
 
     $scope.rows = [
-        {viewableData: {"name": "finish this goddamn project smh", "dueDate": "April 1, 2017", "description": "Bah","assignees":"Igor"}}
+        {viewableData: {"name": "finish this goddamn project smh", "dueDate": "April 1, 2017", "description": "Bah","assignees":"Igor", "garbage": true}}
     ];
 
   $http({
@@ -98,7 +103,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     console.log(tasks);
     for(var i = 0; i < Object.keys(tasks).length; i++){
       console.log(tasks[i]._id);
-      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, hiddenData: {"id": tasks[i]._id}}});
+      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true, hiddenData: {"id": tasks[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -121,7 +126,7 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
 			viewableData: {
 				"task": $scope.taskName,
 				"dueDate": $scope.dueDate.date,
-                "description": $scope.descripnoticetion,
+                "description": $scope.description,
 				"assignees": $scope.assignees
 			}, hiddenData: {"id": 'task-0A'} });
 	};
