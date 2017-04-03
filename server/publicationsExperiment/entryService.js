@@ -32,10 +32,18 @@ EntryService.prototype.addEntry = function(files, fileName, format, description,
 		  		mimetype: mimetype
 		  	});
 
-		  	Entry.populate(entry, {path: 'owner'}, function(err){
-		  		if(err) deferred.reject(err);
-		  		else deferred.resolve(entry);
-		  	});
+		  	entry.save(function(err, entry1){
+		  		if(err) {
+		  			deferred.reject(err);
+		  		} else {
+		  			Entry.populate(entry1, {path: 'owner'}, function(err, item){
+				  		console.log(item);
+				  		if(err) deferred.reject(err);
+				  		else deferred.resolve(item);
+				  	});
+		  		}
+		  		
+		  	})
 		  }
 		});
 
@@ -49,9 +57,11 @@ EntryService.prototype.addEntry = function(files, fileName, format, description,
 EntryService.prototype.getFile = function(entryId) {
 	var deferred = Q.defer();
 	Entry.findOne({_id: entryId}, function(err, entry){
-		if(err){
+		if(err || entry === null){
 			deferred.reject({err: err});
 		} else {
+			console.log('Got file');
+			console.log(entry);
 			deferred.resolve(entry);
 		}
 	})
