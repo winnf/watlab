@@ -37,12 +37,8 @@
 	
 	<div style="margin: 24px 0px 8px;"><label>Assignees</label></div> 
   <div class="input-group" style="width: 100%;">
-      <select multiple class="form-control" id="sel2">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+      <select ng-model="assignedUsers" multiple class="form-control" id="sel2">
+        <option ng-repeat="assignee in assignees" value="{{assignee._id}}">{{assignee.name}}</option>
       </select>
 	</div>
 </div>
