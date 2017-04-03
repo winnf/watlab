@@ -1,8 +1,9 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window, $http, $routeParams) {
+app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window, $http, $routeParams, currentTabIndex) {
 	var experimentId = $routeParams.experimentId;
+	$scope.showFormat = currentTabIndex === 0;
 
 	$scope.currentPage = 0;
 
@@ -32,6 +33,7 @@ app.controller('AddDataModalCtrl', function ($scope, $uibModalInstance, $window,
 		var formData = new FormData();
 
 		formData.append('owner', $window.localStorage.getItem('userId'));
+		formData.append('isProtocol', currentTabIndex === 1);
 		formData.append('experimentId', experimentId);
 		formData.append('fileName', $scope.fileName);
 		formData.append('format', $scope.format);

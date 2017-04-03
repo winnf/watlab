@@ -13,9 +13,11 @@
 	  <input type="text" class="form-control" ng-model="fileName" placeholder="File Name">
 	</div>
 
-	<div style="margin: 24px 0px 8px;"><label>Format</label></div> 
-  <div class="input-group" style="width: 100%;">
-	  <input type="text" class="form-control" ng-model="format" placeholder="Format">
+	<div ng-show="showFormat">
+		<div style="margin: 24px 0px 8px;"><label>Format</label></div> 
+	  <div class="input-group" style="width: 100%;">
+		  <input type="text" class="form-control" ng-model="format" placeholder="Format">
+		</div>
 	</div>
 
 	<div style="margin: 24px 0px 8px;"><label>Description</label></div> 
