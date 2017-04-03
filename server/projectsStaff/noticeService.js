@@ -67,7 +67,7 @@ Server.prototype.deleteNotice = function(id){
       deferred.resolve(instance);
     }
   });
-}
+};
 
 
 module.exports = new Server();
