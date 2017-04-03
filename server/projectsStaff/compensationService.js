@@ -54,4 +54,17 @@ Server.prototype.updateCompensation = function(assignee, amount, date, id){
   return deferred.promise;
 };
 
+Server.prototype.deleteCompensation = function(id){
+  var deferred = Q.defer();
+  Compensation.find({_id: id}).remove(function(err, instance){
+    if(err){
+      deferred.reject(err);
+    }
+    else {
+      deferred.resolve(instance);
+    }
+  });
+};
+
+
 module.exports = new Server();
