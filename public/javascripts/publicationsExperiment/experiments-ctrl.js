@@ -14,14 +14,14 @@ app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal
 
 	$scope.getStatus = function(startDate, endDate) {
 		var duration = moment.duration(moment(startDate).diff(moment(endDate)));
-	    var days = duration.asDays();
+	    var days = Math.floor(duration.asDays());
 	    var status;
 	    
 	    if(days < 0){
 	        status = "Overdue";
 	    } else if(days === 0) {
 	        status = "Complete";
-	    } else if(days < 2) {
+	    } else if(days < 5) {
 	        status = 'Approaching Deadline';
 	    } else if(days >= 5) {
 	        status = 'In Progress';
@@ -39,6 +39,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal
 	
 
 	$http.get('/per/allExperiments').then(function(response){
+		var today = new Date();
 		 $scope.rows = response.data.map(x => {
 		 	return {viewableData: {
 				"name":x.name || 'N/A',
@@ -46,7 +47,7 @@ app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal
 				"due-date": x.dueDate,
 				"owner": (x.ownerId || {name: 'N/A'}).name,
 				"assignees": (x.assigneeIds || [{name: 'N/A'}]).map(y => y.name).join(', '),
-				"status": $scope.getStatus(x.startDate, x.endDate)
+				"status": $scope.getStatus(x.dueDate , today)
 			}, hiddenData: {id: x._id } };
 		 });  		
 	}, function(response){
