@@ -6,13 +6,14 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
   $scope.title = 'Tasks';
   //$scope.description = ''
   $scope.buttonText = 'Add Task';
-  $scope.rowHeaders = ['Task','Due','Assignees','Description'];
+  $scope.rowHeaders = ['Task','Due','Assignees','Description', 'Delete'];
 
   $scope.cellTypes = {
     task: CELLTYPES.CLICKABLE,
     dueDate: CELLTYPES.DATE,
     assignees: CELLTYPES.PLAIN,
-    description: CELLTYPES.PLAIN
+    description: CELLTYPES.PLAIN,
+    garbage: CELLTYPES.DELETE
   };
 
     var addTask = function() {
@@ -54,18 +55,11 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
         });
 
         modalInstance.result.then(function(task){
-            if (row.viewableData.task != task.viewableData.task){
-                row.viewableData.task = task.viewableData.task;
-            }
-            if (row.viewableData.assignees != task.viewableData.assignees){
-                row.viewableData.assignees = task.viewableData.assignees;
-            }
-            if (row.viewableData.description != task.viewableData.description){
-                row.viewableData.description = task.viewableData.description;
-            }
-            if (row.viewableData.dueDate != task.viewableData.dueDate){
-                row.viewableData.dudeDate = task.viewableData.dueDate;
-            }
+
+        row.viewableData.task = task.viewableData.task;
+        row.viewableData.assignees = task.viewableData.assignees;
+        row.viewableData.description = task.viewableData.description;
+        row.viewableData.dueDate.date = task.viewableData.dueDate.date;
 
           $http({
             method: 'GET',
@@ -83,11 +77,15 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
 		},
         task: function(row){
             editTask(row);
+        },
+        garbage: function(row, i, event){
+            console.log('the row: ' + row + 'blah'+ i)
+			var tr = $(event.target).closest('tr').remove();
         }
 	};
 
     $scope.rows = [
-        {viewableData: {"name": "finish this goddamn project smh", "description": "Bah","assignees":"Igor"}}
+        {viewableData: {"name": "finish this goddamn project smh", "dueDate": "April 1, 2017", "description": "Bah","assignees":"Igor", "garbage": true}}
     ];
 
   $http({
@@ -98,7 +96,7 @@ app.controller('TasksCtrl', function($scope, $location, $uibModal, $timeout, CEL
     console.log(tasks);
     for(var i = 0; i < Object.keys(tasks).length; i++){
       console.log(tasks[i]._id);
-      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, hiddenData: {"id": tasks[i]._id}}});
+      $scope.rows.push({viewableData: {"task": tasks[i].name, "dueDate":tasks[i].dueDate, "assignees":tasks[i].assignees, "description":tasks[i].description, "garbage": true, hiddenData: {"id": tasks[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -131,6 +129,7 @@ app.controller('AddTaskModalCtrl', function($scope, $uibModalInstance){
 });
 
 app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
+
 	var genericDateObj = {
 		date: new Date(),
 		isOpen: false,
@@ -139,17 +138,20 @@ app.controller('EditTaskModalCtrl', function($scope, $uibModalInstance, items){
 		altInputFormats: ['MMM dd, yyyy'],
 		options: {},
 	};
+
+    // items.viewableData.dueDate = _.clone(genericDateObj);
+
     $scope.taskName = items.viewableData.task;
-	$scope.dueDate = items.viewableData.dueDate;
+    $scope.dueDate = items.viewableData.dueDate;
+    $scope.dueDate = _.clone(genericDateObj);
     $scope.taskDescription = items.viewableData.description;
     $scope.taskAssignees = items.viewableData.assignees;
     $scope.taskId = items.viewableData.hiddenData.id;
-
     $scope.editTask = function() {
 		$uibModalInstance.close({
 			viewableData: {
 				"task": $scope.taskName,
-				"dueDate": $scope.dueDate,
+				"dueDate": $scope.dueDate.date,
                 "description": $scope.taskDescription ,
 				"assignees": $scope.taskAssignees
             }, hiddenData: {"id": $scope.taskId } });

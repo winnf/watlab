@@ -16,10 +16,10 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
 
     var addProject = function() {
 		var modalInstance = $uibModal.open({
-			backdrop: 'static',
-      templateUrl: '/psr/view/modal-add-project.ejs',
-      controller: 'AddProjectModalCtrl',
-      appendTo: $('body')
+            backdrop: 'static',
+            templateUrl: '/psr/view/modal-add-project.ejs',
+            controller: 'AddProjectModalCtrl',
+            appendTo: $('body')
     });
 
     modalInstance.result.then(function(project){
@@ -37,20 +37,38 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
   		});
     });
 	};
-    var editProject = function() {
+    var editProject = function(row) {
+        console.log('the row name is:' + row.viewableData.project);
 		var modalInstance = $uibModal.open({
-			backdrop: 'static',
-      templateUrl: '/psr/view/modal-edit-project.ejs',
-      controller: 'EditProjectModalCtrl',
-      appendTo: $('body')
+            backdrop: 'static',
+            templateUrl: '/psr/view/modal-edit-project.ejs',
+            controller: 'EditProjectModalCtrl',
+            appendTo: $('body'),
+            resolve: {
+                items: function(){
+                    return row;
+                }
+            }
     });
 
     modalInstance.result.then(function(project){
-  		$scope.rows.push(project);
-  		$timeout(function(){
-  			var editedProject = $('#abstract-table tr').last();
-  			$('#abstract-table').DataTable().row.add(editedProject[0]);
-  		});
+        console.log(project.viewableData);
+        if (row.viewableData.name != project.viewableData.name){
+            row.viewableData.name = project.viewableData.name;
+        }
+        if (row.viewableData.assignees != project.viewableData.assignees){
+            row.viewableData.assignees = project.viewableData.assignees;
+        }
+        if (row.viewableData.description != project.viewableData.description){
+            row.viewableData.description = project.viewableData.description;
+        }
+      $http({
+        method: 'GET',
+        url: '/psr/addProject/' + project.viewableData.name + '/' + project.viewableData.assignees + '/' + project.viewableData.description
+      }).then(function successCallback(response){
+      }, function errorCallback(response){
+        console.log(response);
+      });
     });
 	};
 
@@ -58,11 +76,8 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
 		button: function() {
 			addProject();
 		},
-		name: function(row) {
-			$location.url('/psr/project/' + row.hiddenData.id);
-		},
-        row: function(){
-            editProject();
+        name: function(row){
+            editProject(row);
         }
 	};
 
@@ -76,7 +91,7 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
   }).then(function successCallback(response){
     var projects = response.data;
     for(var i = 0; i < Object.keys(projects).length; i++){
-      $scope.rows.push({viewableData: {"name": projects[i].name, "description": projects[i].description, "assignees": projects[i].assignees}});
+      $scope.rows.push({viewableData: {"name": projects[i].name, "description": projects[i].description, "assignees": projects[i].assignees, hiddenData: {"id": projects[i]._id}}});
     }
   }, function errorCallback(response){
     console.log(response);
@@ -97,14 +112,19 @@ app.controller('AddProjectModalCtrl', function($scope, $uibModalInstance){
     $uibModalInstance.dismiss('cancel');
   };
 });
-app.controller('EditProjectModalCtrl', function($scope, $uibModalInstance){
+app.controller('EditProjectModalCtrl', function($scope, $uibModalInstance, items){
+    $scope.projectName = items.viewableData.name;
+    $scope.projectDescription = items.viewableData.description;
+    $scope.projectAssignees = items.viewableData.assignees;
+    $scope.projectId = items.viewableData.hiddenData.id;
+
 	$scope.editProject = function() {
 		$uibModalInstance.close({
 			viewableData: {
 				"name": $scope.projectName,
-                "description": $scope.description,
-				"assignees": $scope.assignees
-			}, hiddenData: {"id": 'project-0A'} });
+                "description": $scope.projectDescription,
+				"assignees": $scope.projectAssignees
+			}, hiddenData: {"id": $scope.projectId} });
 	};
 	$scope.closeModal = function () {
     $uibModalInstance.dismiss('cancel');
