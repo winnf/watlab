@@ -7,6 +7,8 @@ var Publication = require('./publicationModel.js');
 var User = require('./userModel.js');
 var Version = require('./versionModel.js');
 
+var Q = require('q');
+
 mongoose.connect('mongodb://localhost/database');
 
 /**
@@ -95,11 +97,8 @@ var dummyPublicationData = [
 	{pubName: "Validation of Atlas-Based Segmentation", experimentIds: [], authors: [], versions: [], status: "Approaching Deadline"} 
 ];
 
-dummyPublicationData.forEach((publication, i) => {
-	publication.versions.push(dummyVersionData[i]._id);
-});
-
-function clearAndInsert(model, tableName, data, callback) {
+function clearAndInsert(model, tableName, data) {
+	var deferred = Q.defer();
 	model.remove({}, function(err, removed){
 		console.log('Cleared table ' + tableName);
 		console.log(removed.result);
@@ -107,15 +106,15 @@ function clearAndInsert(model, tableName, data, callback) {
 		model.collection.insert(data, function(err, insertedData){
 			console.log('Insertion completed ' + tableName);
 			if(typeof insertedData.ops === 'undefined') console.log(insertedData);
-			callback(insertedData.ops);
+			deferred.resolve(insertedData.ops);
 		});
 	})
+	return deferred.promise;
 }
-
-clearAndInsert(User, 'User', dummyUserData, function(){});
 
 var entriesArr = [];
 dummyExperimentData.forEach(experiment => {
+	experiment._id = new ObjectID();
 	experiment.startDate = new Date(experiment.startDate);
 	experiment.dueDate = new Date(experiment.dueDate);
 	experiment.ownerId = generateRandom(dummyUserData, 1, 1)[0]._id;
@@ -133,10 +132,19 @@ dummyExperimentData.forEach(experiment => {
 	experiment.entryIds = entries.map(y => y._id);
 });
 
-clearAndInsert(Experiment, 'Experiment', dummyExperimentData, function(){});
-clearAndInsert(Version, 'Version', dummyVersionData, function(){});
-clearAndInsert(Publication, 'Publication', dummyPublicationData, function(){});
-clearAndInsert(Entries, 'Entries', entriesArr, function(){});
+dummyPublicationData.forEach((publication, i) => {
+	publication.versions.push(dummyVersionData[i]._id);
+	publication.experimentIds = generateRandom(dummyExperimentData, 1, dummyExperimentData.length).map(y => y._id);
+});
 
+Q.all([
+	clearAndInsert(User, 'User', dummyUserData),
+	clearAndInsert(Experiment, 'Experiment', dummyExperimentData),
+	clearAndInsert(Version, 'Version', dummyVersionData),
+	clearAndInsert(Publication, 'Publication', dummyPublicationData),
+	clearAndInsert(Entries, 'Entries', entriesArr)
+	]).then(function(result){
+		mongoose.connection.close();
+	});
 
 

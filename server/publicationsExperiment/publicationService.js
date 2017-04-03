@@ -25,7 +25,7 @@ PublicationService.prototype.createPublication = function (pubName) {
 PublicationService.prototype.displayDB = function () {
     var deferred = Q.defer();
     
-    Publication.find({}, function (err, pubs) {
+    Publication.find({}).populate('versions').exec(function (err, pubs) {
         if (err) {
             deferred.reject(err);
         } else {
