@@ -150,7 +150,7 @@ app.controller('EditCompensationModalCtrl', function($scope, $uibModalInstance, 
     $scope.dateAssigned = items.viewableData.dateAssigned;
     $scope.dateAssigned = _.clone(genericDateObj);
 
-    $scope.compensationId = items.viewableData.hiddenData.id;
+    $scope.compensationId = items.hiddenData.id;
 
 	$scope.editCompensation = function() {
 		$uibModalInstance.close({

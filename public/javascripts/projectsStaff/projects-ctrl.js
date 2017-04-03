@@ -80,7 +80,15 @@ app.controller('ProjectsCtrl', function($scope, $location, $uibModal, $timeout, 
         name: function(row){
             editProject(row);
         },
-        garbage: function(i, row, event){
+        garbage: function(row, i, event){
+          console.log(row);
+          $http({
+            method: 'GET',
+            url: '/psr/deleteProject/' + row.hiddenData.id
+          }).then(function successCallback(response){
+          }, function errorCallback(response){
+            console.log(response);
+          });
           var tr = $(event.target).closest('tr').remove();
         }
 	};

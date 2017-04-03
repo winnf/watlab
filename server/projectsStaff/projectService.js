@@ -56,4 +56,17 @@ Server.prototype.updateProject = function(name, assignees, description, id){
   return deferred.promise;
 };
 
+Server.prototype.deleteProject = function(id){
+  var deferred = Q.defer();
+  Project.find({_id: id}).remove(function(err, instance){
+    if(err){
+      deferred.reject(err);
+    }
+    else {
+      deferred.resolve(instance);
+    }
+  });
+};
+
+
 module.exports = new Server();

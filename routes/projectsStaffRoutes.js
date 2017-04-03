@@ -120,6 +120,15 @@ router.get('/updateProject/:name/:assignees/:description/:id', function(req, res
   });
 });
 
+router.get('/deleteProject/:id', function(req, res){
+  var params = req.params;
+  projectServer.deleteProject(params.id).then(function(result){
+    res.send(result);
+  }, function(err){
+    res.sendStatus(500);
+  });
+});
+
 router.get('/allCompensation', function(req, res){
   compensationServer.displayCompensationDB().then(function(result){
     res.send(result);
