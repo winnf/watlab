@@ -62,6 +62,7 @@ app.controller('PublicationsCtrl', function ($scope, $location, $uibModal, $time
             createPublication();
 		},
 		name: function (row) {
+            console.log(row);
 			$location.url('/per/publication/' + row.hiddenData.id);
 		},
         row: function () {

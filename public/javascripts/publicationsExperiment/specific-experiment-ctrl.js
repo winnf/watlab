@@ -24,7 +24,7 @@ app.controller('SpecificExperimentCtrl', function ($scope, $window, $routeParams
 
 		var entryRows = [];
 		var protocolRows = [];
-
+		console.log(data);
 		data.entryIds.forEach(entry => {
 			var row = $scope.processEntry(entry);
 			if(entry.isProtocol) protocolRows.push(row);
