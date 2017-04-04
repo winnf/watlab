@@ -3,7 +3,7 @@
 'use strict';
 var app = angular.module('App');
 
-app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal, $timeout, CELLTYPES, $http) {
+app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal, $timeout, CELLTYPES, $http, ngToast) {
 
 
 	$scope.tableClassName = 'experiments-table';
@@ -93,7 +93,11 @@ app.controller('ExperimentsCtrl', function ($scope, $location,$window, $uibModal
     			// this callback will be called asynchronously
     			// when the response is available
     			//console.log(response);
+    			$scope.showToast = true;
     			updateTable();
+    			$timeout(function(){
+	    			ngToast.create('Success creating experiment ' + name);
+    			});
     			//$scope.rows.push(experiment);
     			//console.log(experiment);
 			}, function errorCallback(response) {

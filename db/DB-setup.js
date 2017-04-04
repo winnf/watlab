@@ -15,4 +15,8 @@ DB.prototype.setup = function() {
 	require('./versionModel');
 };
 
+DB.prototype.close = function(){
+	mongoose.connection.close();
+};
+
 module.exports = new DB();
